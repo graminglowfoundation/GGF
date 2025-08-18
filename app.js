@@ -1,0 +1,265 @@
+/* ---------------- PRELOADER ---------------- */
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+  if (preloader) {
+    preloader.style.display = "none";
+  }
+});
+/* Optional: smooth preloader fade */
+window.addEventListener('load', () => {
+  const p = document.getElementById('preloader');
+  if (p) setTimeout(()=> p.classList.add('loaded'), 650);
+});
+/* ---------------- OPEN PAGE ---------------- */
+function openPage(url){
+  // open in new tab for program details
+  window.open(url, '_blank');
+}
+/* ---------------- DONATE POPUP ---------------- */
+function toggleDonate(){
+  const popup = document.getElementById('donate-popup');
+  if (!popup) return;
+  if (popup.style.display === 'flex') {
+    popup.style.display = 'none';
+    popup.setAttribute('aria-hidden','true');
+  } else {
+    popup.style.display = 'flex';
+    popup.setAttribute('aria-hidden','false');
+  }
+}
+/* Close popup when click outside */
+window.addEventListener('click', (e) => {
+  const popup = document.getElementById('donate-popup');
+  if (!popup) return;
+  if (e.target === popup) {
+    popup.style.display = 'none';
+    popup.setAttribute('aria-hidden','true');
+  }
+});
+/* ---------------- SMOOTH SCROLL ---------------- */
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a');
+  if (!a) return;
+  const href = a.getAttribute('href');
+  if (!href) return;
+  if (href.startsWith('#')) {
+    e.preventDefault();
+    const el = document.querySelector(href);
+    if (el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+});
+/* ---------------- NAV ACTIVE LINK ---------------- */
+document.addEventListener('DOMContentLoaded', () => {
+  const links = document.querySelectorAll('.nav-link');
+  links.forEach(l => {
+    if (location.pathname.endsWith(l.getAttribute('href'))) {
+      l.classList.add('active');
+    }
+  });
+});
+/* ---------------- CAROUSEL PAUSE ON HOVER ---------------- */
+document.querySelectorAll('.carousel-track').forEach(track => {
+  track.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
+  track.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
+});
+/* ---------------- GLOBAL RIPPLE EFFECT ---------------- */
+document.addEventListener("click", function(e) {
+  const ripple = document.createElement("span");
+  ripple.className = "ripple";
+  document.body.appendChild(ripple);
+  ripple.style.left = `${e.pageX - 10}px`;
+  ripple.style.top = `${e.pageY - 10}px`;
+  ripple.style.width = ripple.style.height = "20px";
+  setTimeout(() => ripple.remove(), 600);
+});
+/* ---------------- FLOATING DONATE BUTTON BOUNCE ---------------- */
+window.addEventListener("scroll", () => {
+  const donateBtn = document.querySelector(".floating-donate");
+  if (!donateBtn) return;
+  donateBtn.style.transform = "scale(1.2) rotate(5deg)";
+  setTimeout(() => {
+    donateBtn.style.transform = "scale(1)";
+  }, 300);
+});
+/* ---------------- DRAG CAROUSEL ---------------- */
+const track = document.querySelector('.carousel-track');
+if(track){
+  let isDragging = false;
+  let startPos = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+  let animationID;
+  track.addEventListener('mousedown', dragStart);
+  track.addEventListener('mouseup', dragEnd);
+  track.addEventListener('mouseleave', dragEnd);
+  track.addEventListener('mousemove', dragMove);
+  track.addEventListener('touchstart', dragStart);
+  track.addEventListener('touchend', dragEnd);
+  track.addEventListener('touchmove', dragMove);
+  function dragStart(e) {
+    isDragging = true;
+    startPos = getPositionX(e);
+    track.style.cursor = 'grabbing';
+    animationID = requestAnimationFrame(animation);
+  }
+  function dragEnd() {
+    isDragging = false;
+    prevTranslate = currentTranslate;
+    cancelAnimationFrame(animationID);
+    track.style.cursor = 'grab';
+  }
+  function dragMove(e) {
+    if (!isDragging) return;
+    const currentPosition = getPositionX(e);
+    currentTranslate = prevTranslate + currentPosition - startPos;
+  }
+  function getPositionX(e) {
+    return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+  }
+  function animation() {
+    setSliderPosition();
+    if (isDragging) requestAnimationFrame(animation);
+  }
+  function setSliderPosition() {
+    track.style.transform = `translateX(${currentTranslate}px)`;
+  }
+}
+/* ---------------- CONTACT FORM MAILTO ---------------- */
+const form = document.getElementById('contact-form');
+if(form){
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const mailtoLink = `mailto:graminglowfoundation2025@gmail.com?subject=Message from ${encodeURIComponent(name)}&body=${encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message)}`;
+    window.location.href = mailtoLink;
+  });
+}
+document.addEventListener("DOMContentLoaded", () => {
+  /* -------------------- HIGHLIGHT CAROUSEL -------------------- */
+  const track = document.querySelector('.highlight-track');
+  const cards = document.querySelectorAll('.highlight-card');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+
+  if (track && cards.length > 0) {
+    let index = 0;
+    const totalSlides = cards.length;
+    let autoSlide;
+
+    function updateCarousel() {
+      track.style.transform = `translateX(${-index * 420}px)`; // each card ~420px wide
+    }
+
+    // Manual navigation
+    prevBtn.addEventListener('click', () => {
+      index = (index - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+      resetAutoSlide();
+    });
+    nextBtn.addEventListener('click', () => {
+      index = (index + 1) % totalSlides;
+      updateCarousel();
+      resetAutoSlide();
+    });
+
+    // Auto-slide every 3s
+    function startAutoSlide() {
+      autoSlide = setInterval(() => {
+        index = (index + 1) % totalSlides;
+        updateCarousel();
+      }, 3000);
+    }
+    function resetAutoSlide() {
+      clearInterval(autoSlide);
+      startAutoSlide();
+    }
+    startAutoSlide();
+  }
+
+  /* -------------------- DONATE POPUP -------------------- */
+  const donateBtn = document.querySelector('.floating-donate');
+  const donatePopup = document.getElementById('donate-popup');
+  const closeBtn = document.querySelector('.popup-close');
+
+  if (donateBtn && donatePopup && closeBtn) {
+    donateBtn.addEventListener('click', () => {
+      donatePopup.setAttribute('aria-hidden', 'false');
+      donatePopup.style.display = 'flex';
+    });
+
+    closeBtn.addEventListener('click', () => {
+      donatePopup.setAttribute('aria-hidden', 'true');
+      donatePopup.style.display = 'none';
+    });
+
+    donatePopup.addEventListener('click', (e) => {
+      if (e.target === donatePopup) {
+        donatePopup.style.display = 'none';
+      }
+    });
+  }
+});
+/* -------------------- HIGHLIGHT SLIDER -------------------- */
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll('.highlight-slide');
+  const dotsContainer = document.querySelector('.slider-dots');
+  let index = 0;
+  let autoSlide;
+
+  // Create dots dynamically
+  slides.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.classList.add('dot');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => {
+      index = i;
+      showSlide(index);
+      resetAutoSlide();
+    });
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll('.dot');
+
+  function showSlide(n) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      dots[i].classList.remove('active');
+    });
+    slides[n].classList.add('active');
+    dots[n].classList.add('active');
+  }
+
+  function nextSlide() {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  }
+
+  function startAutoSlide() {
+    autoSlide = setInterval(nextSlide, 3000);
+  }
+  function resetAutoSlide() {
+    clearInterval(autoSlide);
+    startAutoSlide();
+  }
+
+  // Init
+  showSlide(index);
+  startAutoSlide();
+});
+// Hamburger toggle
+const navToggle = document.querySelector(".nav-toggle");
+const navMenu = document.querySelector(".nav-menu");
+
+navToggle.addEventListener("click", () => {
+  navMenu.classList.toggle("show");
+});
+
+// Auto-close when clicking a link
+document.querySelectorAll(".nav-menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    navMenu.classList.remove("show");
+  });
+});
