@@ -1217,3 +1217,133 @@ footer p {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* Social Icons style */
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+.social-icons a {
+  color: #fff;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+.social-icons a:hover {
+  color: #ffd700;
+}
+
+/* Desktop (default) */
+.nav-toggle {
+  display: none;
+}
+.social-icons {
+  display: none; /* hidden on desktop */
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  /* Hide full nav links on mobile */
+  .navbar nav {
+    display: none;
+  }
+
+  /* Show hamburger + social icons */
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 1101;
+  }
+
+  .social-icons {
+    display: flex;
+  }
+
+  /* Drawer Menu for mobile */
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -260px;
+    width: 250px;
+    height: 100%;
+    background: #138808;
+    padding-top: 80px;
+    transition: right 0.3s ease-in-out;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.3);
+    z-index: 1100;
+  }
+  .nav-menu.show {
+    right: 0;
+  }
+  .nav-menu ul {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 20px;
+  }
+  .nav-menu a {
+    display: block;
+    font-size: 18px;
+    padding: 10px 0;
+    color: #fff;
+  }
+
+  /* Dark Overlay */
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1099;
+  }
+  .nav-overlay.show {
+    display: block;
+  }
+}
+/* Latest Events Section */
+.latest-events {
+  background-color: #f9f9f9; /* light background */
+  padding: 40px 20px;
+}
+
+.latest-events h2 {
+  font-size: 30px;
+  font-weight: 700;
+  color: #000000; /* solid dark text */
+  margin-bottom: 20px;
+}
+
+.latest-events .event-card {
+  background-color: #ffffff; /* no glow, just clean card */
+  border: 1px solid #ddd; 
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease; /* subtle effect */
+}
+
+.latest-events .event-card:hover {
+  transform: translateY(-5px); /* only lift, no glow */
+  border-color: #cbdd2c; /* highlight border */
+}
+
+.latest-events .event-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000; /* solid event color */
+}
+
+.latest-events .event-date {
+  font-size: 14px;
+  color: #555; /* normal text */
+}
+
+.latest-events .event-description {
+  font-size: 16px;
+  color: #000000; /* readable text */
+}
+
