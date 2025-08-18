@@ -249,17 +249,23 @@ document.addEventListener("DOMContentLoaded", () => {
   showSlide(index);
   startAutoSlide();
 });
-// Hamburger toggle
 const navToggle = document.querySelector(".nav-toggle");
 const navMenu = document.querySelector(".nav-menu");
+const navOverlay = document.querySelector(".nav-overlay");
 
 navToggle.addEventListener("click", () => {
   navMenu.classList.toggle("show");
+  navOverlay.classList.toggle("show");
 });
 
-// Auto-close when clicking a link
+navOverlay.addEventListener("click", () => {
+  navMenu.classList.remove("show");
+  navOverlay.classList.remove("show");
+});
+
 document.querySelectorAll(".nav-menu a").forEach(link => {
   link.addEventListener("click", () => {
     navMenu.classList.remove("show");
+    navOverlay.classList.remove("show");
   });
 });
