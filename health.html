@@ -26,8 +26,8 @@
     .navbar ul li a.active { border-bottom: 2px solid #ffd700; padding-bottom: 3px; }
 
     main.section { max-width: 1100px; margin: 60px auto; padding: 0 20px; text-align: center; }
-    main h1 { font-size: 42px; color: #138808; margin-bottom: 20px; animation: glowText 2s ease-in-out infinite alternate; }
-    h2 { color: #138808; margin-top: 50px; margin-bottom: 20px; }
+    main h1 { font-size: 42px; color: #5c18db; margin-bottom: 20px; animation: glowText 2s ease-in-out infinite alternate; }
+    h2 { color: #b4210d; margin-top: 50px; margin-bottom: 20px; }
 
     .events-grid {
       display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 20px;
@@ -80,39 +80,58 @@
     .btn:hover { transform: scale(1.1); box-shadow: 0 0 20px rgba(255,153,51,0.6); }
     .btn.outline { background: #fff; color: #138808; border: 2px solid #138808; }
 
-    footer { text-align: center; padding: 25px 0; background: #138808; color: #fff; font-weight: 600; margin-top: 60px; }
+    footer { text-align: center; padding: 25px 0; background: #880808; color: #fff; font-weight: 600; margin-top: 60px; }
 
     @keyframes glowText {
       0% { text-shadow: 0 0 8px #138808, 0 0 15px #76c043; }
       50% { text-shadow: 0 0 18px #138808, 0 0 25px #76c043; }
       100% { text-shadow: 0 0 8px #138808, 0 0 15px #76c043; }
     }
+
+    /* Floating Donate Button */
+    .floating-donate {
+      position: fixed; bottom: 20px; right: 20px;
+      background: linear-gradient(45deg,#ff4d4d,#ff1a1a);
+      color: #fff; padding: 12px 20px; border: none; border-radius: 50px;
+      font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      z-index: 1100; transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .floating-donate:hover { transform: scale(1.1); box-shadow: 0 0 20px #ff1a1a; }
+
+    /* Popup */
+    .popup {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6); z-index: 1200;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .popup[aria-hidden="true"] { display: none; }
+    .popup-box {
+      background: #fff; padding: 30px; border-radius: 15px; text-align: center;
+      max-width: 350px; width: 90%; position: relative;
+    }
+    .popup-close {
+      position: absolute; top: 10px; right: 15px; background: none; border: none;
+      font-size: 24px; cursor: pointer; color: #333;
+    }
+    .qr { width: 200px; margin-top: 15px; }
   </style>
 </head>
 <body>
- <!-- NAV -->
   <header class="navbar">
-  <div class="nav-left">
-    <a href="index.html" class="home-link">
+    <div class="nav-left">
+      <a href="index.html" class="home-link"></a>
       <img src="LOGO.png" class="nav-logo" alt="">
       <span class="org-name">Gramin Glow Foundation</span>
-    </a>
-  </div>
-
-  <!-- Hamburger -->
-  <button class="nav-toggle" aria-label="Toggle menu">
-    <i class="fas fa-bars"></i>
-  </button>
-
-  <nav class="nav-menu">
-    <ul>
-      <li><a href="index.html" class="nav-link">Home</a></li>
-      <li><a href="programs.html" class="nav-link">Programs</a></li>
-      <li><a href="members.html" class="nav-link">Members</a></li>
-      <li><a href="contact.html" class="nav-link">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="programs.html" class="nav-link">Programs</a></li>
+        <li><a href="members.html" class="nav-link">Members</a></li>
+        <li><a href="health.html" class="nav-link active">Health</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <main class="section program-detail">
     <h1>Health Program Events</h1>
@@ -121,22 +140,12 @@
     <h2>Past Events</h2>
     <section class="events-grid">
       <div class="event-card" data-aos="fade-right">
-        <img src="First Event.jpg" alt="Event 1">
-        <h3>Swasthya Bornomala</h3>
-        <p>Health & Hygiene Awareness Camp by Gramin Glow Foundation</p>
+        <img src="image-e2.jpg" alt="event">
+        <h3>SWASTHYAM BORNOMALA</h3>
+        <p>🧼 Swasthya Bornomala – A Health & Hygiene Awareness Camp by Gramin Glow Foundation in collaboration with Mallikpur Primary School.
+
+        </p>
         <a href="event1.html" target="_blank">Open Event</a>
-      </div>
-      <div class="event-card" data-aos="fade-up" data-aos-delay="100">
-        <img src="images/event2.jpg" alt="Event 2">
-        <h3>Nutrition Awareness Workshop</h3>
-        <p>Workshops on healthy eating and nutrition for children.</p>
-        <a href="event2.html" target="_blank">Open Event</a>
-      </div>
-      <div class="event-card" data-aos="fade-left" data-aos-delay="200">
-        <img src="images/event3.jpg" alt="Event 3">
-        <h3>Maternal Health Camp</h3>
-        <p>Free checkups and guidance for expecting mothers.</p>
-        <a href="https://example.com/event3" target="_blank">Open Event</a>
       </div>
     </section>
 
@@ -144,27 +153,15 @@
     <h2>Upcoming Events</h2>
     <section class="events-grid">
       <div class="event-card" data-aos="fade-right">
-        <img src="images/upcoming1.jpg" alt="Upcoming Event 1">
-        <h3>Free Dental Camp</h3>
-        <p>Scheduled for next month to provide dental checkups to all ages.</p>
-        <a href="https://example.com/upcoming1" target="_blank">Open Event</a>
-      </div>
-      <div class="event-card" data-aos="fade-up" data-aos-delay="100">
-        <img src="images/upcoming2.jpg" alt="Upcoming Event 2">
-        <h3>Community Vaccination Drive</h3>
-        <p>Upcoming immunization camp for children and elders.</p>
-        <a href="https://example.com/upcoming2" target="_blank">Open Event</a>
-      </div>
-      <div class="event-card" data-aos="fade-left" data-aos-delay="200">
-        <img src="images/upcoming3.jpg" alt="Upcoming Event 3">
-        <h3>Health Awareness Seminar</h3>
-        <p>Seminar on nutrition, hygiene, and preventive healthcare.</p>
-        <a href="https://example.com/upcoming3" target="_blank">Open Event</a>
+        <img src="images/upcoming_edu1.jpg" alt="COMING SOON">
+        <h3>COMING SOON</h3>
+        <p>Coming Soon</p>
+        <a href="https://example.com/upcoming_edu1" target="_blank">Open Event</a>
       </div>
     </section>
 
     <div class="center-links">
-      <button class="btn" onclick="toggleDonate()">Donate to Health</button>
+      <button class="btn" id="donate-btn">Donate to Health</button>
       <a class="btn outline" href="programs.html" target="_blank">Back to Programs</a>
     </div>
   </main>
@@ -173,50 +170,45 @@
     <div class="footer-inner">© 2025 Gramin Glow Foundation</div>
   </footer>
 
-  <!-- Floating Donate Button -->
-  <button class="floating-donate" aria-label="Donate">
-    <span class="heart">❤</span> Donate
-  </button>
+  <button class="floating-donate" id="floating-donate" aria-label="Donate"><span class="heart">❤</span> Donate</button>
 
-  <!-- Donate Popup -->
   <div id="donate-popup" class="popup" role="dialog" aria-hidden="true">
     <div class="popup-box">
       <button class="popup-close" aria-label="Close">&times;</button>
       <h3>Scan to Donate</h3>
-      <p>Use your UPI scanner to donate directly.</p>
-      <p>UPI Number: 8389974399</p>
+      <p>Use your UPI scanner to donate directly.</p> 
+      <p>UPI Number: 8389974399 </p>
       <img src="QR.jpg" alt="QR code scanner" class="qr">
     </div>
   </div>
 
-  <!-- Inline JS to fix Donate Button -->
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    function toggleDonate(){
-      const popup = document.getElementById('donate-popup');
-      if (!popup) return;
-      if (popup.style.display === 'flex') {
-        popup.style.display = 'none';
-        popup.setAttribute('aria-hidden','true');
-      } else {
-        popup.style.display = 'flex';
-        popup.setAttribute('aria-hidden','false');
-      }
+    AOS.init({ duration: 1200, once: true });
+
+    const popup = document.getElementById('donate-popup');
+    const donateBtn = document.getElementById('donate-btn');
+    const floatingDonate = document.getElementById('floating-donate');
+    const closeBtn = document.querySelector('.popup-close');
+
+    function openPopup() {
+      popup.style.display = 'flex';
+      popup.setAttribute('aria-hidden','false');
     }
-    document.querySelector('.popup-close').addEventListener('click', function(){
-      document.getElementById('donate-popup').style.display = 'none';
-      document.getElementById('donate-popup').setAttribute('aria-hidden','true');
-    });
-    window.addEventListener('click', function(e){
-      const popup = document.getElementById('donate-popup');
-      if(e.target === popup){
-        popup.style.display = 'none';
-        popup.setAttribute('aria-hidden','true');
-      }
+    function closePopup() {
+      popup.style.display = 'none';
+      popup.setAttribute('aria-hidden','true');
+    }
+
+    donateBtn.addEventListener('click', openPopup);
+    floatingDonate.addEventListener('click', openPopup);
+    closeBtn.addEventListener('click', closePopup);
+
+    // Close popup if clicked outside box
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) closePopup();
     });
   </script>
-
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script> AOS.init(); </script>
 </body>
 </html>
-
