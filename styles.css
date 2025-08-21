@@ -11,12 +11,12 @@ body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica
 #preloader img{width:72px;animation:spin 1.8s linear infinite;display:block;margin:0 auto 10px}
 #preloader span{color:var(--nav);font-weight:700}
 /* NAV */
-.navbar{background:var(--nav);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 32px;position:sticky;top:0;z-index:1000;box-shadow:0 6px 18px rgba(2,27,58,0.08)}
+.navbar{background:var(--nav);color:#faf7f7;display:flex;align-items:center;justify-content:space-between;padding:14px 32px;position:sticky;top:0;z-index:1000;box-shadow:0 6px 18px rgba(2,27,58,0.08)}
 .nav-left{display:flex;align-items:center;gap:12px}
 .nav-logo{height: 60px;border-radius:10px}
 .org-name{font-weight:700;font-size:1.05rem}
 nav ul{display:flex;gap:18px;align-items:center}
-nav a{color:#f6f8fa;text-decoration:none;padding:8px 10px;border-radius:8px;transition:all .25s}
+nav a{color:#f1f4f7;text-decoration:none;padding:8px 10px;border-radius:8px;transition:all .25s}
 nav a:hover, nav a.active{background:rgba(255,255,255,0.06);color:var(--accent)}
 /* HERO */
 .hero{min-height:62vh;background:linear-gradient(180deg, rgba(2,27,58,0.6), rgba(0,0,0,0.12)),url('HERO.jpg') center/cover no-repeat;display:flex;align-items:center;justify-content:center;padding:40px 20px;color:#fff;text-align:center}
@@ -225,7 +225,7 @@ nav a:hover, nav a.active{background:rgba(255,255,255,0.06);color:var(--accent)}
 .org-name {
   font-size: 22px;
   font-weight: bold;
-  color: #fff;
+  color: #faf8f8;
   cursor: pointer;
   transition: color 0.3s ease;
 }
@@ -239,7 +239,7 @@ nav a:hover, nav a.active{background:rgba(255,255,255,0.06);color:var(--accent)}
   gap: 25px;
 }
 .navbar nav ul li a {
-  color: #fff;
+  color: #ff01d5;
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
@@ -1356,6 +1356,23 @@ footer p {
 @media (max-width: 768px) {
   .navbar a {
     color: gold;
+  }
+}
+/* Timeline mobile adjustment */
+@media (max-width: 768px) {
+  .timeline .event {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  .timeline .event.left,
+  .timeline .event.right {
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  .timeline .event-box {
+    margin: 0 auto;
   }
 }
 
