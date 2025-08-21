@@ -11,12 +11,135 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="preloader">
-    <div class="loader">
-      <img src="LOGO.png" alt="logo">
-      <span>Loading...</span>
+<!-- Preloader -->
+<div id="preloader">
+  <div class="loader">
+    <div class="glow-ring"></div>
+    <div class="logo-wrapper">
+      <!-- Make sure logo.png is in the same folder as your HTML file -->
+      <img src="LOGO.png" alt="NGO Logo" class="preloader-logo">
     </div>
+    <div class="progress-text" id="progress-text">0%</div>
   </div>
+</div>
+
+<style>
+  #preloader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(-45deg, #004d40, #00796b, #00bfa5, #ffffff);
+    background-size: 400% 400%;
+    animation: gradientBG 8s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+
+  .loader {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .glow-ring {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 6px solid transparent;
+    border-top: 6px solid #fff;
+    border-right: 6px solid #00e6a8;
+    border-left: 6px solid #4d0043;
+    animation: spin 1.5s linear infinite;
+    box-shadow: 0 0 25px rgba(0, 255, 200, 0.5);
+    z-index: 1; /* keep behind logo */
+  }
+
+  .logo-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; height: 100%;
+    z-index: 2; /* force logo above ring */
+  }
+
+  .preloader-logo {
+    width: 80px;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: logoFadeIn 1s ease forwards, pulse 1.5s infinite ease-in-out 1s;
+  }
+
+  .progress-text {
+    margin-top: 160px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    animation: bounce 1.2s infinite;
+  }
+
+  @keyframes logoFadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+</style>
+
+<script>
+  let progress = 0;
+  const progressText = document.getElementById("progress-text");
+  const preloader = document.getElementById("preloader");
+
+  const loading = setInterval(() => {
+    progress += 2;
+    if (progress > 100) progress = 100;
+
+    progressText.textContent = progress + "%";
+
+    if (progress === 100) {
+      clearInterval(loading);
+      setTimeout(() => {
+        preloader.style.opacity = "0";
+        preloader.style.visibility = "hidden";
+      }, 500);
+    }
+  }, 80);
+</script>
+
+
+
+
+
 
   <header class="navbar">
     <div class="nav-left">
@@ -73,7 +196,7 @@
   <section class="section latest-events">
     <h2>Latest Events</h2>
     <div class="carousel single-carousel">
-      <div class="carousel-track">
+      <div class="carousel">
         <a class="event-card" href="event1.html" target="_blank">
           <img src="image-e3.jpg" alt="SWASTHYA BORNOMALA">
           <h3>SWASTHYA BORNOMALA</h3>
@@ -109,22 +232,103 @@
     <h2>Our Team</h2>
     <div class="carousel small">
       <div class="carousel-track">
-        <a class="member-card" href="member1.html" target="_blank"><img src="MONISANKAR.jpg" alt=""><p>MONISANKAR OJHA<br><span>President</span></p></a>
-        <a class="member-card" href="member2.html" target="_blank"><img src="ASHOKE.jpg" alt=""><p>ASHOKE SANTRA<br><span>Secretary</span></p></a>
-        <a class="member-card" href="member3.html" target="_blank"><img src="BISHAMBHAR.jpg" alt=""><p>BISHAMBHAR MAITY<br><span>Treasurer</span></p></a>
+        <a class="member-card" href="member1.html" target="_blank"><img src="MONISANKAR.jpg" alt=""><p>MONISANKAR OJHA<br><span>Member</span></p></a>
+        <a class="member-card" href="member2.html" target="_blank"><img src="ASHOKE.jpg" alt=""><p>ASHOKE SANTRA<br><span>Member</span></p></a>
+        <a class="member-card" href="member3.html" target="_blank"><img src="BISHAMBHAR.jpg" alt=""><p>BISHAMBHAR MAITY<br><span>Member</span></p></a>
         <a class="member-card" href="member4.html" target="_blank"><img src="SUMAN.jpg" alt=""><p>SUMAN MANDAL<br><span>Member</span></p></a>
         <a class="member-card" href="member5.html" target="_blank"><img src="SANTANU.jpg" alt=""><p>SANTANU MANDAL<br><span>Member</span></p></a>
         <a class="member-card" href="member6.html" target="_blank"><img src="RUPAM.jpg" alt=""><p>RUPAM OJHA<br><span>Member</span></p></a>
         <a class="member-card" href="member7.html" target="_blank"><img src="ANINDYA.jpg" alt=""><p>ANINDYA SAU<br><span>Member</span></p></a>
-        <a class="member-card" href="member1.html" target="_blank"><img src="MONISANKAR.jpg" alt=""><p>MONISANKAR OJHA<br><span>President</span></p></a>
-        <a class="member-card" href="member2.html" target="_blank"><img src="ASHOKE.jpg" alt=""><p>ASHOKE SANTRA<br><span>Secretary</span></p></a>
-        <a class="member-card" href="member3.html" target="_blank"><img src="BISHAMBHAR.jpg" alt=""><p>BISHAMBHAR MAITY<br><span>Treasurer</span></p></a>
+        <a class="member-card" href="member1.html" target="_blank"><img src="MONISANKAR.jpg" alt=""><p>MONISANKAR OJHA<br><span>Member</span></p></a>
+        <a class="member-card" href="member2.html" target="_blank"><img src="ASHOKE.jpg" alt=""><p>ASHOKE SANTRA<br><span>Member</span></p></a>
+        <a class="member-card" href="member3.html" target="_blank"><img src="BISHAMBHAR.jpg" alt=""><p>BISHAMBHAR MAITY<br><span>Member</span></p></a>
       </div>
     </div>
     <div class="center-links">
       <a class="btn" href="members.html" target="_blank">View All Members</a>
     </div>
   </section>
+  <!-- History Section -->
+<section class="history-preview" id="history">
+  <h2 class="section-title">Our History</h2>
+   <!-- Latest Event 1 -->
+  <div class="history-card fade-up">
+    <time>April,2025</time>
+    <h3>Establishment of the Organization</h3>
+  </div>
+  <!-- Latest Event 2 -->
+  <div class="history-card fade-up">
+    <time>11 July,2025</time>
+    <h3>Health Awareness Camp</h3>
+  </div>
+
+  
+
+  <!-- See All Button -->
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="history.html" class="see-all-btn">See All History</a>
+  </div>
+</section>
+
+<!-- Styles -->
+<style>
+  .history-preview {
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
+  }
+  .history-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1s ease forwards;
+  }
+  .history-card:nth-child(2) { animation-delay: 0.2s; }
+  .history-card:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .history-card time {
+    font-weight: bold;
+    color: #004d40;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .history-card h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    color: #222;
+  }
+  .history-card p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+  }
+  .see-all-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #004d40;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+  }
+  .see-all-btn:hover {
+    background: #00796b;
+  }
+</style>
+
 
   <section class="section contact">
     <h2>Contact Us</h2>
