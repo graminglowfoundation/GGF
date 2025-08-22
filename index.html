@@ -14,12 +14,14 @@
 <!-- Preloader -->
 <div id="preloader">
   <div class="loader">
-    <div class="glow-ring"></div>
-    <div class="logo-wrapper">
-      <!-- Make sure logo.png is in the same folder as your HTML file -->
-      <img src="LOGO.png" alt="NGO Logo" class="preloader-logo">
-    </div>
+    <!-- Rotating Logo -->
+    <img src="LOGO.png" alt="NGO Logo" class="preloader-logo">
+
+    <!-- Percentage text -->
     <div class="progress-text" id="progress-text">0%</div>
+
+    <!-- Loading text with dots -->
+    <div class="loading-dots">Loading<span></span><span></span><span></span></div>
   </div>
 </div>
 
@@ -28,9 +30,9 @@
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: linear-gradient(-45deg, #004d40, #00796b, #00bfa5, #ffffff);
+    background: linear-gradient(-45deg, #004d40, #001279, #ffffff, #ffffff);
     background-size: 400% 400%;
-    animation: gradientBG 8s ease infinite;
+    animation: gradientBG 5s ease infinite;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,72 +42,55 @@
   }
 
   .loader {
-    position: relative;
-    width: 140px;
-    height: 140px;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-  }
-
-  .glow-ring {
-    position: absolute;
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    border: 6px solid transparent;
-    border-top: 6px solid #fff;
-    border-right: 6px solid #00e6a8;
-    border-left: 6px solid #4d0043;
-    animation: spin 1.5s linear infinite;
-    box-shadow: 0 0 25px rgba(0, 255, 200, 0.5);
-    z-index: 1; /* keep behind logo */
-  }
-
-  .logo-wrapper {
-    position: relative;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    width: 100%; height: 100%;
-    z-index: 2; /* force logo above ring */
   }
 
+  /* Rotating logo */
   .preloader-logo {
-    width: 80px;
+    width: 100px;
     border-radius: 50%;
-    opacity: 0;
-    transform: scale(0.8);
-    animation: logoFadeIn 1s ease forwards, pulse 1.5s infinite ease-in-out 1s;
+    animation: spin 2.5s linear infinite;
   }
 
+  /* Percentage text */
   .progress-text {
-    margin-top: 160px;
+    margin-top: 15px;
     font-size: 22px;
     font-weight: bold;
     color: #fff;
-    animation: bounce 1.2s infinite;
   }
 
-  @keyframes logoFadeIn {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
+  /* Loading dots */
+  .loading-dots {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+  .loading-dots span {
+    animation: blink 1.4s infinite;
+    margin-left: 4px;
   }
+  .loading-dots span:nth-child(1) { animation-delay: 0s; }
+  .loading-dots span:nth-child(2) { animation-delay: 0.3s; }
+  .loading-dots span:nth-child(3) { animation-delay: 0.6s; }
 
+  /* Animations */
   @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
 
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+  @keyframes blink {
+    0%, 80%, 100% { opacity: 0; }
+    40% { opacity: 1; }
   }
 
   @keyframes gradientBG {
@@ -113,6 +98,13 @@
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
+  .progress-text {
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+}
+
 </style>
 
 <script>
@@ -131,7 +123,7 @@
       setTimeout(() => {
         preloader.style.opacity = "0";
         preloader.style.visibility = "hidden";
-      }, 500);
+      }, 600);
     }
   }, 80);
 </script>
