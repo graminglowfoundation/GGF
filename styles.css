@@ -239,7 +239,7 @@ nav a:hover, nav a.active{background:rgba(255,255,255,0.06);color:var(--accent)}
   gap: 25px;
 }
 .navbar nav ul li a {
-  color: #ff01d5;
+  color: #01ffff;
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
