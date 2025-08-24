@@ -348,30 +348,32 @@
       <button type="submit">Send Message</button>
     </form>
   </section>
-    <!-- Updated Maps Section with Smaller Size -->
+    <!-- Updated Maps Section with New Coordinates -->
 <section class="section maps">
-  <h2>Find Us on Map</h2>
+  <h2 style="text-align: center; margin-bottom: 15px;">Find Us on Map</h2>
   <div class="map-container" style="max-width: 900px; margin: auto;">
-    <!-- Embedded Google Map centered on Kamalpur -->
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14733.316232156053!2d87.5881677!3d21.8684397!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDUyJzA2LjQiTiA4N8KwMzUnMTcuNCJF!5e0!3m2!1sen!2sin!4v1692443249216!5m2!1sen!2sin"
-      width="100%" height="300"
-      style="border:0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"
-      allowfullscreen="" loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+    
+    <!-- Embedded Google Map -->
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14733.316232156053!2d87.5898786!3d21.8679774!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDUyJzA0LjciTiA4N8KwMzUnMjMuNiJF!5e0!3m2!1sen!2sin!4v1692443249216!5m2!1sen!2sin"
+        style="position: absolute; top:0; left:0; width:100%; height:100%; border:0; border-radius: 12px;"
+        allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
 
-    <!-- Button for external maps -->
-    <div class="center-links" style="margin-top: 15px;">
+    <!-- External Map Button -->
+    <div class="center-links" style="margin-top: 15px; text-align: center;">
       <a class="btn"
-         href="https://www.google.com/maps/search/?api=1&query=21.8684397,87.5881677"
-         target="_blank">
+         href="https://www.google.com/maps/search/?api=1&query=21.8679774,87.5898786"
+         target="_blank"
+         style="display: inline-block; background: #0078ff; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: background 0.3s;">
         Open in Google Maps
       </a>
     </div>
   </div>
 </section>
-
 
 
   <footer>
@@ -401,3 +403,4 @@
   <script src="app.js"></script>
 </body>
 </html>
+
