@@ -153,16 +153,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Manual navigation
-    prevBtn.addEventListener('click', () => {
-      index = (index - 1 + totalSlides) % totalSlides;
-      updateCarousel();
-      resetAutoSlide();
-    });
-    nextBtn.addEventListener('click', () => {
-      index = (index + 1) % totalSlides;
-      updateCarousel();
-      resetAutoSlide();
-    });
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        index = (index - 1 + totalSlides) % totalSlides;
+        updateCarousel();
+        resetAutoSlide();
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        index = (index + 1) % totalSlides;
+        updateCarousel();
+        resetAutoSlide();
+      });
+    }
 
     // Auto-slide every 3s
     function startAutoSlide() {
@@ -196,6 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     donatePopup.addEventListener('click', (e) => {
       if (e.target === donatePopup) {
+        donatePopup.setAttribute('aria-hidden', 'true');
         donatePopup.style.display = 'none';
       }
     });
@@ -209,17 +214,19 @@ document.addEventListener("DOMContentLoaded", () => {
   let autoSlide;
 
   // Create dots dynamically
-  slides.forEach((_, i) => {
-    const dot = document.createElement('span');
-    dot.classList.add('dot');
-    if (i === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => {
-      index = i;
-      showSlide(index);
-      resetAutoSlide();
+  if (dotsContainer) {
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => {
+        index = i;
+        showSlide(index);
+        resetAutoSlide();
+      });
+      dotsContainer.appendChild(dot);
     });
-    dotsContainer.appendChild(dot);
-  });
+  }
 
   const dots = document.querySelectorAll('.dot');
 
@@ -245,6 +252,24 @@ document.addEventListener("DOMContentLoaded", () => {
     startAutoSlide();
   }
 
+  // Navigation arrows
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  
+  if (prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+      index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+      resetAutoSlide();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+      resetAutoSlide();
+    });
+  }
+
   // Init
   showSlide(index);
   startAutoSlide();
@@ -253,20 +278,81 @@ const navToggle = document.querySelector(".nav-toggle");
 const navMenu = document.querySelector(".nav-menu");
 const navOverlay = document.querySelector(".nav-overlay");
 
-navToggle.addEventListener("click", () => {
-  navMenu.classList.toggle("show");
-  navOverlay.classList.toggle("show");
-});
+if (navToggle && navMenu && navOverlay) {
+  navToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("show");
+    navOverlay.classList.toggle("show");
+  });
 
-navOverlay.addEventListener("click", () => {
-  navMenu.classList.remove("show");
-  navOverlay.classList.remove("show");
-});
-
-document.querySelectorAll(".nav-menu a").forEach(link => {
-  link.addEventListener("click", () => {
+  navOverlay.addEventListener("click", () => {
     navMenu.classList.remove("show");
     navOverlay.classList.remove("show");
   });
+
+  document.querySelectorAll(".nav-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("show");
+      navOverlay.classList.remove("show");
+    });
+  });
+}
+
+/* Falling Icons Animation */
+function createFallingIcons(type) {
+  const container = document.getElementById('falling-icons-container');
+  if (!container) {
+    console.log('Container not found');
+    return;
+  }
+  
+  const icons = {
+    health: ['🏥', '💊', '🩺', '❤️', '🚑', '💉', '🩹'],
+    education: ['📚', '✏️', '🎓', '📝', '🖊️', '🎨', '📊'],
+    agriculture: ['🌾', '🌱', '🚜', '🌳', '🍃', '🌽', '🌿']
+  };
+  
+  const iconSet = icons[type] || icons.health;
+  const isMobile = window.innerWidth <= 768;
+  const iconCount = isMobile ? 8 : 12;
+  
+  console.log(`Creating ${iconCount} falling icons for ${type}`);
+  
+  for (let i = 0; i < iconCount; i++) {
+    setTimeout(() => {
+      const icon = document.createElement('div');
+      icon.className = `falling-icon ${type}`;
+      icon.textContent = iconSet[Math.floor(Math.random() * iconSet.length)];
+      
+      icon.style.left = (Math.random() * 90 + 5) + '%';
+      icon.style.top = '-80px';
+      icon.style.animationDelay = Math.random() * 0.8 + 's';
+      icon.style.animationDuration = isMobile ? (3 + Math.random() * 1) + 's' : (3.5 + Math.random() * 1.5) + 's';
+      icon.style.zIndex = '9999';
+      
+      container.appendChild(icon);
+      
+      setTimeout(() => {
+        if (icon.parentNode) {
+          icon.parentNode.removeChild(icon);
+        }
+      }, isMobile ? 4500 : 5500);
+    }, i * (isMobile ? 120 : 150));
+  }
+}
+
+/* Prevent double-tap zoom on mobile for program cards */
+document.addEventListener('DOMContentLoaded', function() {
+  const programCards = document.querySelectorAll('.dynamic-program');
+  programCards.forEach(card => {
+    card.addEventListener('touchstart', function(e) {
+      console.log('Touch detected on card');
+    }, { passive: true });
+    
+    card.addEventListener('click', function(e) {
+      console.log('Click detected on card');
+      const cardType = this.textContent.toLowerCase().includes('health') ? 'health' : 
+                      this.textContent.toLowerCase().includes('education') ? 'education' : 'agriculture';
+      createFallingIcons(cardType);
+    });
+  });
 });
- 
