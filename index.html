@@ -150,13 +150,13 @@
 
     <nav class="nav-menu">
       <ul>
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="programs.html" class="nav-link">Programs</a></li>
-        <li><a href="members.html" class="nav-link">Members</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-        <li><a href="contact.html" class="nav-link">Contact</a></li>
-        <li><a href="https://www.facebook.com/graminglowfoundation" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-        <li><a href="https://www.instagram.com/graminglowfoundation" target="_blank"><i class="fab fa-instagram"></i></a></li>
+        <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i>Home</a></li>
+        <li><a href="programs.html" class="nav-link"><i class="fas fa-tasks"></i>Programs</a></li>
+        <li><a href="members.html" class="nav-link"><i class="fas fa-users"></i>Members</a></li>
+        <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i>About</a></li>
+        <li><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i>Contact</a></li>
+        <li><a href="https://www.facebook.com/graminglowfoundation" target="_blank"><i class="fab fa-facebook-f"></i>Facebook</a></li>
+        <li><a href="https://www.instagram.com/graminglowfoundation" target="_blank"><i class="fab fa-instagram"></i>Instagram</a></li>
       </ul>
     </nav>
     <div class="nav-overlay"></div>
@@ -176,6 +176,8 @@
   <section class="section featured-highlights">
     <h2>Our Highlights</h2>
     <div class="highlight-slider">
+      <button class="slider-nav prev-btn" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+      <button class="slider-nav next-btn" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
       <div class="highlight-slide active"><img src="image-e2.jpg" alt="Highlight 1"></div>
       <div class="highlight-slide"><img src="image-e3.jpg" alt="Highlight 2"></div>
       <div class="highlight-slide"><img src="image-e4.jpg" alt="Highlight 3"></div>
@@ -205,20 +207,22 @@
   <section class="section programs-preview">
     <h2>Key Programs</h2>
     <div class="program-grid">
-      <div class="program-card dynamic-program" role="button" onclick="openPage('health.html')">
+      <div class="program-card dynamic-program" role="button" onclick="openPage('health.html')" onmouseenter="createFallingIcons('health')" ontouchstart="createFallingIcons('health')">
         <h3>Health</h3>
         <p>Medical camps, awareness & preventive care.</p>
       </div>
-      <div class="program-card dynamic-program" role="button" onclick="openPage('education.html')">
+      <div class="program-card dynamic-program" role="button" onclick="openPage('education.html')" onmouseenter="createFallingIcons('education')" ontouchstart="createFallingIcons('education')">
         <h3>Education</h3>
         <p>Literacy, digital classrooms and teacher training.</p>
       </div>
-      <div class="program-card dynamic-program" role="button" onclick="openPage('agriculture.html')">
+      <div class="program-card dynamic-program" role="button" onclick="openPage('agriculture.html')" onmouseenter="createFallingIcons('agriculture')" ontouchstart="createFallingIcons('agriculture')">
         <h3>Agriculture</h3>
         <p>Sustainable farming, demo plots and market access.</p>
       </div>
     </div>
   </section>
+
+  <div id="falling-icons-container"></div>
 
   <section class="section members-preview">
     <h2>Our Team</h2>
@@ -348,7 +352,7 @@
       <button type="submit">Send Message</button>
     </form>
   </section>
-    <!-- Updated Maps Section with New Coordinates -->
+   <!-- Updated Maps Section with New Coordinates -->
 <section class="section maps">
   <h2 style="text-align: center; margin-bottom: 15px;">Find Us on Map</h2>
   <div class="map-container" style="max-width: 900px; margin: auto;">
@@ -375,6 +379,8 @@
     </div>
   </div>
 </section>
+
+
 
 
   <footer>
@@ -404,5 +410,3 @@
   <script src="app.js"></script>
 </body>
 </html>
-
-
