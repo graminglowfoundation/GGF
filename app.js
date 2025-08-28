@@ -356,3 +356,41 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+/* Premium Message Form Handler */
+document.addEventListener('DOMContentLoaded', function() {
+  const premiumMessageForm = document.getElementById('premium-message-form');
+  
+  if (premiumMessageForm) {
+    const submitBtn = premiumMessageForm.querySelector('.premium-message-btn');
+    
+    // Form submission handler
+    premiumMessageForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const name = formData.get('fullName');
+      const email = formData.get('email');
+      const subject = formData.get('subject');
+      const message = formData.get('message');
+      
+      const emailSubject = `${subject} - Message from ${name}`;
+      const body = `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`;
+      
+      const mailtoLink = `mailto:graminglowfoundation2025@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(body)}`;
+      
+      window.location.href = mailtoLink;
+      
+      // Show success feedback
+      const btnContent = submitBtn.querySelector('.btn-content');
+      btnContent.innerHTML = '<span class="btn-text">Message Sent!</span><span class="btn-icon"><i class="fas fa-check"></i></span>';
+      submitBtn.style.transform = 'scale(1.05)';
+      
+      setTimeout(() => {
+        btnContent.innerHTML = '<span class="btn-text">Send Message</span><span class="btn-icon"><i class="fas fa-paper-plane"></i></span>';
+        submitBtn.style.transform = '';
+        this.reset();
+      }, 3000);
+    });
+  }
+});
