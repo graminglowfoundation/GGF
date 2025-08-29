@@ -342,74 +342,7 @@
       box-shadow: var(--shadow-md);
     }
 
-    /* Impact Statistics */
-    .impact-section {
-      background: linear-gradient(135deg, var(--forest) 0%, var(--secondary) 100%);
-      color: var(--white);
-      padding: 5rem 2rem;
-      text-align: center;
-      position: relative;
-    }
 
-    .impact-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23ffffff" opacity="0.1"/></svg>') repeat;
-      pointer-events: none;
-    }
-
-    .impact-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
-    .impact-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 3rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 3rem;
-    }
-
-    .stat-card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      padding: 2rem;
-      border-radius: 1rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-0.5rem);
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .stat-number {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      color: var(--gold);
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-
-    .stat-label {
-      font-size: 1rem;
-      opacity: 0.9;
-      font-weight: 500;
-    }
 
     /* Call to Action */
     .cta-section {
@@ -631,9 +564,7 @@
         font-size: 2rem;
       }
 
-      .impact-title {
-        font-size: 2rem;
-      }
+
     }
   </style>
 </head>
@@ -685,7 +616,7 @@
             <span class="milestone-date">July 11, 2025</span>
             <h3 class="milestone-title">Health Awareness Initiative</h3>
             <p class="milestone-description">Successfully launched "Swasthya Bornomala" - a comprehensive Health & Hygiene Awareness Campaign in strategic partnership with Mallikpur Primary School, directly impacting over 200 community members with essential health education, free medical screenings, and preventive care guidance.</p>
-            <a href="event1.html" class="milestone-link">
+            <a href="Health-event1.html" class="milestone-link">
               <span>View Campaign Details</span>
               <i class="fas fa-arrow-right"></i>
             </a>
@@ -706,30 +637,7 @@
     </div>
   </section>
 
-  <!-- Impact Statistics -->
-  <section class="impact-section">
-    <div class="impact-container">
-      <h2 class="impact-title">Measuring Our Impact</h2>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number">200+</div>
-          <div class="stat-label">Lives Directly Impacted</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">3</div>
-          <div class="stat-label">Active Programs</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">1</div>
-          <div class="stat-label">Community Partnership</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">100%</div>
-          <div class="stat-label">Transparency Commitment</div>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <!-- Call to Action -->
   <section class="cta-section">
