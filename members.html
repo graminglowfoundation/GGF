@@ -76,20 +76,34 @@
       flex-wrap: wrap;
     }
     
-    .stat-item {
+    .hero-stats .stat-item {
       text-align: center;
+      background: rgba(0, 0, 0, 0.4) !important;
+      padding: 20px 15px !important;
+      border-radius: 15px !important;
+      backdrop-filter: blur(15px) !important;
+      border: 2px solid rgba(255, 255, 255, 0.2) !important;
     }
     
-    .stat-number {
-      display: block;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #fff;
+    .hero-stats .stat-number {
+      display: block !important;
+      font-size: 2.5rem !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      background: none !important;
+      -webkit-background-clip: unset !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background-clip: unset !important;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+      margin-bottom: 5px !important;
+      line-height: 1 !important;
     }
     
-    .stat-label {
-      font-size: 0.9rem;
-      opacity: 0.8;
+    .hero-stats .stat-label {
+      font-size: 0.9rem !important;
+      color: #ffffff !important;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+      font-weight: 500 !important;
     }
     
     /* Container */
@@ -534,6 +548,449 @@
       }
     }
   </style>
+  
+  <style>
+    .premium-hero .hero-stats .stat-item .stat-number {
+      color: white !important;
+      font-size: 2.5rem !important;
+      font-weight: 700 !important;
+      display: block !important;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+      background: none !important;
+      background-image: none !important;
+      -webkit-background-clip: unset !important;
+      -webkit-text-fill-color: white !important;
+      background-clip: unset !important;
+    }
+    .premium-hero .hero-stats .stat-item .stat-label {
+      color: white !important;
+      font-weight: 500 !important;
+    }
+    
+    /* Premium NGO Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1.05); }
+      75% { transform: scale(1.15); }
+    }
+    
+    /* Floating Particles */
+    .floating-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    
+    .particle {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: floatParticle 6s infinite linear;
+    }
+    
+    @keyframes floatParticle {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+    }
+    
+    /* Hero Animations */
+    .premium-hero {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-badge {
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+    
+    .hero-title {
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+    
+    .hero-subtitle {
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+    
+    .hero-stats {
+      animation: fadeInUp 1s ease-out 0.8s both;
+    }
+    
+    .stat-item {
+      transition: all 0.3s ease;
+    }
+    
+    .stat-item:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Leadership Cards Animation */
+    .leader-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .leader-card:hover {
+      transform: translateY(-15px) rotateY(5deg);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    }
+    
+    .leader-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent, rgba(0, 121, 107, 0.1), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+    
+    .leader-card:hover .leader-image::before {
+      transform: translateX(100%);
+    }
+    
+    /* Member Cards Animation */
+    .member-card {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .member-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 121, 107, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .member-card:hover::before {
+      left: 100%;
+    }
+    
+    .member-badge {
+      animation: pulse 2s infinite;
+    }
+    
+    .member-avatar img {
+      transition: all 0.3s ease;
+    }
+    
+    .member-card:hover .member-avatar img {
+      transform: scale(1.1);
+    }
+    
+    /* Section Headers Animation */
+    .section-header h2 {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #00796b, #004d40);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    
+    .section-header:hover h2::after {
+      width: 60px;
+    }
+    
+    /* Skill Tags Animation */
+    .skill-tag {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .skill-tag::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.4s ease;
+    }
+    
+    .skill-tag:hover::before {
+      left: 100%;
+    }
+    
+    .skill-tag:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(46, 125, 50, 0.3);
+    }
+    
+    /* CTA Section Animation */
+    .join-team-cta {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-content h2 {
+      animation: slideInLeft 1s ease-out;
+    }
+    
+    .cta-content p {
+      animation: slideInRight 1s ease-out 0.2s both;
+    }
+    
+    .cta-buttons {
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+    
+    /* Button Hover Effects */
+    .btn-primary, .btn-secondary {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary::before, .btn-secondary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .btn-primary:hover::before, .btn-secondary:hover::before {
+      left: 100%;
+    }
+    
+    /* View Profile Link Animation */
+    .view-profile {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .view-profile::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #00796b;
+      transition: width 0.3s ease;
+    }
+    
+    .view-profile:hover::after {
+      width: 100%;
+    }
+    
+    /* Scroll Animations */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+    
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Heart Icon Animation for NGO */
+    .floating-donate {
+      animation: heartbeat 2s infinite;
+    }
+    
+    /* Premium Mobile Navigation */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #00796b;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1001;
+    }
+    
+    .nav-toggle:hover {
+      background: rgba(0, 121, 107, 0.1);
+      transform: scale(1.1);
+    }
+    
+    .nav-toggle.active {
+      color: white;
+      background: #00796b;
+    }
+    
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .nav-overlay.show {
+      display: block;
+      opacity: 1;
+    }
+    
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+      
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        flex-direction: column;
+        padding: 80px 0 20px;
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        overflow-y: auto;
+        transition: right 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      
+      .nav-menu.show {
+        right: 0;
+      }
+      
+      .nav-menu ul {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .nav-menu li {
+        width: 100%;
+        margin: 0;
+        opacity: 0;
+        transform: translateX(50px);
+        animation: slideInMobile 0.3s ease forwards;
+      }
+      
+      .nav-menu.show li:nth-child(1) { animation-delay: 0.1s; }
+      .nav-menu.show li:nth-child(2) { animation-delay: 0.15s; }
+      .nav-menu.show li:nth-child(3) { animation-delay: 0.2s; }
+      .nav-menu.show li:nth-child(4) { animation-delay: 0.25s; }
+      .nav-menu.show li:nth-child(5) { animation-delay: 0.3s; }
+      
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 18px 30px;
+        color: #2c3e50;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+        border-bottom: 1px solid #ecf0f1;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      
+      .nav-link::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 4px;
+        height: 100%;
+        background: #00796b;
+        transform: scaleY(0);
+        transition: transform 0.3s ease;
+      }
+      
+      .nav-link:hover,
+      .nav-link.active {
+        background: rgba(0, 121, 107, 0.05);
+        color: #00796b;
+        padding-left: 35px;
+      }
+      
+      .nav-link:hover::before,
+      .nav-link.active::before {
+        transform: scaleY(1);
+      }
+      
+      .nav-link i {
+        font-size: 18px;
+        width: 20px;
+        text-align: center;
+      }
+      
+      .leader-card:hover {
+        transform: translateY(-10px);
+      }
+      
+      .member-card:hover .member-avatar img {
+        transform: scale(1.05);
+      }
+    }
+    
+    @keyframes slideInMobile {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Navigation -->
@@ -563,6 +1020,7 @@
 
   <!-- Hero Section -->
   <section class="premium-hero">
+    <div class="floating-particles"></div>
     <div class="hero-bg-overlay"></div>
     <div class="hero-content">
       <div class="hero-badge">
@@ -573,15 +1031,15 @@
       <p class="hero-subtitle">Passionate leaders committed to transforming rural communities through sustainable development and social impact.</p>
       <div class="hero-stats">
         <div class="stat-item">
-          <span class="stat-number">7</span>
+          <span class="stat-number" data-count="10">10</span>
           <span class="stat-label">Team Members</span>
         </div>
         <div class="stat-item">
-          <span class="stat-number">1+</span>
+          <span class="stat-number" data-count="5">5+</span>
           <span class="stat-label">Years Experience</span>
         </div>
         <div class="stat-item">
-          <span class="stat-number">10+</span>
+          <span class="stat-number" data-count="10">10+</span>
           <span class="stat-label">Lives Impacted</span>
         </div>
       </div>
@@ -591,7 +1049,7 @@
   <!-- Leadership Section -->
   <section class="leadership-section">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header animate-on-scroll">
         <h2>Executive Leadership</h2>
         <p>The visionary leaders steering our mission forward</p>
       </div>
@@ -656,29 +1114,13 @@
   <!-- Team Members Section -->
   <section class="team-members-section">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header animate-on-scroll">
         <h2>Core Team Members</h2>
         <p>Dedicated professionals driving our grassroots initiatives</p>
       </div>
       
       <div class="members-grid">
-        <div class="member-card modern-card" data-aos="zoom-in">
-          <div class="member-avatar">
-            <img src="core member/SUMAN.jpg" alt="Suman Mandal">
-            <div class="member-badge">
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-          <div class="member-details">
-            <h4>Suman Mandal</h4>
-            <span class="member-position">Program Coordinator</span>
-            <div class="member-skills">
-              <span class="skill-tag">Health Programs</span>
-              <span class="skill-tag">Community Outreach</span>
-            </div>
-            <a href="core member/member4.html" class="member-link">Learn More</a>
-          </div>
-        </div>
+        
 
         <div class="member-card modern-card" data-aos="zoom-in" data-aos-delay="100">
           <div class="member-avatar">
@@ -843,6 +1285,48 @@
       el.style.transition = 'all 0.6s ease';
       observer.observe(el);
     });
+    
+    // Create floating particles for NGO theme
+    const createFloatingParticles = () => {
+      const particlesContainer = document.querySelector('.floating-particles');
+      if (!particlesContainer) return;
+      
+      const particleCount = window.innerWidth <= 768 ? 15 : 25;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        const size = Math.random() * 4 + 2;
+        const left = Math.random() * 100;
+        const delay = Math.random() * 6;
+        
+        particle.style.cssText = `
+          width: ${size}px;
+          height: ${size}px;
+          left: ${left}%;
+          animation-delay: ${delay}s;
+        `;
+        
+        particlesContainer.appendChild(particle);
+      }
+    };
+    
+    // Scroll animations for elements
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      scrollObserver.observe(el);
+    });
+    
+    // Initialize particles
+    createFloatingParticles();
   </script>
 </body>
 </html>
