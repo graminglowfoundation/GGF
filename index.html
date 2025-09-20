@@ -1,140 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Gramin Glow Foundation</title>
-  <link rel="icon" type="image/png" href="global image/Fevicon.png" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="global image/Fevicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://www.google.com">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  </noscript>
 </head>
 <body>
-<!-- Preloader -->
-<div id="preloader">
-  <div class="loader">
-    <!-- Rotating Logo -->
-    <img src="global image/LOGO.png" alt="NGO Logo" class="preloader-logo">
-
-    <!-- Percentage text -->
-    <div class="progress-text" id="progress-text">0%</div>
-
-    <!-- Loading text with dots -->
-    <div class="loading-dots">Loading<span></span><span></span><span></span></div>
+  <!-- Clean Modern NGO Preloader -->
+  <div id="preloader">
+    <div class="preloader-bg"></div>
+    <div class="preloader-content">
+      <div class="logo-wrapper">
+        <img src="global image/LOGO.png" alt="NGO Logo" class="preloader-logo">
+        <div class="logo-glow"></div>
+      </div>
+      
+      <div class="org-info">
+        <h1 class="org-title">GRAMIN GLOW FOUNDATION</h1>
+        <p class="org-subtitle">"Glow Together, Glowing forever"</p>
+      </div>
+      
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-details">
+          <span class="progress-text" id="progress-text">0%</span>
+          <span class="loading-text" id="loading-message">Loading...</span>
+        </div>
+      </div>
+      
+      <div class="impact-icons">
+        <div class="icon-item">
+          <i class="fas fa-heartbeat"></i>
+        </div>
+        <div class="icon-item">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="icon-item">
+          <i class="fas fa-seedling"></i>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
-<style>
-  #preloader {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(-45deg, #004d40, #001279, #ffffff, #ffffff);
-    background-size: 400% 400%;
-    animation: gradientBG 5s ease infinite;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    flex-direction: column;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
-  }
-
-  .loader {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* Rotating logo */
-  .preloader-logo {
-    width: 100px;
-    border-radius: 50%;
-    animation: spin 2.5s linear infinite;
-  }
-
-  /* Percentage text */
-  .progress-text {
-    margin-top: 15px;
-    font-size: 22px;
-    font-weight: bold;
-    color: #fff;
-  }
-
-  /* Loading dots */
-  .loading-dots {
-    margin-top: 10px;
-    font-size: 18px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
-    letter-spacing: 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .loading-dots span {
-    animation: blink 1.4s infinite;
-    margin-left: 4px;
-  }
-  .loading-dots span:nth-child(1) { animation-delay: 0s; }
-  .loading-dots span:nth-child(2) { animation-delay: 0.3s; }
-  .loading-dots span:nth-child(3) { animation-delay: 0.6s; }
-
-  /* Animations */
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  @keyframes blink {
-    0%, 80%, 100% { opacity: 0; }
-    40% { opacity: 1; }
-  }
-
-  @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  .progress-text {
-  margin-top: 12px;
-  font-size: 16px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-</style>
-
-<script>
-  let progress = 0;
-  const progressText = document.getElementById("progress-text");
-  const preloader = document.getElementById("preloader");
-
-  const loading = setInterval(() => {
-    progress += 2;
-    if (progress > 100) progress = 100;
-
-    progressText.textContent = progress + "%";
-
-    if (progress === 100) {
-      clearInterval(loading);
-      setTimeout(() => {
-        preloader.style.opacity = "0";
-        preloader.style.visibility = "hidden";
-      }, 600);
-    }
-  }, 80);
-</script>
-
-
-
-
-
-
-
-
+  <!-- Navigation -->
   <header class="navbar">
     <div class="nav-left">
       <a href="index.html" class="home-link">
@@ -142,83 +63,183 @@
         <span class="org-name">GRAMIN GLOW<br>FOUNDATION</span>
       </a>
     </div>
-
     
-
-    
-    <button class="nav-toggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
-
-    <nav class="nav-menu">
+    <!-- Desktop Navigation -->
+    <nav class="nav-menu desktop-nav">
       <ul>
         <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
         <li><a href="programs.html" class="nav-link"><i class="fas fa-tasks"></i> Programs</a></li>
         <li><a href="members.html" class="nav-link"><i class="fas fa-users"></i> Members</a></li>
         <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
         <li><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
-        <li><a href="https://www.facebook.com/graminglowfoundation" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-        <li><a href="https://www.instagram.com/gramin.glow.foundation?igsh=MXQ5MGN4ZXE2NWVqcQ==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+        <li><a href="https://www.facebook.com/share/171ivrMM7K/" target="_blank" class="nav-link"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+        <li><a href="https://www.instagram.com/gramin.glow.foundation?igsh=MXQ5MGN4ZXE2NWVqcQ==" target="_blank" class="nav-link"><i class="fab fa-instagram"></i> Instagram</a></li>
       </ul>
     </nav>
-    <div class="nav-overlay"></div>
+    
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open mobile menu">
+      <div class="menu-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </button>
+    
+    <!-- Mobile Navigation Interface -->
+    <div class="mobile-nav-interface" id="mobileNavInterface">
+      <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+      <div class="mobile-nav-panel">
+        <div class="mobile-nav-header">
+          <div class="nav-brand">
+            <img src="global image/LOGO.png" alt="logo" class="mobile-nav-logo">
+            <div class="brand-text">
+              <h3>GRAMIN GLOW</h3>
+              <span>FOUNDATION</span>
+            </div>
+          </div>
+          <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div class="mobile-nav-content">
+          <div class="nav-section">
+            <h4 class="nav-section-title">Navigation</h4>
+            <ul class="mobile-nav-links">
+              <li><a href="index.html" class="mobile-nav-link"><i class="fas fa-home"></i><span>Home</span></a></li>
+              <li><a href="programs.html" class="mobile-nav-link"><i class="fas fa-tasks"></i><span>Programs</span></a></li>
+              <li><a href="members.html" class="mobile-nav-link"><i class="fas fa-users"></i><span>Members</span></a></li>
+              <li><a href="about.html" class="mobile-nav-link"><i class="fas fa-info-circle"></i><span>About</span></a></li>
+              <li><a href="contact.html" class="mobile-nav-link"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
+            </ul>
+          </div>
+          
+          
+          
+          <div class="nav-section">
+            <h4 class="nav-section-title">Connect With Us</h4>
+            <div class="mobile-social-links">
+              <a href="https://www.facebook.com/share/171ivrMM7K/" target="_blank" class="mobile-social-link facebook">
+                <i class="fab fa-facebook-f"></i>
+                <span>Facebook</span>
+              </a>
+              <a href="https://www.instagram.com/gramin.glow.foundation?igsh=MXQ5MGN4ZXE2NWVqcQ==" target="_blank" class="mobile-social-link instagram">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+              </a>
+              <a href="https://www.linkedin.com/company/gramin-glow-foundation/" target="_blank" class="mobile-social-link linkedin">
+                <i class="fab fa-linkedin-in"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://medium.com/@graminglowfoundation2025" target="_blank" class="mobile-social-link medium">
+                <i class="fab fa-medium-m"></i>
+                <span>Medium</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-particles"></div>
+    <div class="hero-floating-elements">
+      <div class="floating-icon floating-icon-1"><i class="fas fa-heart"></i></div>
+      <div class="floating-icon floating-icon-2"><i class="fas fa-hands-helping"></i></div>
+      <div class="floating-icon floating-icon-3"><i class="fas fa-seedling"></i></div>
+      <div class="floating-icon floating-icon-4"><i class="fas fa-graduation-cap"></i></div>
+      <div class="floating-icon floating-icon-5"><i class="fas fa-stethoscope"></i></div>
+    </div>
     <div class="hero-content">
       <div class="hero-badge">
-        <i class="fas fa-heart"></i>
+        <div class="badge-glow"></div>
+        <i class="fas fa-heart pulse-heart"></i>
         <span>Transforming Lives Since 2025</span>
+        <div class="badge-shine"></div>
       </div>
+      
       <h1 class="hero-title">
-        <span class="title-line">Empowering Rural</span>
-        <span class="title-highlight">Communities</span>
-        <span class="title-subtitle">"Glow Together, Glowing Forever"</span>
+        <div class="title-container">
+          <span class="title-line animate-slide-up">Empowering Rural</span>
+          <span class="title-highlight animate-slide-up delay-1">Communities</span>
+        </div>
+        <div class="title-decoration">
+          <div class="decoration-line left"></div>
+          <div class="decoration-center"><i class="fas fa-star"></i></div>
+          <div class="decoration-line right"></div>
+        </div>
       </h1>
-      <p class="hero-description">
+      
+      
+      
+      <p class="hero-description animate-fade-in delay-4">
         <span class="highlight-text">Health</span> • 
         <span class="highlight-text">Education</span> • 
         <span class="highlight-text">Agriculture</span>
-        <br>Building brighter futures, one village at a time
+        <br><span class="description-emphasis">"Glow Together, Glowing forever"</span>
       </p>
       
-      <div class="hero-cta">
-        <a class="btn primary" href="programs.html" target="_blank">
-          <span class="btn-text">Explore Our Impact</span>
-          <i class="fas fa-arrow-right"></i>
+      <div class="hero-cta animate-fade-in delay-5">
+        <a class="btn primary premium-btn" href="programs.html" target="_blank">
+          <div class="btn-bg"></div>
+          <span class="btn-content">
+            <span class="btn-text">Explore Our Impact</span>
+            <i class="fas fa-arrow-right btn-icon"></i>
+          </span>
         </a>
-        <a class="btn secondary" href="members.html" target="_blank">
-          <span class="btn-text">Meet Our Member</span>
-          <i class="fas fa-users"></i>
+        <a class="btn secondary premium-btn" href="members.html" target="_blank">
+          <div class="btn-bg"></div>
+          <span class="btn-content">
+            <span class="btn-text">Meet Our Team</span>
+            <i class="fas fa-users btn-icon"></i>
+          </span>
         </a>
       </div>
-      <div class="hero-scroll">
-        <span>Scroll to discover</span>
-        <i class="fas fa-chevron-down"></i>
+      
+      <div class="hero-scroll animate-bounce">
+        <div class="scroll-indicator">
+          <span>Discover Our Mission</span>
+          <div class="scroll-arrow">
+            <i class="fas fa-chevron-down"></i>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
       </div>
+    </div>
+    
+    <div class="hero-background-elements">
+      <div class="bg-shape shape-1"></div>
+      <div class="bg-shape shape-2"></div>
+      <div class="bg-shape shape-3"></div>
     </div>
   </section>
 
+  <!-- Highlights Section -->
   <section class="section featured-highlights">
     <h2>Our Highlights</h2>
     <div class="highlight-slider">
       <button class="slider-nav prev-btn" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
       <button class="slider-nav next-btn" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
-      <div class="highlight-slide active"><img src="health event1/image-e2.jpg" alt="Highlight 1"></div>
-      <div class="highlight-slide"><img src="health event1/image-e3.jpg" alt="Highlight 2"></div>
-      <div class="highlight-slide"><img src="health event1/image-e4.jpg" alt="Highlight 3"></div>
-      <div class="highlight-slide"><img src="health event1/image-e8.jpg" alt="Highlight 4"></div>
-      <div class="highlight-slide"><img src="health event1/image-e14.jpg" alt="Highlight 5"></div>
+      <div class="highlight-slide active"><img src="health event1/image-e2.jpg" alt="Highlight 1" loading="lazy"></div>
+      <div class="highlight-slide"><img src="health event1/image-e3.jpg" alt="Highlight 2" loading="lazy"></div>
+      <div class="highlight-slide"><img src="health event1/image-e4.jpg" alt="Highlight 3" loading="lazy"></div>
+      <div class="highlight-slide"><img src="health event1/image-e8.jpg" alt="Highlight 4" loading="lazy"></div>
+      <div class="highlight-slide"><img src="health event1/image-e14.jpg" alt="Highlight 5" loading="lazy">
     </div>
     <div class="slider-dots"></div>
   </section>
 
+  <!-- Latest Events -->
   <section class="section latest-events">
     <h2>Latest Events</h2>
     <div class="carousel single-carousel">
       <div class="carousel">
         <a class="event-card" href="health event1/Health-event1.html" target="_blank">
-          <img src="health event1/image-e3.jpg" alt="SWASTHYA BORNOMALA">
+          <img src="health event1/image-e3.jpg" alt="SWASTHYA BORNOMALA" loading="lazy">
           <h3>SWASTHYA BORNOMALA</h3>
           <p><b>Date:</b> 11th July 2025</p>
           <p>Health Hygiene Awareness Program.</p>
@@ -230,68 +251,115 @@
     </div>
   </section>
 
-  <section class="section premium-programs-section">
-    <div class="programs-header">
-      <h2>Our Impact Areas</h2>
-      <p>Transforming communities through comprehensive development programs</p>
-    </div>
-    <div class="premium-program-grid">
-      <div class="premium-program-card health-card" role="button" onclick="openPage('health.html')" onmouseenter="createFallingIcons('health')" ontouchstart="createFallingIcons('health')">
-        <div class="program-icon">
-          <i class="fas fa-heartbeat"></i>
+  <!-- Impact Areas -->
+  <section class="modern-impact-section">
+    <div class="impact-container">
+      <div class="impact-header">
+        <div class="header-badge">
+          <i class="fas fa-hands-helping"></i>
+          <span>Making a Difference</span>
         </div>
-        <div class="program-content">
-          <h3>Healthcare</h3>
-          <p>Comprehensive medical services, health camps, and preventive care programs for rural communities.</p>
-          <div class="program-stats">
-            <span class="stat"><i class="fas fa-users"></i> 5000+ Beneficiaries</span>
-            <span class="stat"><i class="fas fa-hospital"></i> 50+ Medical Camps</span>
-          </div>
-        </div>
-        <div class="program-overlay">
-          <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+        <h2 class="impact-title">Our Impact Areas</h2>
+        <p class="impact-subtitle">Transforming lives through sustainable community development</p>
+        <div class="header-decoration">
+          <div class="decoration-dot"></div>
+          <div class="decoration-line"></div>
+          <div class="decoration-dot"></div>
         </div>
       </div>
       
-      <div class="premium-program-card education-card" role="button" onclick="openPage('education.html')" onmouseenter="createFallingIcons('education')" ontouchstart="createFallingIcons('education')">
-        <div class="program-icon">
-          <i class="fas fa-graduation-cap"></i>
-        </div>
-        <div class="program-content">
-          <h3>Education</h3>
-          <p>Quality education initiatives, digital literacy programs, and skill development for sustainable growth.</p>
-          <div class="program-stats">
-            <span class="stat"><i class="fas fa-school"></i> 25+ Schools</span>
-            <span class="stat"><i class="fas fa-laptop"></i> Digital Classrooms</span>
+      <div class="impact-grid">
+        <div class="impact-card health-impact" onclick="openPage('health.html')" onmouseenter="createFallingIcons('health')" ontouchstart="createFallingIcons('health')">
+          <div class="card-background"></div>
+          <div class="card-glow"></div>
+          <div class="impact-icon">
+            <div class="icon-circle">
+              <i class="fas fa-heartbeat"></i>
+            </div>
+            <div class="icon-pulse"></div>
+          </div>
+          <div class="impact-content">
+            <h3>Healthcare Excellence</h3>
+            <p>Providing comprehensive medical services and health awareness programs to underserved communities.</p>
+            <div class="impact-metrics">
+              <div class="metric">
+                <span class="metric-number">70+</span>
+                <span class="metric-label">Lives Impacted</span>
+              </div>
+              <div class="metric">
+                <span class="metric-number">15+</span>
+                <span class="metric-label">Health Camps</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-action">
+            <span>Explore Healthcare</span>
+            <i class="fas fa-arrow-right"></i>
           </div>
         </div>
-        <div class="program-overlay">
-          <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
-        </div>
-      </div>
-      
-      <div class="premium-program-card agriculture-card" role="button" onclick="openPage('agriculture.html')" onmouseenter="createFallingIcons('agriculture')" ontouchstart="createFallingIcons('agriculture')">
-        <div class="program-icon">
-          <i class="fas fa-seedling"></i>
-        </div>
-        <div class="program-content">
-          <h3>Agriculture</h3>
-          <p>Sustainable farming techniques, modern equipment training, and market linkage support for farmers.</p>
-          <div class="program-stats">
-            <span class="stat"><i class="fas fa-tractor"></i> 200+ Farmers</span>
-            <span class="stat"><i class="fas fa-chart-line"></i> 40% Income Boost</span>
+        
+        <div class="impact-card education-impact" onclick="openPage('education.html')" onmouseenter="createFallingIcons('education')" ontouchstart="createFallingIcons('education')">
+          <div class="card-background"></div>
+          <div class="card-glow"></div>
+          <div class="impact-icon">
+            <div class="icon-circle">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="icon-pulse"></div>
+          </div>
+          <div class="impact-content">
+            <h3>Education Empowerment</h3>
+            <p>Building brighter futures through quality education and skill development programs.</p>
+            <div class="impact-metrics">
+              <div class="metric">
+                <span class="metric-number">50+</span>
+                <span class="metric-label">Students Supported</span>
+              </div>
+              <div class="metric">
+                <span class="metric-number">5+</span>
+                <span class="metric-label">Schools Reached</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-action">
+            <span>Explore Education</span>
+            <i class="fas fa-arrow-right"></i>
           </div>
         </div>
-        <div class="program-overlay">
-          <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+        
+        <div class="impact-card agriculture-impact" onclick="openPage('agriculture.html')" onmouseenter="createFallingIcons('agriculture')" ontouchstart="createFallingIcons('agriculture')">
+          <div class="card-background"></div>
+          <div class="card-glow"></div>
+          <div class="impact-icon">
+            <div class="icon-circle">
+              <i class="fas fa-seedling"></i>
+            </div>
+            <div class="icon-pulse"></div>
+          </div>
+          <div class="impact-content">
+            <h3>Agricultural Growth</h3>
+            <p>Supporting farmers with modern techniques and sustainable farming practices for better yields.</p>
+            <div class="impact-metrics">
+              <div class="metric">
+                <span class="metric-number">30+</span>
+                <span class="metric-label">Farmers Trained</span>
+              </div>
+              <div class="metric">
+                <span class="metric-number">3+</span>
+                <span class="metric-label">Villages</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-action">
+            <span>Explore Agriculture</span>
+            <i class="fas fa-arrow-right"></i>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div id="falling-icons-container"></div>
-
-  <!-- Premium Team Section -->
+  <!-- Team Section -->
   <section class="premium-team-section">
     <div class="team-container">
       <div class="team-header">
@@ -302,10 +370,8 @@
       <div class="team-grid">
         <a href="core member/member1.html" target="_blank" class="premium-member-card">
           <div class="member-image">
-            <img src="core member/MONISANKAR.jpg" alt="Monisankar Ojha">
-            <div class="member-overlay">
-              <i class="fas fa-user-tie"></i>
-            </div>
+            <img src="core member/MONISANKAR.jpg" alt="Monisankar Ojha" loading="lazy">
+            <div class="member-overlay"><i class="fas fa-user-tie"></i></div>
           </div>
           <div class="member-info">
             <h3>Monisankar Ojha</h3>
@@ -315,10 +381,8 @@
         
         <a href="core member/member2.html" target="_blank" class="premium-member-card">
           <div class="member-image">
-            <img src="core member/ASHOKE.jpg" alt="Ashoke Santra">
-            <div class="member-overlay">
-              <i class="fas fa-user-tie"></i>
-            </div>
+            <img src="core member/ASHOKE.jpg" alt="Ashoke Santra" loading="lazy">
+            <div class="member-overlay"><i class="fas fa-user-tie"></i></div>
           </div>
           <div class="member-info">
             <h3>Ashoke Santra</h3>
@@ -328,117 +392,55 @@
         
         <a href="core member/member3.html" target="_blank" class="premium-member-card">
           <div class="member-image">
-            <img src="core member/BISHAMBHAR.jpg" alt="Bishambhar Maity">
-            <div class="member-overlay">
-              <i class="fas fa-user-tie"></i>
-            </div>
+            <img src="core member/BISHAMBHAR.jpg" alt="Bishambhar Maity" loading="lazy">
+            <div class="member-overlay"><i class="fas fa-user-tie"></i></div>
           </div>
           <div class="member-info">
             <h3>Bishambhar Maity</h3>
-            <span class="member-role">Member</span>
-          </div>
-        </a>
-        
-        <a href="core member/member4.html" target="_blank" class="premium-member-card">
-          <div class="member-image">
-            <img src="core member/SUMAN.jpg" alt="Suman Mandal">
-            <div class="member-overlay">
-              <i class="fas fa-user"></i>
-            </div>
-          </div>
-          <div class="member-info">
-            <h3>Suman Mandal</h3>
             <span class="member-role">Member</span>
           </div>
         </a>
         
         <a href="core member/member5.html" target="_blank" class="premium-member-card">
           <div class="member-image">
-            <img src="core member/SANTANU.jpg" alt="Santanu Mandal">
-            <div class="member-overlay">
-              <i class="fas fa-user"></i>
-            </div>
+            <img src="core member/SANTANU.jpg" alt="Santanu Maldal" loading="lazy">
+            <div class="member-overlay"><i class="fas fa-user"></i></div>
           </div>
           <div class="member-info">
-            <h3>Santanu Mandal</h3>
+            <h3>Santanu Maldal</h3>
             <span class="member-role">Member</span>
           </div>
         </a>
-        
+
         <a href="core member/member6.html" target="_blank" class="premium-member-card">
           <div class="member-image">
-            <img src="core member/RUPAM.jpg" alt="Rupam Ojha">
-            <div class="member-overlay">
-              <i class="fas fa-user"></i>
-            </div>
+            <img src="core member/RUPAM.jpg" alt="Rupam Ojha" loading="lazy">
+            <div class="member-overlay"><i class="fas fa-user"></i></div>
           </div>
           <div class="member-info">
             <h3>Rupam Ojha</h3>
             <span class="member-role">Member</span>
           </div>
         </a>
-        
+
         <a href="core member/member7.html" target="_blank" class="premium-member-card">
           <div class="member-image">
-            <img src="core member/ANINDYA.jpg" alt="Anindya Sau">
-            <div class="member-overlay">
-              <i class="fas fa-user"></i>
-            </div>
+            <img src="core member/ANINDYA.jpg" alt="Anindya Sau" loading="lazy">
+            <div class="member-overlay"><i class="fas fa-user"></i></div>
           </div>
           <div class="member-info">
             <h3>Anindya Sau</h3>
             <span class="member-role">Member</span>
           </div>
         </a>
+
         <a href="core member/member8.html" target="_blank" class="premium-member-card">
           <div class="member-image">
-            <img src="core member/BISWAJYOTIMAITY.jpg" alt="Anindya Sau">
-            <div class="member-overlay">
-              <i class="fas fa-user"></i>
-            </div>
+            <img src="core member/BISWAJYOTIMAITY.jpg" alt="Biswa Jyoti Maity" loading="lazy">
+            <div class="member-overlay"><i class="fas fa-user"></i></div>
           </div>
           <div class="member-info">
             <h3>Biswa Jyoti Maity</h3>
-            <span class="member-role">Member</span>
-          </div>
-        </a>
-        
-        <!-- Duplicate for seamless loop -->
-        <a href="core member/member1.html" target="_blank" class="premium-member-card">
-          <div class="member-image">
-            <img src="core member/MONISANKAR.jpg" alt="Monisankar Ojha">
-            <div class="member-overlay">
-              <i class="fas fa-user-tie"></i>
-            </div>
-          </div>
-          <div class="member-info">
-            <h3>Monisankar Ojha</h3>
-            <span class="member-role">Member</span>
-          </div>
-        </a>
-        
-        <a href="core member/member2.html" target="_blank" class="premium-member-card">
-          <div class="member-image">
-            <img src="core member/ASHOKE.jpg" alt="Ashoke Santra">
-            <div class="member-overlay">
-              <i class="fas fa-user-tie"></i>
-            </div>
-          </div>
-          <div class="member-info">
-            <h3>Ashoke Santra</h3>
-            <span class="member-role">Member</span>
-          </div>
-        </a>
-        
-        <a href="core member/member3.html" target="_blank" class="premium-member-card">
-          <div class="member-image">
-            <img src="core member/BISHAMBHAR.jpg" alt="Bishambhar Maity">
-            <div class="member-overlay">
-              <i class="fas fa-user-tie"></i>
-            </div>
-          </div>
-          <div class="member-info">
-            <h3>Bishambhar Maity</h3>
             <span class="member-role">Member</span>
           </div>
         </a>
@@ -456,12 +458,7 @@
     </div>
   </section>
 
-
-
-  <script src="app.js"></script>
-</body>
-
-  <!-- Premium History Section -->
+  <!-- History Section -->
   <section class="premium-history-section">
     <div class="history-container">
       <div class="history-header">
@@ -472,11 +469,9 @@
       <div class="timeline">
         <div class="timeline-line"></div>
         
-        <div class="timeline-item" data-aos="fade-up">
+        <div class="timeline-item">
           <div class="timeline-marker">
-            <div class="marker-inner">
-              <i class="fas fa-seedling"></i>
-            </div>
+            <div class="marker-inner"><i class="fas fa-seedling"></i></div>
           </div>
           <div class="timeline-content">
             <div class="timeline-date">April 2025</div>
@@ -484,12 +479,9 @@
           </div>
         </div>
         
-        
-        <div class="timeline-item future" data-aos="fade-up" data-aos-delay="400">
+        <div class="timeline-item future">
           <div class="timeline-marker">
-            <div class="marker-inner">
-              <i class="fas fa-rocket"></i>
-            </div>
+            <div class="marker-inner"><i class="fas fa-rocket"></i></div>
           </div>
           <div class="timeline-content">
             <div class="timeline-date">June 2025</div>
@@ -510,7 +502,7 @@
     </div>
   </section>
 
-
+  <!-- Contact Section -->
   <section class="premium-contact">
     <div class="contact-wrapper">
       <div class="contact-header">
@@ -520,27 +512,21 @@
       
       <div class="contact-grid">
         <div class="contact-card" onclick="window.location.href='tel:+919046927764'">
-          <div class="card-icon">
-            <i class="fas fa-phone"></i>
-          </div>
+          <div class="card-icon"><i class="fas fa-phone"></i></div>
           <h3>Call Us</h3>
           <p>+91 9046927764</p>
           <span class="card-action">Tap to call</span>
         </div>
         
         <div class="contact-card" onclick="window.location.href='mailto:graminglowfoundation2025@gmail.com'">
-          <div class="card-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
+          <div class="card-icon"><i class="fas fa-envelope"></i></div>
           <h3>Email Us</h3>
           <p>graminglowfoundation2025@gmail.com</p>
           <span class="card-action">Send email</span>
         </div>
         
         <div class="contact-card">
-          <div class="card-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
+          <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
           <h3>Visit Us</h3>
           <p>Kamalpur, Balighai, Egra-II<br>East Midnapore, West Bengal-721422</p>
           <span class="card-action">View map👇</span>
@@ -571,6 +557,7 @@
     </div>
   </section>
 
+  <!-- Message Section -->
   <section class="premium-message-section">
     <div class="message-container">
       <div class="message-header">
@@ -627,7 +614,8 @@
       </div>
     </div>
   </section>
-  <!-- Premium Maps Section -->
+
+  <!-- Maps Section -->
   <section class="premium-maps-section">
     <div class="maps-container">
       <div class="maps-header">
@@ -647,9 +635,7 @@
         
         <div class="map-info">
           <div class="info-card">
-            <div class="info-icon">
-              <i class="fas fa-map-marker-alt"></i>
-            </div>
+            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
             <div class="info-content">
               <h3>Our Location</h3>
               <p>Kamalpur, Balighai, Egra-II<br>East Midnapore, West Bengal-721422</p>
@@ -668,17 +654,13 @@
     </div>
   </section>
 
-
-
-
-  <!-- Premium Professional Footer -->
+  <!-- Footer -->
   <footer class="premium-footer">
     <div class="footer-container">
-      <!-- Footer Top Section -->
       <div class="footer-top">
         <div class="footer-brand">
           <div class="footer-logo">
-            <img src="global image/LOGO.png" alt="Gramin Glow Foundation">
+            <img src="global image/LOGO.png" alt="Gramin Glow Foundation" loading="lazy">
             <h3>GRAMIN GLOW FOUNDATION</h3>
           </div>
           <p class="footer-mission">Empowering rural communities through sustainable health, education, and agriculture initiatives. Together we glow, forever we grow.</p>
@@ -703,7 +685,7 @@
           <div class="footer-column">
             <h4>Get Involved</h4>
             <ul>
-              <li><a href="donate-popup"><i class="fas fa-heart"></i> Donate Now</a></li>
+              <li><a href="##"><i class="fas fa-heart"></i> Donate Now</a></li>
               <li><a href="members.html"><i class="fas fa-users"></i> Join Our Team</a></li>
               <li><a href="contact.html"><i class="fas fa-volunteer"></i> Volunteer</a></li>
               <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
@@ -730,7 +712,6 @@
         </div>
       </div>
       
-      <!-- Footer Middle Section -->
       <div class="footer-middle">
         <div class="footer-stats">
           <div class="stat-item">
@@ -774,7 +755,6 @@
         </div>
       </div>
       
-      <!-- Footer Bottom Section -->
       <div class="footer-bottom">
         <div class="footer-legal">
           <div class="copyright">
@@ -808,7 +788,6 @@
       </div>
     </div>
     
-    <!-- Footer Background Elements -->
     <div class="footer-bg-elements">
       <div class="bg-circle bg-circle-1"></div>
       <div class="bg-circle bg-circle-2"></div>
@@ -816,38 +795,21 @@
     </div>
   </footer>
 
+  <!-- Floating Elements -->
   <button class="floating-donate" aria-label="Donate"><span class="heart">❤</span> Donate</button>
-
+  
   <div id="donate-popup" class="popup" role="dialog" aria-hidden="true">
     <div class="popup-box">
       <button class="popup-close" aria-label="Close">&times;</button>
       <h3>Scan to Donate</h3>
       <p>Use your UPI scanner to donate directly.</p> 
       <p>UPI Number: 8389974399 </p>
-      <img src="global image/QR.jpg" alt="QR code scanner" class="qr">
+      <img src="global image/QR.jpg" alt="QR code scanner" class="qr" loading="lazy">
     </div>
   </div>
 
-  <script src="app.js"></script>
-  
+  <div id="falling-icons-container"></div>
 
-  
-  <script>
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    const navOverlay = document.querySelector('.nav-overlay');
-    
-    navToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('show');
-      navOverlay.classList.toggle('show');
-      document.body.style.overflow = navMenu.classList.contains('show') ? 'hidden' : 'auto';
-    });
-    
-    navOverlay.addEventListener('click', () => {
-      navMenu.classList.remove('show');
-      navOverlay.classList.remove('show');
-      document.body.style.overflow = 'auto';
-    });
-  </script>
+  <script src="app.js" defer></script>
 </body>
 </html>
