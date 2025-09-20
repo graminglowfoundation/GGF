@@ -1,691 +1,2030 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Programs - Gramin Glow Foundation</title>
-  <link rel="icon" type="image/png" href="global image/Fevicon.png" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="global image/Fevicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-green: #138808;
+      --secondary-blue: #1e90ff;
+      --accent-gold: #ffd700;
+      --dark-navy: #021b3a;
+      --light-bg: #f8fafc;
+      --white: #ffffff;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+      background: var(--light-bg);
+      overflow-x: hidden;
+    }
+
+    /* Ultra Premium Preloader */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #e2e8f0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease;
+    }
+
+    .preloader-content {
+      text-align: center;
+      max-width: 400px;
+      padding: 40px 20px;
+    }
+
+    .logo-wrapper {
+      position: relative;
+      margin-bottom: 40px;
+      display: inline-block;
+    }
+
+    .preloader-logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(19,136,8,0.15);
+      animation: logoFloat 3s ease-in-out infinite;
+      border: 3px solid rgba(19,136,8,0.1);
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-10px) scale(1.05); }
+    }
+
+    .org-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .org-subtitle {
+      font-size: 16px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .progress-container {
+      margin-top: 40px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #10b981, #3b82f6);
+      border-radius: 10px;
+      transition: width 0.3s ease;
+      position: relative;
+    }
+
+    .progress-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: #10b981;
+    }
+
+    .loading-text {
+      font-size: 14px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    /* Navigation */
+    .navbar {
+      background: var(--dark-navy);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 6px 18px rgba(2,27,58,0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo {
+      height: 50px;
+      border-radius: 8px;
+    }
+
+    .org-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .nav-menu {
+      transition: all 0.3s ease;
+    }
+
+    .nav-menu ul {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-link {
+      color: #f1f4f7;
+      text-decoration: none;
+      padding: 10px 12px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      background: rgba(255,255,255,0.1);
+      color: var(--secondary-blue);
+      transform: translateY(-1px);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 22px;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu-btn:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* Hero Section */
+    .ultra-premium-hero {
+      min-height: 100vh;
+      background: 
+        linear-gradient(135deg, rgba(19,136,8,0.15) 0%, rgba(30,144,255,0.15) 30%, rgba(255,215,0,0.1) 70%, rgba(138,43,226,0.1) 100%),
+        radial-gradient(ellipse at top, rgba(59,130,246,0.1) 0%, transparent 70%),
+        radial-gradient(ellipse at bottom, rgba(16,185,129,0.1) 0%, transparent 70%),
+        url('health event1/HERO.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px 0;
+      color: #fff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.3) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255,255,255,0.2);
+      padding: 16px 32px;
+      border-radius: 60px;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+
+    .pulse-icon {
+      color: #ff6b6b;
+      animation: pulseHeart 2s ease-in-out infinite;
+      filter: drop-shadow(0 0 8px rgba(255,107,107,0.6));
+    }
+
+    @keyframes pulseHeart {
+      0%, 100% { 
+        transform: scale(1);
+        filter: drop-shadow(0 0 8px rgba(255,107,107,0.6));
+      }
+      50% { 
+        transform: scale(1.3);
+        filter: drop-shadow(0 0 15px rgba(255,107,107,0.9));
+      }
+    }
+
+    .hero-title {
+      margin-bottom: 50px;
+    }
+
+    .title-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .title-line {
+      font-size: 4rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffffff, #f0f8ff, #e6f3ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .title-highlight {
+      font-size: 4.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700, #ff6b6b, #4ecdc4);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: titleShimmer 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 30px rgba(255,215,0,0.6));
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    @keyframes titleShimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+
+
+    .hero-description {
+      font-size: 1.4rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.95);
+      margin: 40px auto;
+      max-width: 700px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .highlight-text {
+      background: linear-gradient(135deg, #10b981, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+      font-size: 1.1em;
+      filter: drop-shadow(0 0 8px rgba(16,185,129,0.4));
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin: 50px auto;
+      max-width: 800px;
+    }
+
+    .stat-item {
+      text-align: center;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 20px 15px;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-10px) scale(1.05);
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #10b981, #3b82f6, #ef4444);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.8);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .hero-cta {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin: 60px 0;
+      flex-wrap: wrap;
+    }
+
+    .premium-btn {
+      position: relative;
+      padding: 20px 40px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      border: 3px solid transparent;
+      backdrop-filter: blur(20px);
+    }
+
+    .btn.primary {
+      background: rgba(16,185,129,0.2);
+      color: #ffffff;
+      border-color: rgba(16,185,129,0.3);
+    }
+
+    .btn.primary:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 20px 50px rgba(16,185,129,0.4);
+      border-color: rgba(16,185,129,0.6);
+    }
+
+    .btn.secondary {
+      background: rgba(255,255,255,0.1);
+      color: #ffffff;
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .btn.secondary:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 20px 50px rgba(255,255,255,0.3);
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    .btn-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Ultra Modern Programs Section */
+    .ultra-premium-programs-section {
+      padding: 120px 20px;
+      background: 
+        linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%),
+        radial-gradient(circle at 25% 25%, rgba(239,68,68,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(59,130,246,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(16,185,129,0.05) 0%, transparent 50%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ultra-premium-programs-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23138808" opacity="0.05"><animate attributeName="opacity" values="0.05;0.15;0.05" dur="4s" repeatCount="indefinite"/></circle></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>') repeat;
+      pointer-events: none;
+    }
+
+    .programs-container {
+      max-width: 1500px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .programs-header {
+      text-align: center;
+      margin-bottom: 100px;
+      position: relative;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, rgba(19,136,8,0.1), rgba(16,185,129,0.1));
+      color: #138808;
+      padding: 16px 32px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 30px;
+      border: 2px solid rgba(19,136,8,0.2);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(19,136,8,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-badge::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: badgeShine 3s ease-in-out infinite;
+    }
+
+    @keyframes badgeShine {
+      0% { left: -100%; }
+      50% { left: 100%; }
+      100% { left: -100%; }
+    }
+
+    .programs-title {
+      font-size: 56px;
+      font-weight: 900;
+      color: #1e293b;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #138808 0%, #10b981 30%, #059669 70%, #138808 100%);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -2px;
+      animation: titleGradient 6s ease-in-out infinite;
+      position: relative;
+    }
+
+    @keyframes titleGradient {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .programs-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(90deg, #138808, #10b981, #138808);
+      border-radius: 2px;
+      box-shadow: 0 2px 15px rgba(19,136,8,0.3);
+    }
+
+    .programs-subtitle {
+      font-size: 22px;
+      color: #64748b;
+      max-width: 900px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      font-weight: 500;
+    }
+
+    .ultra-program-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 50px;
+      margin-top: 80px;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .ultra-program-card {
+      border-radius: 32px;
+      padding: 50px 40px;
+      cursor: pointer;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      min-height: 650px;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(20px);
+      box-shadow: 
+        0 25px 50px rgba(0,0,0,0.08),
+        0 15px 35px rgba(0,0,0,0.05),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+    }
+
+    .ultra-program-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: 32px 32px 0 0;
+      transition: all 0.4s ease;
+    }
+
+    .ultra-program-card::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      opacity: 0.1;
+      transition: all 0.6s ease;
+    }
+
+    .ultra-program-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, transparent, #138808, transparent);
+      transform: scaleX(0);
+      transition: transform 0.6s ease;
+    }
+
+    .ultra-program-card::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(19,136,8,0.05), transparent);
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .ultra-program-card:hover {
+      transform: translateY(-20px) scale(1.03);
+      border-color: rgba(19,136,8,0.3);
+      box-shadow: 
+        0 50px 100px rgba(0,0,0,0.15),
+        0 25px 60px rgba(19,136,8,0.1),
+        inset 0 1px 0 rgba(255,255,255,1);
+    }
+
+    .ultra-program-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .ultra-program-card:hover::after {
+      opacity: 1;
+    }
+
+    .program-icon {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 35px;
+    }
+
+    .icon-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      transition: all 0.6s ease;
+      border: 3px solid rgba(255,255,255,0.2);
+    }
+
+    /* Health Program Theme */
+    .health-program {
+      background: linear-gradient(135deg, rgba(254,242,242,0.9) 0%, rgba(254,226,226,0.8) 100%);
+      border: 1px solid rgba(254,202,202,0.3);
+    }
+
+    .health-program::before {
+      background: linear-gradient(90deg, #ef4444, #f87171, #ef4444);
+    }
+
+    .health-program::after {
+      background: radial-gradient(circle, rgba(239,68,68,0.2), transparent);
+    }
+
+    .health-program .icon-circle {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      box-shadow: 0 20px 40px rgba(239,68,68,0.25);
+    }
+
+    .health-program:hover {
+      background: linear-gradient(135deg, rgba(254,226,226,0.95) 0%, rgba(254,202,202,0.9) 100%);
+      border-color: rgba(248,113,113,0.4);
+      transform: translateY(-20px) scale(1.03);
+      box-shadow: 
+        0 35px 70px rgba(239,68,68,0.15),
+        0 20px 40px rgba(239,68,68,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .health-program:hover::after {
+      opacity: 0.3;
+      transform: scale(1.2);
+    }
+
+    /* Education Program Theme */
+    .education-program {
+      background: linear-gradient(135deg, rgba(239,246,255,0.9) 0%, rgba(219,234,254,0.8) 100%);
+      border: 1px solid rgba(191,219,254,0.3);
+    }
+
+    .education-program::before {
+      background: linear-gradient(90deg, #3b82f6, #60a5fa, #3b82f6);
+    }
+
+    .education-program::after {
+      background: radial-gradient(circle, rgba(59,130,246,0.2), transparent);
+    }
+
+    .education-program .icon-circle {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      box-shadow: 0 20px 40px rgba(59,130,246,0.25);
+    }
+
+    .education-program:hover {
+      background: linear-gradient(135deg, rgba(219,234,254,0.95) 0%, rgba(191,219,254,0.9) 100%);
+      border-color: rgba(96,165,250,0.4);
+      transform: translateY(-20px) scale(1.03);
+      box-shadow: 
+        0 35px 70px rgba(59,130,246,0.15),
+        0 20px 40px rgba(59,130,246,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .education-program:hover::after {
+      opacity: 0.3;
+      transform: scale(1.2);
+    }
+
+    /* Agriculture Program Theme */
+    .agriculture-program {
+      background: linear-gradient(135deg, rgba(240,253,244,0.9) 0%, rgba(220,252,231,0.8) 100%);
+      border: 1px solid rgba(187,247,208,0.3);
+    }
+
+    .agriculture-program::before {
+      background: linear-gradient(90deg, #10b981, #34d399, #10b981);
+    }
+
+    .agriculture-program::after {
+      background: radial-gradient(circle, rgba(16,185,129,0.2), transparent);
+    }
+
+    .agriculture-program .icon-circle {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 20px 40px rgba(16,185,129,0.25);
+    }
+
+    .agriculture-program:hover {
+      background: linear-gradient(135deg, rgba(220,252,231,0.95) 0%, rgba(187,247,208,0.9) 100%);
+      border-color: rgba(52,211,153,0.4);
+      transform: translateY(-20px) scale(1.03);
+      box-shadow: 
+        0 35px 70px rgba(16,185,129,0.15),
+        0 20px 40px rgba(16,185,129,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .agriculture-program:hover::after {
+      opacity: 0.3;
+      transform: scale(1.2);
+    }
+
+    .icon-circle::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, rgba(255,255,255,0.3), transparent, rgba(255,255,255,0.3));
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .ultra-program-card:hover .icon-circle::before {
+      opacity: 1;
+    }
+
+    .icon-circle i {
+      font-size: 48px;
+      color: #ffffff;
+      transition: all 0.6s ease;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    }
+
+    .ultra-program-card:hover .icon-circle {
+      transform: scale(1.1) rotate(10deg);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .ultra-program-card:hover .icon-circle i {
+      transform: scale(1.15) rotate(-10deg);
+    }
+
+    .program-content {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .program-content h3 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      transition: all 0.4s ease;
+      font-family: 'Playfair Display', serif;
+      line-height: 1.2;
+    }
+
+    .health-program .program-content h3 {
+      color: #dc2626;
+    }
+
+    .education-program .program-content h3 {
+      color: #1d4ed8;
+    }
+
+    .agriculture-program .program-content h3 {
+      color: #059669;
+    }
+
+    .program-content p {
+      font-size: 17px;
+      color: #64748b;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+
+    .program-features {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .health-program .feature-item {
+      background: rgba(239,68,68,0.1);
+      color: #dc2626;
+      border: 1px solid rgba(239,68,68,0.2);
+    }
+
+    .education-program .feature-item {
+      background: rgba(59,130,246,0.1);
+      color: #1d4ed8;
+      border: 1px solid rgba(59,130,246,0.2);
+    }
+
+    .agriculture-program .feature-item {
+      background: rgba(16,185,129,0.1);
+      color: #059669;
+      border: 1px solid rgba(16,185,129,0.2);
+    }
+
+    .program-metrics {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+
+    .metric {
+      text-align: center;
+      padding: 16px;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .health-program .metric {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.15);
+    }
+
+    .education-program .metric {
+      background: rgba(59,130,246,0.08);
+      border: 1px solid rgba(59,130,246,0.15);
+    }
+
+    .agriculture-program .metric {
+      background: rgba(16,185,129,0.08);
+      border: 1px solid rgba(16,185,129,0.15);
+    }
+
+    .metric-number {
+      display: block;
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .health-program .metric-number {
+      color: #dc2626;
+    }
+
+    .education-program .metric-number {
+      color: #1d4ed8;
+    }
+
+    .agriculture-program .metric-number {
+      color: #059669;
+    }
+
+    .metric-label {
+      font-size: 13px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+    }
+
+    .card-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 17px;
+      padding: 18px 32px;
+      border-radius: 30px;
+      margin-top: auto;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .card-action::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .card-action:hover::before {
+      left: 100%;
+    }
+
+    .health-program .card-action {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+    }
+
+    .education-program .card-action {
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    }
+
+    .agriculture-program .card-action {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+
+    .card-action:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .card-action i {
+      transition: transform 0.3s ease;
+    }
+
+    .card-action:hover i {
+      transform: translateX(4px);
+    }
+
+
+
+    /* CTA Section */
+    .premium-cta-section {
+      padding: 100px 20px;
+      background: linear-gradient(135deg, #138808 0%, #10b981 50%, #3b82f6 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-content h2 {
+      font-size: 42px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .cta-content p {
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      position: relative;
+      padding: 18px 40px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 2px solid transparent;
+      border-radius: 50px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.4s ease;
+      overflow: hidden;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Footer */
+    .premium-footer {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      margin-top: 80px;
+      padding: 60px 20px 20px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 60px;
+      margin-bottom: 50px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-brand {
+      max-width: 400px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo img {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(19,136,8,0.3);
+    }
+
+    .footer-logo h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #ffffff;
+      background: linear-gradient(135deg, #138808, #1e90ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-mission {
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 25px;
+    }
+
+    .footer-certifications {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cert-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(19,136,8,0.2);
+      border: 1px solid rgba(19,136,8,0.3);
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #10b981;
+      backdrop-filter: blur(10px);
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .footer-column h4 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-column ul li a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      padding: 8px 0;
+    }
+
+    .footer-column ul li a:hover {
+      color: #10b981;
+      transform: translateX(5px);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .contact-item i {
+      font-size: 16px;
+      color: #10b981;
+      margin-top: 2px;
+      width: 20px;
+    }
+
+    .contact-item a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-item a:hover {
+      color: #10b981;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .copyright p {
+      margin: 0 0 8px 0;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .reg-info {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* Floating Donate Button */
+    .floating-donate {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      background: linear-gradient(45deg, #ff4500, #ff9900, #ffd700, #ff4500);
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 40px;
+      border: none;
+      font-weight: 700;
+      box-shadow: 0 18px 40px rgba(255,75,62,0.18);
+      cursor: pointer;
+      z-index: 1200;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: float 3s ease-in-out infinite;
+      font-size: 16px;
+    }
+
+    .floating-donate .heart {
+      font-size: 16px;
+      animation: beat 1s infinite;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.3); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.2); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* Popup */
+    .popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(2,27,58,0.6);
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .popup.show {
+      display: flex;
+    }
+
+    .popup-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    .popup-close {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      background: transparent;
+      border: none;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    .qr {
+      width: 200px;
+      margin-top: 15px;
+      border-radius: 10px;
+    }
+
+    /* Mobile Navigation */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 10px 15px;
+      }
+
+      .nav-logo {
+        height: 45px;
+      }
+
+      .org-name {
+        font-size: 0.85rem;
+      }
+
+      .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--dark-navy);
+        box-shadow: 0 8px 25px rgba(2,27,58,0.15);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+
+      .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .nav-menu ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 20px 0;
+      }
+
+      .nav-menu li {
+        width: 100%;
+      }
+
+      .nav-link {
+        padding: 15px 25px;
+        border-radius: 0;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        justify-content: flex-start;
+      }
+
+      .nav-link:hover, .nav-link.active {
+        background: rgba(255,255,255,0.05);
+        transform: none;
+        padding-left: 35px;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .mobile-menu-btn.active {
+        transform: rotate(90deg);
+      }
+
+      .title-line, .title-highlight {
+        font-size: 2.5rem;
+      }
+
+      .hero-description {
+        font-size: 1.1rem;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+
+
+
+      .premium-btn {
+        width: 280px;
+        justify-content: center;
+        padding: 18px 30px;
+        font-size: 16px;
+      }
+
+      .ultra-premium-programs-section {
+        padding: 80px 15px;
+      }
+
+      .programs-title {
+        font-size: 36px;
+      }
+
+      .ultra-program-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .ultra-program-card {
+        padding: 40px 30px;
+        min-height: auto;
+      }
+
+      .program-content h3 {
+        font-size: 28px;
+      }
+
+      .icon-circle {
+        width: 100px;
+        height: 100px;
+      }
+
+      .icon-circle i {
+        font-size: 40px;
+      }
+
+      .programs-title {
+        font-size: 42px;
+      }
+
+      .program-content h3 {
+        font-size: 30px;
+      }
+
+      .program-features {
+        gap: 12px;
+      }
+
+      .program-metrics {
+        gap: 25px;
+      }
+
+
+
+      .premium-cta-section {
+        padding: 60px 15px;
+      }
+
+      .cta-content h2 {
+        font-size: 32px;
+      }
+
+      .cta-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cta-btn {
+        width: 250px;
+        justify-content: center;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-links {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    /* Animations */
+    .animate-slide-up {
+      animation: slideUp 1s ease-out forwards;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-4 { animation-delay: 0.8s; }
+    .delay-5 { animation-delay: 1s; }
+    .delay-6 { animation-delay: 1.2s; }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .animate-bounce {
+      animation: bounce 3s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
 </head>
 <body>
-  <!-- Preloader -->
+  <!-- Ultra Premium Preloader -->
   <div id="preloader">
-    <div class="loader">
-      <img src="global image/LOGO.png" alt="Loading...">
-      <span>Loading...</span>
+    <div class="preloader-content">
+      <div class="logo-wrapper">
+        <img src="global image/LOGO.png" alt="NGO Logo" class="preloader-logo">
+      </div>
+      
+      <div class="org-info">
+        <h1 class="org-title">GRAMIN GLOW FOUNDATION</h1>
+        <p class="org-subtitle">"Glow Together, Glowing forever"</p>
+      </div>
+      
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-details">
+          <span class="progress-text" id="progress-text">0%</span>
+          <span class="loading-text" id="loading-message">Loading Programs...</span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- NAV -->
+  <!-- Navigation -->
   <header class="navbar">
     <div class="nav-left">
-     <a href="index.html" class="home-link">
+      <a href="index.html" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
         <img src="global image/LOGO.png" alt="logo" class="nav-logo">
-        <span class="org-name">GRAMIN GLOW FOUNDATION</span>
-     </a>
+        <span class="org-name">GRAMIN GLOW<br>FOUNDATION</span>
+      </a>
     </div>
+    
     <nav class="nav-menu">
       <ul>
         <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="programs.html" class="nav-link active"><i class="fas fa-hand-holding-heart"></i> Programs</a></li>
+        <li><a href="programs.html" class="nav-link active"><i class="fas fa-tasks"></i> Programs</a></li>
         <li><a href="members.html" class="nav-link"><i class="fas fa-users"></i> Members</a></li>
         <li><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
-        <li><a href="history.html" class="nav-link"><i class="fas fa-history"></i> History</a></li>
+        <li><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
       </ul>
     </nav>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/share/171ivrMM7K/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://www.instagram.com/graminglowfoundation" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.linkedin.com/company/gramin-glow-foundation/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-    </div>
-    <button class="nav-toggle" aria-label="Toggle navigation">
+    
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
       <i class="fas fa-bars"></i>
     </button>
   </header>
 
-  <!-- Overlay for mobile menu -->
-  <div class="nav-overlay"></div>
-
-  <!-- HERO -->
-  <section class="premium-hero">
-    <div class="hero-background">
-      <div class="hero-particles"></div>
-      <div class="hero-gradient"></div>
-    </div>
-    <div class="hero-container">
+  <!-- Ultra Premium Hero Section -->
+  <section class="ultra-premium-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
       <div class="hero-badge">
-        <i class="fas fa-hands-helping"></i>
-        <span>Making a Difference Since 2025</span>
+        <i class="fas fa-hands-helping pulse-icon"></i>
+        <span>Transforming Communities Since 2025</span>
       </div>
+      
       <h1 class="hero-title">
-        <span class="title-main">Transforming Lives</span>
-        <span class="title-highlight">Through Action</span>
+        <div class="title-container">
+          <span class="title-line animate-slide-up">Our Impact</span>
+          <span class="title-highlight animate-slide-up delay-1">Programs</span>
+        </div>
       </h1>
-      <p class="hero-description">
-        Empowering rural communities through comprehensive programs in 
-        <span class="highlight-word">Healthcare</span>, 
-        <span class="highlight-word">Education</span>, and 
-        <span class="highlight-word">Agriculture</span> 
-        that create sustainable positive change for generations.
+      
+      <p class="hero-description animate-fade-in delay-4">
+        Comprehensive initiatives in <span class="highlight-text">Healthcare</span>, 
+        <span class="highlight-text">Education</span>, and 
+        <span class="highlight-text">Agriculture</span> that create lasting positive change
+        <br><span style="font-style: italic; font-weight: 600;">Building stronger, healthier, and more prosperous rural communities</span>
       </p>
       
-      <div class="hero-actions">
-        <a href="#programs" class="hero-btn primary">
-          <span>Explore Our Programs</span>
-          <i class="fas fa-arrow-down"></i>
+      <div class="hero-stats animate-fade-in delay-5">
+        <div class="stat-item">
+          <div class="stat-number" data-count="200">0+</div>
+          <div class="stat-label">Lives Impacted</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="3">0</div>
+          <div class="stat-label">Active Programs</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="5">0+</div>
+          <div class="stat-label">Villages Reached</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="100">0%</div>
+          <div class="stat-label">Transparency</div>
+        </div>
+      </div>
+      
+      <div class="hero-cta animate-fade-in delay-6">
+        <a class="btn primary premium-btn" href="#programs">
+          <span class="btn-content">
+            <span class="btn-text">Explore Programs</span>
+            <i class="fas fa-arrow-down"></i>
+          </span>
         </a>
-        <a href="history.html" class="hero-btn secondary">
-          <span>Learn Our Story</span>
-          <i class="fas fa-heart"></i>
+        <a class="btn secondary premium-btn" href="about.html">
+          <span class="btn-content">
+            <span class="btn-text">Our Story</span>
+            <i class="fas fa-heart"></i>
+          </span>
         </a>
       </div>
-      <div class="hero-scroll">
-        <span>Discover Our Impact</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROGRAMS SECTION -->
-  <section class="section" id="programs">
-    <h2>Our Core Programs</h2>
-    <p class="lead">Each program addresses critical needs in rural communities through evidence-based interventions and sustainable solutions.</p>
-    
-    <div class="program-grid">
-      <div class="dynamic-program" onclick="openPage('health.html')">
-        <div class="program-icon">
-          <i class="fas fa-heartbeat"></i>
-        </div>
-        <h3>Health & Wellness</h3>
-        <p>Comprehensive healthcare initiatives including free medical camps, health awareness programs, women's health services, and preventive care education for rural communities.</p>
-        <div class="program-features">
-          <span class="feature-tag">Medical Camps</span>
-          <span class="feature-tag">Health Education</span>
-          <span class="feature-tag">Women's Health</span>
-        </div>
-      </div>
-
-      <div class="dynamic-program" onclick="openPage('education.html')">
-        <div class="program-icon">
-          <i class="fas fa-graduation-cap"></i>
-        </div>
-        <h3>Education & Learning</h3>
-        <p>Educational empowerment through village school support, digital learning centers, adult literacy programs, and teacher training initiatives that open doors to opportunities.</p>
-        <div class="program-features">
-          <span class="feature-tag">School Support</span>
-          <span class="feature-tag">Digital Learning</span>
-          <span class="feature-tag">Adult Literacy</span>
-        </div>
-      </div>
-
-      <div class="dynamic-program" onclick="openPage('agriculture.html')">
-        <div class="program-icon">
-          <i class="fas fa-seedling"></i>
-        </div>
-        <h3>Sustainable Agriculture</h3>
-        <p>Agricultural development through sustainable farming practices, crop diversification, market linkage support, and organic farming promotion that enhances rural livelihoods.</p>
-        <div class="program-features">
-          <span class="feature-tag">Sustainable Farming</span>
-          <span class="feature-tag">Market Linkage</span>
-          <span class="feature-tag">Organic Methods</span>
+      
+      <div class="animate-bounce" style="margin-top: 80px;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; color: rgba(255,255,255,0.8); font-size: 16px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">
+          <span>Discover Our Impact</span>
+          <div style="display: flex; flex-direction: column; gap: -5px;">
+            <i class="fas fa-chevron-down" style="font-size: 18px; animation: arrowBounce 2s ease-in-out infinite;"></i>
+            <i class="fas fa-chevron-down" style="font-size: 18px; animation: arrowBounce 2s ease-in-out infinite; animation-delay: 0.2s; opacity: 0.7;"></i>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-
-
-  <!-- IMPACT STATS -->
-  <section class="section" style="background: linear-gradient(135deg, #138808, #1e90ff); color: white; text-align: center;">
-    <h2 style="color: white;">Our Impact</h2>
-    <div class="program-grid" style="max-width: 800px; margin: 0 auto;">
-      <div style="text-align: center; padding: 20px;">
-        <div style="font-size: 48px; font-weight: 800; color: #ffd700; margin-bottom: 10px;">200+</div>
-        <div style="font-size: 18px; opacity: 0.9;">Lives Directly Impacted</div>
+  <!-- Ultra Premium Programs Section -->
+  <section class="ultra-premium-programs-section" id="programs">
+    <div class="programs-container">
+      <div class="programs-header">
+        <div class="header-badge">
+          <i class="fas fa-hands-helping"></i>
+          <span>Our Core Initiatives</span>
+        </div>
+        <h2 class="programs-title">Transformative Programs</h2>
+        <p class="programs-subtitle">Evidence-based interventions creating sustainable positive change in rural communities through comprehensive healthcare, education, and agricultural development initiatives.</p>
       </div>
-      <div style="text-align: center; padding: 20px;">
-        <div style="font-size: 48px; font-weight: 800; color: #ffd700; margin-bottom: 10px;">3</div>
-        <div style="font-size: 18px; opacity: 0.9;">Active Program Areas</div>
-      </div>
-      <div style="text-align: center; padding: 20px;">
-        <div style="font-size: 48px; font-weight: 800; color: #ffd700; margin-bottom: 10px;">100%</div>
-        <div style="font-size: 18px; opacity: 0.9;">Transparency Commitment</div>
+      
+      <div class="ultra-program-grid">
+        <div class="ultra-program-card health-program" onclick="openPage('health.html')">
+          <div class="program-icon">
+            <div class="icon-circle">
+              <i class="fas fa-heartbeat"></i>
+            </div>
+          </div>
+          <div class="program-content">
+            <h3>Healthcare Excellence</h3>
+            <p>Comprehensive medical services, health awareness programs, women's health initiatives, and preventive care education ensuring accessible healthcare for all community members.</p>
+            <div class="program-features">
+              <div class="feature-item">
+                <i class="fas fa-hospital"></i>
+                <span>Medical Camps</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-user-md"></i>
+                <span>Health Education</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-female"></i>
+                <span>Women's Health</span>
+              </div>
+            </div>
+            <div class="program-metrics">
+              <div class="metric">
+                <span class="metric-number">70+</span>
+                <span class="metric-label">Lives Impacted</span>
+              </div>
+              <div class="metric">
+                <span class="metric-number">15+</span>
+                <span class="metric-label">Health Camps</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-action">
+            <span>Explore Healthcare</span>
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+        
+        <div class="ultra-program-card education-program" onclick="openPage('education.html')">
+          <div class="program-icon">
+            <div class="icon-circle">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+          </div>
+          <div class="program-content">
+            <h3>Education Empowerment</h3>
+            <p>Educational excellence through village school support, digital learning centers, adult literacy programs, and teacher training initiatives that unlock opportunities and potential.</p>
+            <div class="program-features">
+              <div class="feature-item">
+                <i class="fas fa-school"></i>
+                <span>School Support</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-laptop"></i>
+                <span>Digital Learning</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-book-reader"></i>
+                <span>Adult Literacy</span>
+              </div>
+            </div>
+            <div class="program-metrics">
+              <div class="metric">
+                <span class="metric-number">50+</span>
+                <span class="metric-label">Students Supported</span>
+              </div>
+              <div class="metric">
+                <span class="metric-number">5+</span>
+                <span class="metric-label">Schools Reached</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-action">
+            <span>Explore Education</span>
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+        
+        <div class="ultra-program-card agriculture-program" onclick="openPage('agriculture.html')">
+          <div class="program-icon">
+            <div class="icon-circle">
+              <i class="fas fa-seedling"></i>
+            </div>
+          </div>
+          <div class="program-content">
+            <h3>Sustainable Agriculture</h3>
+            <p>Agricultural transformation through sustainable farming practices, crop diversification, market linkage support, and organic farming promotion enhancing rural livelihoods.</p>
+            <div class="program-features">
+              <div class="feature-item">
+                <i class="fas fa-leaf"></i>
+                <span>Sustainable Farming</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-handshake"></i>
+                <span>Market Linkage</span>
+              </div>
+              <div class="feature-item">
+                <i class="fas fa-seedling"></i>
+                <span>Organic Methods</span>
+              </div>
+            </div>
+            <div class="program-metrics">
+              <div class="metric">
+                <span class="metric-number">30+</span>
+                <span class="metric-label">Farmers Trained</span>
+              </div>
+              <div class="metric">
+                <span class="metric-number">3+</span>
+                <span class="metric-label">Villages</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-action">
+            <span>Explore Agriculture</span>
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
 
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div>© 2025 Gramin Glow Foundation. Empowering Rural Communities.</div>
-      <div class="socials">
-        <a href="https://www.facebook.com/share/171ivrMM7K/" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/graminglowfoundation" class="social"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/company/gramin-glow-foundation/" class="social"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://medium.com/@graminglowfoundation2025" class="social"><i class="fab fa-medium-m"></i></a>
+  <!-- Call to Action Section -->
+  <section class="premium-cta-section">
+    <div class="cta-container">
+      <div class="cta-content">
+        <h2>Join Our Mission</h2>
+        <p>Be part of the transformation. Your support creates lasting change in rural communities.</p>
+        <div class="cta-actions">
+          <a href="contact.html" class="cta-btn primary">
+            <span style="position: relative; z-index: 2; display: flex; align-items: center; gap: 12px;">
+              <span>Get Involved</span>
+              <i class="fas fa-hands-helping"></i>
+            </span>
+          </a>
+          <a href="about.html" class="cta-btn secondary">
+            <span style="position: relative; z-index: 2; display: flex; align-items: center; gap: 12px;">
+              <span>Learn More</span>
+              <i class="fas fa-arrow-right"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Footer -->
+  <footer class="premium-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="global image/LOGO.png" alt="Gramin Glow Foundation">
+            <h3>GRAMIN GLOW FOUNDATION</h3>
+          </div>
+          <p class="footer-mission">Empowering rural communities through sustainable health, education, and agriculture initiatives. Together we glow, forever we grow.</p>
+          <div class="footer-certifications">
+            <span class="cert-badge"><i class="fas fa-certificate"></i> Registered NGO</span>
+            <span class="cert-badge"><i class="fas fa-shield-alt"></i> Verified</span>
+            <span class="cert-badge"><i class="fas fa-award"></i> Trusted</span>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>Our Programs</h4>
+            <ul>
+              <li><a href="health.html"><i class="fas fa-heartbeat"></i> Health Initiatives</a></li>
+              <li><a href="education.html"><i class="fas fa-graduation-cap"></i> Education Support</a></li>
+              <li><a href="agriculture.html"><i class="fas fa-seedling"></i> Agriculture Development</a></li>
+              <li><a href="programs.html"><i class="fas fa-list"></i> All Programs</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-column">
+            <h4>Get Involved</h4>
+            <ul>
+              <li><a href="#"><i class="fas fa-heart"></i> Donate Now</a></li>
+              <li><a href="members.html"><i class="fas fa-users"></i> Join Our Team</a></li>
+              <li><a href="contact.html"><i class="fas fa-volunteer"></i> Volunteer</a></li>
+              <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-column">
+            <h4>Contact Info</h4>
+            <div class="contact-info">
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Kamalpur, Balighai, Egra-II<br>East Midnapore, WB-721422</span>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <a href="tel:+919046927764">+91 9046927764</a>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:graminglowfoundation2025@gmail.com">graminglowfoundation2025@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="copyright">
+          <p>&copy; 2025 Gramin Glow Foundation. All Rights Reserved.</p>
+          <p class="reg-info">Registered under Society Registration Act | CIN: [Registration Number]</p>
+        </div>
       </div>
     </div>
   </footer>
 
   <!-- Floating Donate Button -->
-  <button class="floating-donate" aria-label="Donate">
+  <button class="floating-donate" onclick="showDonatePopup()">
     <span class="heart">❤</span> Donate
   </button>
-
+  
   <!-- Donate Popup -->
-  <div id="donate-popup" class="popup" role="dialog" aria-hidden="true">
+  <div id="donate-popup" class="popup">
     <div class="popup-box">
-      <button class="popup-close" aria-label="Close">&times;</button>
-      <h3>Support Our Mission</h3>
-      <p>Your contribution directly supports our community development programs</p>
-      <img src="QR.jpg" alt="QR code scanner" class="qr">
-      <p>UPI ID: <b>8389974399</b></p>
-      <p>Every contribution creates lasting impact</p>
+      <button class="popup-close" onclick="hideDonatePopup()">&times;</button>
+      <h3>Support Our Programs</h3>
+      <p>Your contribution directly supports our community development initiatives.</p> 
+      <p>UPI Number: <strong>8389974399</strong></p>
+      <img src="global image/QR.jpg" alt="QR code scanner" class="qr">
+      <p>Every donation creates lasting impact in rural communities.</p>
     </div>
   </div>
 
-  <script src="app.js"></script>
-  
   <script>
-    // Program card click handler
-    function openPage(url) {
-      window.location.href = url;
+    // Preloader
+    (() => {
+      let progress = 0;
+      const progressText = document.getElementById("progress-text");
+      const progressFill = document.getElementById("progress-fill");
+      const loadingMessage = document.getElementById("loading-message");
+      const preloader = document.getElementById("preloader");
+
+      if (!progressText || !preloader || !progressFill || !loadingMessage) return;
+
+      const messages = [
+        "Initializing...",
+        "Loading Resources...",
+        "Connecting to Community...",
+        "Preparing Impact Data...",
+        "Almost Ready...",
+        "Welcome to Gramin Glow Foundation!"
+      ];
+
+      let messageIndex = 0;
+
+      const loading = setInterval(() => {
+        progress += 4;
+        
+        progressText.textContent = progress + "%";
+        progressFill.style.width = progress + "%";
+        
+        if (progress % 20 === 0 && messageIndex < messages.length - 1) {
+          messageIndex++;
+          loadingMessage.textContent = messages[messageIndex];
+        }
+        
+        if (progress >= 100) {
+          progress = 100;
+          progressText.textContent = "100%";
+          progressFill.style.width = "100%";
+          loadingMessage.textContent = messages[messages.length - 1];
+          clearInterval(loading);
+          
+          setTimeout(() => {
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+              preloader.style.display = 'none';
+            }, 800);
+          }, 500);
+          return;
+        }
+      }, 40);
+
+      setTimeout(() => {
+        if (preloader.style.display !== 'none') {
+          preloader.style.display = 'none';
+        }
+      }, 4000);
+    })();
+
+    // Counter Animation
+    const animateCounter = (el, target) => {
+      let start = 0;
+      const step = target / 100;
+      const timer = setInterval(() => {
+        start += step;
+        if (start >= target) {
+          el.textContent = target + (target === 100 ? '%' : '+');
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(start) + (target === 100 ? '%' : '+');
+        }
+      }, 20);
+    };
+
+    // Stats Observer
+    const heroStats = document.querySelector('.hero-stats');
+    if (heroStats) {
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.stat-number').forEach(stat => {
+            const target = +stat.dataset.count;
+            animateCounter(stat, target);
+          });
+          observer.disconnect();
+        }
+      }, { threshold: 0.5 });
+      observer.observe(heroStats);
     }
 
+    // Program Navigation
+    function openPage(url) {
+      window.open(url, '_blank');
+    }
 
+    // Donate Popup
+    function showDonatePopup() {
+      document.getElementById('donate-popup').classList.add('show');
+    }
 
-    // Premium NGO styling enhancements
+    function hideDonatePopup() {
+      document.getElementById('donate-popup').classList.remove('show');
+    }
+
+    // Close popup on outside click
+    document.getElementById('donate-popup').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        hideDonatePopup();
+      }
+    });
+
+    // Smooth scrolling
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a');
+      if (link && link.getAttribute('href')?.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (mobileMenuBtn && navMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        mobileMenuBtn.classList.toggle('active');
+      });
+
+      // Close menu when clicking on a link
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          mobileMenuBtn.classList.remove('active');
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+          navMenu.classList.remove('active');
+          mobileMenuBtn.classList.remove('active');
+        }
+      });
+    }
+
+    // Arrow bounce animation
     const style = document.createElement('style');
     style.textContent = `
-      /* Premium Program Cards */
-      .dynamic-program {
-        background: linear-gradient(145deg, #ffffff, #f8fafc);
-        border: 2px solid rgba(30, 58, 138, 0.1);
-        border-radius: 20px;
-        padding: 40px 30px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08), 0 1px 8px rgba(0,0,0,0.06);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-      }
-      
-      .dynamic-program::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 5px;
-        background: linear-gradient(90deg, #1e3a8a, #059669);
-        transform: scaleX(0);
-        transition: transform 0.4s ease;
-      }
-      
-      .dynamic-program:hover::before {
-        transform: scaleX(1);
-      }
-      
-      .dynamic-program:hover {
-        transform: translateY(-12px);
-        border-color: rgba(30, 58, 138, 0.3);
-        box-shadow: 0 25px 50px rgba(0,0,0,0.15), 0 10px 30px rgba(30, 58, 138, 0.1);
-      }
-      
-      .program-icon {
-        text-align: center;
-        margin-bottom: 25px;
-        position: relative;
-      }
-      
-      .program-icon::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100px;
-        height: 100px;
-        background: linear-gradient(135deg, rgba(30, 58, 138, 0.1), rgba(5, 150, 105, 0.1));
-        border-radius: 50%;
-        z-index: -1;
-        transition: all 0.4s ease;
-      }
-      
-      .dynamic-program:hover .program-icon::before {
-        transform: translate(-50%, -50%) scale(1.2);
-        background: linear-gradient(135deg, rgba(30, 58, 138, 0.2), rgba(5, 150, 105, 0.2));
-      }
-      
-      .program-icon i {
-        font-size: 56px;
-        background: linear-gradient(135deg, #1e3a8a, #059669);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 15px;
-        transition: all 0.4s ease;
-        position: relative;
-        z-index: 2;
-      }
-      
-      .dynamic-program:hover .program-icon i {
-        transform: scale(1.15) rotate(5deg);
-        filter: drop-shadow(0 5px 15px rgba(30, 58, 138, 0.3));
-      }
-      
-      .dynamic-program h3 {
-        font-size: 24px;
-        font-weight: 700;
-        color: #1e293b;
-        margin-bottom: 15px;
-        text-align: center;
-        font-family: 'Playfair Display', serif;
-      }
-      
-      .dynamic-program p {
-        color: #4b5563;
-        line-height: 1.7;
-        text-align: center;
-        margin-bottom: 20px;
-        font-size: 16px;
-      }
-      
-      .program-features {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 20px;
-        justify-content: center;
-      }
-      
-      .feature-tag {
-        background: linear-gradient(135deg, rgba(30, 58, 138, 0.1), rgba(5, 150, 105, 0.1));
-        color: #1e3a8a;
-        padding: 6px 14px;
-        border-radius: 20px;
-        font-size: 13px;
-        font-weight: 600;
-        border: 1px solid rgba(30, 58, 138, 0.2);
-        transition: all 0.3s ease;
-      }
-      
-      .feature-tag:hover {
-        background: linear-gradient(135deg, #1e3a8a, #059669);
-        color: white;
-        transform: translateY(-2px);
-      }
-      
-      /* Professional Section Headers */
-      .section h2 {
-        font-family: 'Playfair Display', serif;
-        font-size: 42px;
-        font-weight: 700;
-        color: #1e293b;
-        text-align: center;
-        margin-bottom: 20px;
-        position: relative;
-      }
-      
-      .section h2::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(90deg, #1e3a8a, #059669);
-        border-radius: 2px;
-      }
-      
-      .lead {
-        font-size: 18px;
-        color: #4b5563;
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto 40px;
-        line-height: 1.7;
-      }
-      
-      /* Premium Hero Section */
-      .premium-hero {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-        background: linear-gradient(135deg, #138808 0%, #0f6b06 50%, #1e90ff 100%);
-      }
-      
-      .hero-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 1;
-      }
-      
-      .hero-particles {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="15" cy="15" r="0.8" fill="%23ffffff" opacity="0.1"/></svg>') repeat;
-        animation: particleFloat 20s linear infinite;
-      }
-      
-      @keyframes particleFloat {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-100px); }
-      }
-      
-      .hero-gradient {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-        animation: gradientShift 15s ease-in-out infinite;
-      }
-      
-      @keyframes gradientShift {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.7; }
-      }
-      
-      .hero-container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 0 30px;
-        text-align: center;
-        position: relative;
-        z-index: 3;
-        color: #ffffff;
-      }
-      
-      .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        padding: 12px 24px;
-        border-radius: 50px;
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 30px;
-        animation: badgePulse 3s ease-in-out infinite;
-      }
-      
-      @keyframes badgePulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-      }
-      
-      .hero-badge i {
-        color: #ffd700;
-        font-size: 16px;
-      }
-      
-      .hero-title {
-        font-size: 3.5rem;
-        font-weight: 800;
-        line-height: 1.1;
-        margin-bottom: 30px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      
-      .title-main {
-        background: linear-gradient(135deg, #ffffff, #f0f8ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      }
-      
-      .title-highlight {
-        background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
-        background-size: 200% 100%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        animation: goldShimmer 3s ease-in-out infinite;
-        filter: drop-shadow(0 0 20px rgba(255,215,0,0.5));
-      }
-      
-      @keyframes goldShimmer {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-      }
-      
-      .hero-description {
-        font-size: 1.2rem;
-        line-height: 1.7;
-        color: rgba(255, 255, 255, 0.9);
-        margin-bottom: 40px;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      
-      .highlight-word {
-        background: linear-gradient(135deg, #10b981, #3b82f6);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-weight: 700;
-        text-shadow: 0 0 10px rgba(16,185,129,0.3);
-      }
-      
-      .hero-stats {
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        margin-bottom: 50px;
-        flex-wrap: wrap;
-      }
-      
-      .stat-item {
-        text-align: center;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 16px;
-        padding: 20px 25px;
-        min-width: 120px;
-        transition: all 0.3s ease;
-      }
-      
-      .stat-item:hover {
-        transform: translateY(-5px);
-        background: rgba(255, 255, 255, 0.15);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      }
-      
-      .stat-number {
-        font-size: 2rem;
-        font-weight: 800;
-        color: #ffd700;
-        margin-bottom: 5px;
-        text-shadow: 0 0 10px rgba(255,215,0,0.5);
-      }
-      
-      .stat-label {
-        font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.8);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-      
-      .hero-actions {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin-bottom: 60px;
-        flex-wrap: wrap;
-      }
-      
-      .hero-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 16px 32px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 16px;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        border: 2px solid transparent;
-      }
-      
-      .hero-btn.primary {
-        background: linear-gradient(135deg, #10b981, #3b82f6);
-        color: #ffffff;
-        box-shadow: 0 10px 30px rgba(16,185,129,0.4);
-      }
-      
-      .hero-btn.primary:hover {
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 15px 40px rgba(16,185,129,0.6);
-      }
-      
-      .hero-btn.secondary {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border-color: rgba(255, 255, 255, 0.3);
-        color: #ffffff;
-      }
-      
-      .hero-btn.secondary:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
-      }
-      
-      .hero-scroll {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 14px;
-        animation: scrollBounce 2s ease-in-out infinite;
-      }
-      
-      @keyframes scrollBounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-      }
-      
-      .hero-scroll i {
-        font-size: 16px;
-        animation: arrowBounce 2s ease-in-out infinite;
-      }
-      
       @keyframes arrowBounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(5px); }
-      }
-      
-      @media (max-width: 768px) {
-        .hero-container {
-          padding: 0 20px;
-        }
-        
-        .hero-title {
-          font-size: 2.5rem;
-        }
-        
-        .hero-description {
-          font-size: 1rem;
-        }
-        
-        .hero-stats {
-          gap: 20px;
-        }
-        
-        .stat-item {
-          min-width: 100px;
-          padding: 15px 20px;
-        }
-        
-        .hero-actions {
-          flex-direction: column;
-          align-items: center;
-        }
-        
-        .hero-btn {
-          width: 250px;
-          justify-content: center;
-        }
-      }
-      
-      /* Professional Impact Stats */
-      .impact-stats {
-        background: linear-gradient(135deg, #1e3a8a, #059669);
-        padding: 60px 20px;
-        margin: 60px 0;
-        border-radius: 20px;
-        position: relative;
-        overflow: hidden;
-      }
-      
-      .impact-stats::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="80" r="1" fill="%23ffffff" opacity="0.1"/></svg>') repeat;
-        pointer-events: none;
-      }
-      
-      /* Professional Contact Cards */
-      .contact-card {
-        background: linear-gradient(145deg, #ffffff, #f8fafc);
-        border: 2px solid rgba(30, 58, 138, 0.1);
-        transition: all 0.4s ease;
-      }
-      
-      .contact-card:hover {
-        border-color: rgba(30, 58, 138, 0.3);
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      }
-      
-      .card-icon {
-        background: linear-gradient(135deg, #1e3a8a, #059669) !important;
-      }
-      
-      /* Mobile Responsiveness */
-      @media (max-width: 768px) {
-        .dynamic-program {
-          padding: 30px 20px;
-        }
-        
-        .program-icon i {
-          font-size: 48px;
-        }
-        
-        .section h2 {
-          font-size: 32px;
-        }
-        
-        .hero h1 {
-          font-size: 36px;
-        }
+        0%, 100% { transform: translateY(0); opacity: 1; }
+        50% { transform: translateY(8px); opacity: 0.5; }
       }
     `;
     document.head.appendChild(style);
