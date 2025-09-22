@@ -535,11 +535,8 @@ if (heroTitle) {
     if (lower.includes('agriculture') || lower.includes('farming')) {
       return 'We support farmers with organic farming training and modern techniques. Interested in details?';
     }
-    if (lower.includes('donate') || lower.includes('support')) {
-      return 'Thank you for your interest! We accept donations via UPI. Click fullscreen for donation details.';
-    }
     
-    return 'I can help you learn about our health, education, and agriculture programs. Click fullscreen for detailed chat!';
+    return 'I will help you. Click fullscreen for detailed chat!';
   };
   
   // Handle mini input enter key
