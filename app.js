@@ -527,13 +527,13 @@ if (heroTitle) {
     const lower = message.toLowerCase();
     
     if (lower.includes('health') || lower.includes('medical')) {
-      return 'We provide free medical camps and health awareness programs. Click fullscreen to learn more!';
+      return 'Click fullscreen to learn more about health!';
     }
     if (lower.includes('education') || lower.includes('school')) {
-      return 'Our education programs include scholarships and digital literacy. Want to know more details?';
+      return 'Want to know more details?. Click full screen.';
     }
     if (lower.includes('agriculture') || lower.includes('farming')) {
-      return 'We support farmers with organic farming training and modern techniques. Interested in details?';
+      return 'Interested in details? Open Full screen.';
     }
     
     return 'I will help you. Click fullscreen for detailed chat!';
