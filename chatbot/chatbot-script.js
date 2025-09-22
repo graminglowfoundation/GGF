@@ -304,35 +304,46 @@ class ChatGPTLikeChatbot {
     }
     
     initializeSpeechVoices() {
-        const setVoice = () => {
+        // This function will find and set the desired voice.
+        const findAndSetVoice = () => {
             const voices = this.synthesis.getVoices();
-            console.log("Searching for English voices...");
+            console.log("Available voices:", voices.map(v => `${v.name} (${v.lang})`)); // Important for debugging!
 
-            // English voice selection logic
-            this.femaleVoice = voices.find(voice => 
-                voice.lang === 'en-IN' && 
-                (voice.name.toLowerCase().includes('aditi') || 
+            // --- Enhanced Voice Selection Logic ---
+            // We'll try to find the best match in order of preference.
+
+            // 1. Prefer specific, high-quality Google voices for 'en-IN'.
+            this.femaleVoice = voices.find(voice =>
+                voice.lang === 'en-IN' && voice.name.toLowerCase().includes('google')
+            ) ||
+            // 2. Look for common 'en-IN' voice names.
+            voices.find(voice =>
+                voice.lang === 'en-IN' &&
+                (voice.name.toLowerCase().includes('aditi') ||
                  voice.name.toLowerCase().includes('raveena') ||
-                 voice.name.toLowerCase().includes('priya') ||
-                 voice.name.toLowerCase().includes('kavya'))
+                 voice.name.toLowerCase().includes('isha'))
             ) ||
-            voices.find(voice => 
-                voice.lang === 'en-IN' && 
-                (voice.name.toLowerCase().includes('female') || 
-                 !voice.name.toLowerCase().includes('male'))
+            // 3. Find any female 'en-IN' voice.
+            voices.find(voice =>
+                voice.lang === 'en-IN' && !voice.name.toLowerCase().includes('male')
             ) ||
+            // 4. Settle for any 'en-IN' voice if no female is specified.
             voices.find(voice => voice.lang === 'en-IN') ||
-            voices.find(voice => voice.lang.startsWith('en') && voice.name.toLowerCase().includes('female')) ||
-            voices.find(voice => !voice.name.toLowerCase().includes('male') && voice.lang.startsWith('en'));
-            
-            console.log('Selected voice:', this.femaleVoice ? `${this.femaleVoice.name} (${this.femaleVoice.lang})` : 'Default system voice');
+            // 5. As a last resort, find a generic English female voice.
+            voices.find(voice => voice.lang.startsWith('en') && voice.name.toLowerCase().includes('female'));
+
+            if (this.femaleVoice) {
+                console.log('SUCCESS: Selected voice:', `${this.femaleVoice.name} (${this.femaleVoice.lang})`);
+            } else {
+                console.warn('WARNING: No suitable Indian English voice found. The browser will use its default voice.');
+            }
         };
-        
-        if (this.synthesis.getVoices().length) {
-            setVoice();
-        } else {
-            this.synthesis.onvoiceschanged = setVoice;
-        }
+
+        // The 'voiceschanged' event is the correct and reliable way to get the voice list.
+        this.synthesis.onvoiceschanged = findAndSetVoice;
+
+        // Call it once immediately, in case the voices are already cached and loaded.
+        findAndSetVoice();
     }
     
     speakText(text) {
