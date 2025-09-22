@@ -1269,9 +1269,9 @@
                 const address = 'Kamalpur, Balighai, Egra-II, East Midnapore, West Bengal-721422';
                 setTimeout(() => {
                   if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-                    window.open(`maps://maps.google.com/maps?q=${encodeURIComponent(address)}`);
+                    window.open(`https://www.google.com/maps/search/?api=1&query=21.8679727,87.5899648`);
                   } else {
-                    window.open(`https://maps.google.com/maps?q=${encodeURIComponent(address)}`);
+                    window.open(`https://www.google.com/maps/search/?api=1&query=21.8679727,87.5899648`);
                   }
                   actionSpan.textContent = 'Get Directions';
                 }, 500);
