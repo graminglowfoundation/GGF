@@ -404,3 +404,229 @@ if (heroTitle) {
   navOverlay.onclick = closeMenu;
   document.querySelectorAll('.nav-menu a').forEach(link => link.onclick = closeMenu);
 })();
+
+// Premium Floating Chatbot Functionality
+(() => {
+  const chatbotToggle = document.getElementById('chatbotToggle');
+  const chatbotMini = document.getElementById('chatbotMini');
+  const miniChatInput = document.getElementById('miniChatInput');
+  
+  if (!chatbotToggle || !chatbotMini) return;
+  
+  let isChatOpen = false;
+  
+  // Toggle mini chat
+  window.toggleMiniChat = () => {
+    isChatOpen = !isChatOpen;
+    
+    if (isChatOpen) {
+      chatbotMini.classList.add('show');
+      chatbotToggle.innerHTML = '<i class="fas fa-times"></i>';
+      chatbotToggle.style.transform = 'scale(0.9)';
+      
+      // Add welcome animation
+      setTimeout(() => {
+        const welcomeMsg = chatbotMini.querySelector('.welcome-message');
+        if (welcomeMsg) {
+          welcomeMsg.style.animation = 'messageSlideIn 0.6s ease-out';
+        }
+      }, 300);
+    } else {
+      chatbotMini.classList.remove('show');
+      chatbotToggle.innerHTML = '<i class="fas fa-comments"></i>';
+      chatbotToggle.style.transform = 'scale(1)';
+    }
+  };
+  
+  // Close mini chat
+  window.closeMiniChat = () => {
+    if (isChatOpen) {
+      toggleMiniChat();
+    }
+  };
+  
+  // Open fullscreen chat
+  window.openFullscreenChat = (topic = '') => {
+    const message = miniChatInput ? miniChatInput.value.trim() : '';
+    let url = 'chatbot/chatbot.html';
+    
+    // Add topic or message as URL parameter
+    if (topic) {
+      url += `?topic=${encodeURIComponent(topic)}`;
+    } else if (message) {
+      url += `?message=${encodeURIComponent(message)}`;
+    }
+    
+    // Open in new window with specific dimensions
+    const chatWindow = window.open(
+      url,
+      'NGOChatbot',
+      'width=1200,height=800,scrollbars=yes,resizable=yes,toolbar=no,menubar=no,location=no,status=no'
+    );
+    
+    if (chatWindow) {
+      chatWindow.focus();
+      // Clear mini input if message was sent
+      if (miniChatInput && message) {
+        miniChatInput.value = '';
+      }
+      // Close mini chat
+      closeMiniChat();
+    }
+  };
+  
+  // Mini chat functionality
+  const miniMessages = document.getElementById('miniMessages');
+  let miniChatHistory = [];
+  
+  // Send message in mini chat
+  window.sendMiniMessage = (message = '') => {
+    const input = miniChatInput;
+    const text = message || (input ? input.value.trim() : '');
+    if (!text) return;
+    
+    // Add user message
+    addMiniMessage(text, 'user');
+    if (input) input.value = '';
+    
+    // Generate bot response
+    setTimeout(() => {
+      const response = generateMiniResponse(text);
+      addMiniMessage(response, 'bot');
+    }, 800);
+  };
+  
+  // Add message to mini chat
+  const addMiniMessage = (text, sender) => {
+    if (!miniMessages) return;
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `mini-message ${sender}`;
+    
+    const avatar = document.createElement('div');
+    avatar.className = 'mini-avatar';
+    avatar.innerHTML = sender === 'bot' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>';
+    
+    const bubble = document.createElement('div');
+    bubble.className = 'mini-bubble';
+    bubble.textContent = text;
+    
+    messageDiv.appendChild(avatar);
+    messageDiv.appendChild(bubble);
+    miniMessages.appendChild(messageDiv);
+    
+    // Scroll to bottom
+    miniMessages.scrollTop = miniMessages.scrollHeight;
+    
+    // Store in history
+    miniChatHistory.push({text, sender});
+  };
+  
+  // Generate mini responses
+  const generateMiniResponse = (message) => {
+    const lower = message.toLowerCase();
+    
+    if (lower.includes('health') || lower.includes('medical')) {
+      return 'We provide free medical camps and health awareness programs. Click fullscreen to learn more!';
+    }
+    if (lower.includes('education') || lower.includes('school')) {
+      return 'Our education programs include scholarships and digital literacy. Want to know more details?';
+    }
+    if (lower.includes('agriculture') || lower.includes('farming')) {
+      return 'We support farmers with organic farming training and modern techniques. Interested in details?';
+    }
+    if (lower.includes('donate') || lower.includes('support')) {
+      return 'Thank you for your interest! We accept donations via UPI. Click fullscreen for donation details.';
+    }
+    
+    return 'I can help you learn about our health, education, and agriculture programs. Click fullscreen for detailed chat!';
+  };
+  
+  // Handle mini input enter key
+  if (miniChatInput) {
+    miniChatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMiniMessage();
+      }
+    });
+    
+    // Auto-resize and character limit
+    miniChatInput.addEventListener('input', (e) => {
+      const value = e.target.value;
+      if (value.length > 200) {
+        e.target.value = value.substring(0, 200);
+      }
+    });
+  }
+  
+  // Add floating animation to chatbot button
+  if (chatbotToggle) {
+    setInterval(() => {
+      if (!isChatOpen) {
+        chatbotToggle.style.animation = 'chatbotPulse 3s ease-in-out';
+        setTimeout(() => {
+          chatbotToggle.style.animation = '';
+        }, 3000);
+      }
+    }, 10000); // Pulse every 10 seconds
+  }
+  
+  // Auto-show chatbot after 30 seconds (optional)
+  setTimeout(() => {
+    if (!isChatOpen && !localStorage.getItem('chatbot-shown')) {
+      // Show a subtle notification
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        bottom: 120px;
+        right: 30px;
+        background: linear-gradient(135deg, #138808, #10b981);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 25px;
+        font-size: 14px;
+        font-weight: 600;
+        box-shadow: 0 8px 25px rgba(19, 136, 8, 0.3);
+        z-index: 1499;
+        animation: slideInRight 0.5s ease-out;
+        cursor: pointer;
+        max-width: 250px;
+      `;
+      notification.innerHTML = '💬 Need help? Chat with our AI assistant!';
+      
+      document.body.appendChild(notification);
+      
+      // Auto-hide after 5 seconds
+      setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.5s ease-in';
+        setTimeout(() => notification.remove(), 500);
+      }, 5000);
+      
+      // Click to open chat
+      notification.onclick = () => {
+        toggleMiniChat();
+        notification.remove();
+      };
+      
+      localStorage.setItem('chatbot-shown', 'true');
+    }
+  }, 30000);
+  
+  // Add CSS animations
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOutRight {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
+    @keyframes messageSlideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  `;
+  document.head.appendChild(style);
+})();
