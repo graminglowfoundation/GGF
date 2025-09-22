@@ -349,7 +349,7 @@ class ChatGPTLikeChatbot {
         }
 
         // --- Voice Tuning ---
-        this.currentUtterance.rate = 0.8;
+        this.currentUtterance.rate = 0.85;
         this.currentUtterance.pitch = 1.4;
         this.currentUtterance.volume = 0.95;
         
