@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gramin Glow Foundation - AI Assistant</title>
+    <link rel="icon" type="image/png" href="../global image/Fevicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="chatbot-styles.css">
+    <meta name="description" content="AI-powered assistant for Gramin Glow Foundation - Get instant help with health, education, and agriculture programs">
+    <meta name="theme-color" content="#138808">
+</head>
+<body>
+    <!-- Premium Background Elements -->
+    <div class="bg-elements">
+        <div class="bg-gradient"></div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+        <div class="premium-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
+    <!-- Compact Premium Header -->
+    <header class="chatbot-header compact">
+        <div class="header-glass"></div>
+        <div class="header-content">
+            <div class="brand-info compact">
+                <div class="logo-container compact">
+                    <img src="../global image/LOGO.png" alt="NGO Logo" class="header-logo compact">
+                    <div class="logo-pulse"></div>
+                </div>
+                <div class="brand-text compact">
+                    <h1><span class="brand-highlight"> GGF</span> AI</h1>
+                    <div class="status-indicator compact">
+                        <div class="status-dot"></div>
+                        <span>Online</span>
+                        <i class="fas fa-shield-alt security-icon"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="header-actions compact">
+                <button class="action-btn compact" id="settingsBtn" title="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Chat Container -->
+    <main class="chat-container optimized">
+        <div class="chat-messages optimized" id="chatMessages">
+            <!-- Premium Welcome Message -->
+            <div class="message bot-message welcome-message premium-welcome">
+                <div class="message-avatar premium-avatar">
+                    <div class="avatar-bg"></div>
+                    <div class="avatar-ring"></div>
+                    <i class="fas fa-sparkles"></i>
+                    <div class="avatar-pulse"></div>
+                    <div class="avatar-glow"></div>
+                </div>
+                <div class="message-content">
+                    <div class="message-bubble premium-bubble">
+                        <div class="bubble-glow"></div>
+                        <div class="message-header">
+                            <span class="bot-name premium-name">GGF Premium Assistant</span>
+                            <div class="message-badges">
+                                <span class="badge ai-badge premium"><i class="fas fa-crown"></i> AI</span>
+                                <span class="badge verified-badge premium"><i class="fas fa-certificate"></i></span>
+                                <span class="badge secure-badge"><i class="fas fa-shield-alt"></i> Secure</span>
+                            </div>
+                        </div>
+                        <div class="welcome-content premium-content">
+                            <div class="welcome-icon premium-icon">
+                                <div class="icon-glow"></div>
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <h3 class="premium-title">🙏 Namaste! Welcome to <span class="highlight-text">Gramin Glow Foundation</span>!</h3>
+                            <p class="premium-subtitle">I'm your premium AI-powered assistant, designed to help you discover our transformative mission of empowering rural communities through:</p>
+                            <div class="mission-tags premium-tags">
+                                <span class="tag health premium"><i class="fas fa-heartbeat"></i> Healthcare Excellence</span>
+                                <span class="tag education premium"><i class="fas fa-graduation-cap"></i> Quality Education</span>
+                                <span class="tag agriculture premium"><i class="fas fa-seedling"></i> Sustainable Agriculture</span>
+                            </div>
+                            <div class="premium-features">
+                                <div class="feature-item">
+                                    <i class="fas fa-microphone"></i>
+                                    <span>Voice Interaction</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Image Analysis</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-globe"></i>
+                                    <span>Real-time Search</span>
+                                </div>
+                            </div>
+                            <p class="cta-text premium-cta">How may I assist you in making a difference today? ✨</p>
+                        </div>
+                    </div>
+                    <div class="message-time premium-time">Just now • Premium Service</div>
+                    <div class="message-actions premium-actions">
+                        <button class="action-btn-small premium" title="Helpful"><i class="fas fa-thumbs-up"></i></button>
+                        <button class="action-btn-small premium" title="Copy"><i class="fas fa-copy"></i></button>
+                        <button class="action-btn-small premium" title="Share"><i class="fas fa-share"></i></button>
+                        <button class="action-btn-small premium" title="Bookmark"><i class="fas fa-bookmark"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Typing Indicator -->
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="message-avatar">
+                <div class="avatar-bg"></div>
+                <i class="fas fa-robot"></i>
+                <div class="avatar-pulse"></div>
+            </div>
+            <div class="typing-content">
+                <div class="typing-text">GGF Assistant is typing</div>
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compact Premium Chat Input -->
+        <div class="chat-input-container premium-input compact">
+            <div class="input-glow"></div>
+            <div class="input-wrapper premium-wrapper">
+                <div class="input-field premium-field">
+                    <textarea id="chatInput" placeholder="Type your message..." maxlength="500" rows="1"></textarea>
+                    <div class="input-suggestions" id="inputSuggestions"></div>
+                </div>
+                <div class="send-area premium-send">
+                    <button class="feature-btn premium" id="emojiBtn" title="Emojis">
+                        <i class="fas fa-smile"></i>
+                    </button>
+                    <button class="feature-btn premium" id="photoBtn" title="Photo">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                    <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                    <button class="feature-btn premium" id="voiceInputBtn" title="Voice">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="send-btn premium" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-cog"></i> Settings</h3>
+                <button class="modal-close" id="closeSettings">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label>Theme</label>
+                    <div class="theme-options">
+                        <button class="theme-btn active" data-theme="light">
+                            <i class="fas fa-sun"></i> Light
+                        </button>
+                        <button class="theme-btn" data-theme="dark">
+                            <i class="fas fa-moon"></i> Dark
+                        </button>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <label>Language</label>
+                    <div class="language-options">
+                        <button class="language-btn active" data-language="english">
+                            <i class="fas fa-globe"></i> English
+                        </button>
+                        
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <label>Font Size</label>
+                    <input type="range" id="fontSizeSlider" min="12" max="18" value="15">
+                    <span id="fontSizeValue">15px</span>
+                </div>
+                <div class="setting-group">
+                    <label>Chat History</label>
+                    <button class="clear-history-btn" id="clearHistoryBtn">
+                        <i class="fas fa-trash"></i> Clear History
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emoji Picker -->
+    <div class="emoji-picker" id="emojiPicker">
+        <div class="emoji-categories">
+            <button class="emoji-cat active" data-category="smileys">😊</button>
+            <button class="emoji-cat" data-category="gestures">👋</button>
+            <button class="emoji-cat" data-category="hearts">❤️</button>
+            <button class="emoji-cat" data-category="nature">🌱</button>
+        </div>
+        <div class="emoji-grid" id="emojiGrid">
+            <!-- Emojis will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <script src="chatbot-script.js"></script>
+</body>
+</html>
