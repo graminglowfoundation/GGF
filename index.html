@@ -798,6 +798,70 @@
   <!-- Floating Elements -->
   <button class="floating-donate" aria-label="Donate"><span class="heart">❤</span> Donate</button>
   
+  <!-- Premium Floating Chatbot -->
+  <div class="floating-chatbot" id="floatingChatbot">
+    <!-- Mini Chatbot Window -->
+    <div class="chatbot-mini" id="chatbotMini">
+      <div class="chatbot-header">
+        <div class="chatbot-brand">
+          <div class="chatbot-avatar">
+            <i class="fas fa-robot"></i>
+          </div>
+          <div class="chatbot-info">
+            <h4>AI Assistant</h4>
+            <p>Online now</p>
+          </div>
+        </div>
+        <div class="chatbot-actions">
+          <button class="fullscreen-btn" onclick="openFullscreenChat()" title="Open in fullscreen">
+            <i class="fas fa-expand"></i>
+          </button>
+          <button class="close-btn" onclick="closeMiniChat()" title="Close chat">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="chatbot-body">
+        <div class="mini-messages" id="miniMessages">
+          <div class="welcome-message">
+            <p><strong>🙏 Namaste!</strong></p>
+            <p>Welcome to Gramin Glow Foundation! I'm here to help you learn about our mission to empower rural communities.</p>
+            
+            <div class="quick-options">
+              <button class="quick-option" onclick="sendMiniMessage('Tell me about your health programs')">
+                <i class="fas fa-heartbeat"></i> Health
+              </button>
+              <button class="quick-option" onclick="sendMiniMessage('What education initiatives do you have?')">
+                <i class="fas fa-graduation-cap"></i> Education
+              </button>
+              <button class="quick-option" onclick="sendMiniMessage('How can I support agriculture projects?')">
+                <i class="fas fa-seedling"></i> Agriculture
+              </button>
+              <button class="quick-option" onclick="sendMiniMessage('How can I donate or volunteer?')">
+                <i class="fas fa-heart"></i> Donate
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mini-input">
+          <div class="input-group">
+            <input type="text" placeholder="Type your message..." id="miniChatInput" maxlength="200">
+            <button class="mini-send-btn" onclick="sendMiniMessage()">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Chatbot Toggle Button -->
+    <button class="chatbot-toggle" id="chatbotToggle" onclick="toggleMiniChat()" title="Chat with our AI Assistant">
+      <i class="fas fa-comments"></i>
+    </button>
+  </div>
+  
   <div id="donate-popup" class="popup" role="dialog" aria-hidden="true">
     <div class="popup-box">
       <button class="popup-close" aria-label="Close">&times;</button>
