@@ -511,6 +511,18 @@ if (heroTitle) {
     bubble.className = 'mini-bubble';
     bubble.textContent = text;
     
+    // Add message actions for bot messages
+    if (sender === 'bot') {
+      const actions = document.createElement('div');
+      actions.className = 'mini-message-actions';
+      actions.innerHTML = `
+        <button class="mini-action-btn" onclick="speakMiniMessage('${text.replace(/'/g, "\\'")}')"><i class="fas fa-volume-up"></i></button>
+        <button class="mini-action-btn" onclick="copyMiniMessage('${text.replace(/'/g, "\\'")}')"><i class="fas fa-copy"></i></button>
+        <button class="mini-action-btn" onclick="shareMiniMessage('${text.replace(/'/g, "\\'")}')"><i class="fas fa-share"></i></button>
+      `;
+      messageDiv.appendChild(actions);
+    }
+    
     messageDiv.appendChild(avatar);
     messageDiv.appendChild(bubble);
     miniMessages.appendChild(messageDiv);
@@ -524,19 +536,49 @@ if (heroTitle) {
   
   // Generate mini responses
   const generateMiniResponse = (message) => {
+    const responses = {
+      health: [
+        "Our Swasthya Bornamala program teaches health through fun cartoons! 🎥",
+        "We're improving rural health with interactive education. Want details? 👩‍⚕️",
+        "Health literacy saves lives. See our impact in villages! 🏥"
+      ],
+      education: [
+        "Education empowers communities. We use creative methods! 📚",
+        "Learning should be fun and accessible for all children. 🎆",
+        "Our programs blend traditional wisdom with modern knowledge. 🌱"
+      ],
+      agriculture: [
+        "Sustainable farming transforms rural livelihoods! 🌾",
+        "We help farmers adopt better practices for higher yields. 🚜",
+        "Agriculture + education = food security for all. 🌽"
+      ],
+      donate: [
+        "Every donation directly impacts a rural family. Thank you! ❤️",
+        "Your support helps us reach more villages. 🙏"
+      ],
+      contact: [
+        "Reach us at graminglowfoundation2025@gmail.com or +91 9046927764 📞",
+        "We're in East Midnapore, West Bengal. Let's connect! 📍"
+      ]
+    };
+    
     const lower = message.toLowerCase();
     
-    if (lower.includes('health') || lower.includes('medical')) {
-      return 'Click fullscreen to learn more about health!';
-    }
-    if (lower.includes('education') || lower.includes('school')) {
-      return 'Want to know more details?. Click full screen.';
-    }
-    if (lower.includes('agriculture') || lower.includes('farming')) {
-      return 'Interested in details? Open Full screen.';
+    for (const [key, msgs] of Object.entries(responses)) {
+      if (lower.includes(key) || (key === 'health' && (lower.includes('medical') || lower.includes('doctor'))) ||
+          (key === 'education' && (lower.includes('school') || lower.includes('learn'))) ||
+          (key === 'agriculture' && (lower.includes('farm') || lower.includes('crop')))) {
+        return msgs[Math.floor(Math.random() * msgs.length)];
+      }
     }
     
-    return 'I will help you. Click fullscreen for detailed chat!';
+    const general = [
+      "I'm here to help! What interests you most about our work? 🤔",
+      "Let me know how I can assist you today! 😊",
+      "Curious about our impact? Ask me anything! ✨"
+    ];
+    
+    return general[Math.floor(Math.random() * general.length)];
   };
   
   // Handle mini input enter key
@@ -589,7 +631,7 @@ if (heroTitle) {
         cursor: pointer;
         max-width: 250px;
       `;
-      notification.innerHTML = '💬 Need help? Chat with our AI assistant!';
+      notification.innerHTML = '🤖 Hi! I can help you learn about our rural impact programs!';
       
       document.body.appendChild(notification);
       
@@ -609,6 +651,107 @@ if (heroTitle) {
     }
   }, 30000);
   
+  // Mini message actions
+  window.speakMiniMessage = (text) => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-IN';
+      utterance.rate = 1.1;
+      utterance.pitch = 1.2;
+      window.speechSynthesis.speak(utterance);
+      showMiniToast('🔊 Speaking message...');
+    }
+  };
+  
+  window.copyMiniMessage = (text) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        showMiniToast('📋 Message copied!');
+      }).catch(() => {
+        fallbackCopyMini(text);
+      });
+    } else {
+      fallbackCopyMini(text);
+    }
+  };
+  
+  const fallbackCopyMini = (text) => {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      showMiniToast('📋 Message copied!');
+    } catch (err) {
+      showMiniToast('❌ Failed to copy');
+    }
+    document.body.removeChild(textArea);
+  };
+  
+  window.shareMiniMessage = (text) => {
+    const shareData = {
+      title: 'Message from GGF AI',
+      text: text,
+      url: window.location.href
+    };
+    
+    if (navigator.share) {
+      navigator.share(shareData).then(() => {
+        showMiniToast('📤 Message shared!');
+      }).catch(() => {
+        fallbackShareMini(text);
+      });
+    } else {
+      fallbackShareMini(text);
+    }
+  };
+  
+  const fallbackShareMini = (text) => {
+    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text + ' - Shared from Gramin Glow Foundation')}`;
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+    showMiniToast('📤 Opening share options...');
+  };
+  
+  const showMiniToast = (message) => {
+    const existingToast = document.querySelector('.mini-toast');
+    if (existingToast) existingToast.remove();
+    
+    const toast = document.createElement('div');
+    toast.className = 'mini-toast';
+    toast.textContent = message;
+    toast.style.cssText = `
+      position: fixed;
+      bottom: 200px;
+      right: 20px;
+      background: linear-gradient(135deg, #138808, #10b981);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      z-index: 1600;
+      transform: translateX(100%);
+      opacity: 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(19, 136, 8, 0.3);
+    `;
+    
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+      toast.style.transform = 'translateX(0)';
+      toast.style.opacity = '1';
+    }, 10);
+    
+    setTimeout(() => {
+      toast.style.transform = 'translateX(100%)';
+      toast.style.opacity = '0';
+      setTimeout(() => toast.remove(), 300);
+    }, 2500);
+  };
+
   // Add CSS animations
   const style = document.createElement('style');
   style.textContent = `
@@ -624,6 +767,165 @@ if (heroTitle) {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    .mini-message-actions {
+      display: flex;
+      gap: 4px;
+      margin-top: 8px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .mini-message:hover .mini-message-actions {
+      opacity: 1;
+    }
+    .mini-action-btn {
+      width: 24px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      color: rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      transition: all 0.2s ease;
+    }
+    .mini-action-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      transform: scale(1.1);
+    }
+    .mini-bubble {
+      line-height: 1.5;
+    }
+    .mini-bubble p {
+      margin: 0 0 8px 0;
+      line-height: 1.5;
+    }
+    .mini-bubble p:last-child {
+      margin-bottom: 0;
+    }
   `;
   document.head.appendChild(style);
 })();
+
+// Optimized Sponsors Slider
+(() => {
+  const elements = {
+    slider: document.getElementById('sponsorsSlider'),
+    slides: document.querySelectorAll('.sponsor-slide'),
+    indicators: document.querySelectorAll('.indicator'),
+    prevBtn: document.getElementById('sponsorPrevBtn'),
+    nextBtn: document.getElementById('sponsorNextBtn')
+  };
+  
+  if (!elements.slider || !elements.slides.length) return;
+  
+  let state = { current: 0, interval: null, transitioning: false, paused: false };
+  
+  const showSlide = (index) => {
+    if (state.transitioning || index === state.current) return;
+    
+    state.transitioning = true;
+    elements.slides[state.current].classList.remove('active');
+    elements.indicators[state.current]?.classList.remove('active');
+    
+    state.current = index;
+    elements.slides[state.current].classList.add('active');
+    elements.indicators[state.current]?.classList.add('active');
+    
+    setTimeout(() => state.transitioning = false, 400);
+    restartTimer();
+  };
+  
+  const nextSlide = () => showSlide((state.current + 1) % elements.slides.length);
+  const prevSlide = () => showSlide((state.current - 1 + elements.slides.length) % elements.slides.length);
+  
+  const startTimer = () => {
+    if (!state.paused) state.interval = setInterval(nextSlide, 30000);
+  };
+  
+  const stopTimer = () => clearInterval(state.interval);
+  const restartTimer = () => { stopTimer(); startTimer(); };
+  const pauseSlider = () => { state.paused = true; stopTimer(); };
+  const resumeSlider = () => { state.paused = false; startTimer(); };
+  
+  // Direct button events
+  elements.prevBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    prevSlide();
+  });
+  
+  elements.nextBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    nextSlide();
+  });
+  
+  // Indicator clicks
+  elements.indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => showSlide(index));
+  });
+  
+  // Touch optimization
+  let touch = { startX: 0, threshold: 80 };
+  elements.slider.addEventListener('touchstart', e => {
+    touch.startX = e.touches[0].clientX;
+    pauseSlider();
+  }, { passive: true });
+  
+  elements.slider.addEventListener('touchend', e => {
+    const diff = touch.startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > touch.threshold) {
+      diff > 0 ? nextSlide() : prevSlide();
+    }
+    setTimeout(resumeSlider, 1000);
+  }, { passive: true });
+  
+  // Hover pause
+  elements.slider.addEventListener('mouseenter', pauseSlider);
+  elements.slider.addEventListener('mouseleave', resumeSlider);
+  
+  // Visibility optimization
+  const observer = new IntersectionObserver(([entry]) => {
+    entry.isIntersecting ? resumeSlider() : pauseSlider();
+  }, { threshold: 0.3 });
+  observer.observe(elements.slider);
+  
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') prevSlide();
+    else if (e.key === 'ArrowRight') nextSlide();
+  });
+  
+  // Initialize
+  elements.slides[0].classList.add('active');
+  elements.indicators[0]?.classList.add('active');
+  startTimer();
+  
+  // Add optimized styles
+  const style = document.createElement('style');
+  style.textContent = `
+    .sponsor-slide { 
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      position: absolute;
+      width: 100%;
+    }
+    .sponsor-slide.active { opacity: 1; position: relative; }
+    .sponsor-card { transition: transform 0.2s ease; }
+    .sponsor-card:hover { transform: scale(1.01); }
+    @media (max-width: 768px) {
+      .sponsor-image { touch-action: manipulation; }
+      .image-overlay { display: none; }
+    }
+  `;
+  document.head.appendChild(style);
+})();
+
+// Global API
+window.sponsorsSlider = {
+  next: () => document.getElementById('sponsorNextBtn')?.click(),
+  prev: () => document.getElementById('sponsorPrevBtn')?.click(),
+  goTo: (i) => document.querySelectorAll('.indicator')[i]?.click()
+};
