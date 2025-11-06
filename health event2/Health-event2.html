@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Road Accident Emergency Response — Gramin Glow Foundation</title>
+  <link rel="icon" type="image/png" href="../global image/Fevicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-health: #e74c3c;
+      --secondary-health: #c0392b;
+      --accent-blue: #3498db;
+      --text-dark: #2c3e50;
+      --text-light: #6c757d;
+      --bg-light: #f8fffe;
+      --white: #ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,0.1);
+      --success-green: #27ae60;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+
+    .navbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 50px; background: var(--white); color: var(--text-dark); position: sticky; top: 0; z-index: 1000;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08); backdrop-filter: blur(10px);
+    }
+    .nav-left { display: flex; align-items: center; gap: 15px; }
+    .nav-logo { width: 45px; height: 45px; border-radius: 8px; }
+    .navbar .org-name { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 22px; color: var(--primary-health); }
+    .navbar ul { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
+    .navbar ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: color 0.3s; }
+    .navbar ul li a:hover { color: var(--primary-health); }
+    .navbar ul li a.active { color: var(--primary-health); position: relative; }
+
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary-health) 0%, var(--secondary-health) 100%);
+      color: var(--white); padding: 80px 0; text-align: center; position: relative; overflow: hidden;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; }
+    .hero-subtitle { font-size: 1.2rem; opacity: 0.9; margin-bottom: 30px; font-weight: 300; }
+    .event-badge {
+      display: inline-block; background: var(--accent-blue); color: var(--white);
+      padding: 8px 20px; border-radius: 25px; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px;
+    }
+
+    main.section { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary-health); margin-bottom: 15px; text-align: center; }
+    .section-subtitle { font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin: 0 auto 60px; text-align: center; }
+
+    .event-overview {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 80px;
+      background: var(--white); padding: 60px; border-radius: 30px; box-shadow: var(--shadow);
+    }
+    .event-media img { width: 100%; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+    .detail-item {
+      display: flex; align-items: flex-start; gap: 15px; margin-bottom: 25px;
+      padding: 20px; background: #f8f9fa; border-radius: 15px; border-left: 4px solid var(--primary-health);
+    }
+    .detail-icon {
+      width: 40px; height: 40px; background: var(--primary-health); color: var(--white);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .detail-content h4 { color: var(--primary-health); font-weight: 600; margin-bottom: 5px; }
+    .detail-content p { color: var(--text-light); margin: 0; }
+
+    .impact-stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;
+      margin: 80px 0; padding: 60px; background: var(--white); border-radius: 30px; box-shadow: var(--shadow);
+    }
+    .stat-item { text-align: center; padding: 30px 20px; }
+    .stat-icon {
+      width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary-health), var(--secondary-health));
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; color: var(--white); font-size: 2rem;
+    }
+    .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--primary-health); margin-bottom: 10px; }
+    .stat-label { font-size: 1.1rem; color: var(--text-light); font-weight: 500; }
+
+    .activities-section {
+      background: var(--white); padding: 80px 60px; margin: 80px 0;
+      border-radius: 30px; box-shadow: var(--shadow);
+    }
+    .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+    .activity-card {
+      text-align: center; padding: 40px 30px; background: #f8f9fa;
+      border-radius: 20px; transition: all 0.3s ease; position: relative; overflow: hidden;
+    }
+    .activity-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+      background: linear-gradient(90deg, var(--primary-health), var(--accent-blue));
+    }
+    .activity-icon {
+      width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary-health), var(--accent-blue));
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 25px; color: var(--white); font-size: 2rem;
+    }
+    .activity-card h3 { color: var(--primary-health); margin-bottom: 15px; font-size: 1.3rem; }
+    .activity-card p { color: var(--text-light); line-height: 1.6; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 15px 35px; margin: 10px; border-radius: 30px; border: none;
+      font-size: 1rem; font-weight: 600; cursor: pointer; text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .btn-outline {
+      background: transparent; color: var(--primary-health); border: 2px solid var(--primary-health);
+    }
+    .btn-outline:hover { background: var(--primary-health); color: var(--white); }
+
+    .gallery {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px;
+    }
+    .gallery-item {
+      position: relative; overflow: hidden; border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease;
+    }
+    .gallery-item:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+    .gallery img {
+      width: 100%; height: 250px; object-fit: cover; transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: var(--white); padding: 20px; transform: translateY(100%); transition: transform 0.3s ease;
+    }
+    .gallery-item:hover .gallery-overlay { transform: translateY(0); }
+
+    footer {
+      background: var(--text-dark); color: var(--white); padding: 50px 0 30px; text-align: center;
+    }
+    .footer-content { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
+    .footer-links a { color: var(--white); text-decoration: none; opacity: 0.8; transition: opacity 0.3s; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.9rem; opacity: 0.7; }
+
+    .mobile-menu-toggle {
+      display: none; flex-direction: column; cursor: pointer; padding: 5px;
+    }
+    .mobile-menu-toggle span {
+      width: 25px; height: 3px; background: var(--text-dark); margin: 3px 0; transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px 20px; flex-wrap: wrap;
+      }
+      .navbar nav {
+        display: none; width: 100%; order: 3; position: absolute;
+        top: 100%; left: 0; right: 0; z-index: 1000;
+      }
+      .navbar nav.active { display: block; }
+      .navbar ul {
+        flex-direction: column; gap: 15px; padding: 20px;
+        background: var(--white); box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        border-radius: 10px; margin: 15px 20px 0 20px; text-align: center;
+      }
+      .mobile-menu-toggle { display: flex; }
+      .org-name { font-size: 18px !important; }
+      .nav-logo { width: 35px !important; height: 35px !important; }
+      
+      .hero-section { padding: 60px 0; }
+      .hero-title { font-size: 2.2rem; }
+      .hero-subtitle { font-size: 1rem; padding: 0 10px; }
+      .event-badge { font-size: 0.8rem; padding: 6px 15px; }
+      
+      main.section { padding: 40px 15px; }
+      .section-title { font-size: 1.8rem; }
+      .section-subtitle { font-size: 1rem; padding: 0 10px; }
+      
+      .event-overview {
+        grid-template-columns: 1fr; gap: 30px; padding: 30px 20px; margin-bottom: 40px;
+      }
+      .detail-item { padding: 15px; margin-bottom: 15px; }
+      .detail-icon { width: 35px; height: 35px; font-size: 1rem; }
+      .detail-content h4 { font-size: 1rem; }
+      .detail-content p { font-size: 0.9rem; }
+      
+      .impact-stats {
+        grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 30px 20px; margin: 40px 0;
+      }
+      .stat-item { padding: 20px 10px; }
+      .stat-icon { width: 60px; height: 60px; font-size: 1.5rem; }
+      .stat-number { font-size: 2rem; }
+      .stat-label { font-size: 0.9rem; }
+      
+      .activities-section { padding: 40px 20px; margin: 40px 0; }
+      .activities-grid { grid-template-columns: 1fr; gap: 25px; }
+      .activity-card { padding: 25px 20px; }
+      .activity-icon { width: 60px; height: 60px; font-size: 1.5rem; }
+      .activity-card h3 { font-size: 1.1rem; }
+      .activity-card p { font-size: 0.9rem; }
+      
+      .gallery { grid-template-columns: 1fr; gap: 20px; }
+      .gallery img { height: 200px; }
+      .gallery-overlay { padding: 15px; }
+      
+      .btn { padding: 12px 25px; font-size: 0.9rem; }
+      
+      .footer-links { flex-direction: column; gap: 15px; }
+      .footer-bottom { font-size: 0.8rem; padding: 0 10px; }
+      
+      #content-en, #content-bn { padding: 20px 15px; }
+      #content-en h3, #content-bn h3 { font-size: 1.2rem; }
+      #content-en p, #content-bn p { font-size: 0.9rem; }
+      .lang-btn { padding: 8px 15px; font-size: 0.9rem; }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-title { font-size: 1.8rem; }
+      .hero-subtitle { font-size: 0.9rem; }
+      .impact-stats { grid-template-columns: 1fr; }
+      .event-overview { padding: 20px 15px; }
+      .activities-section { padding: 30px 15px; }
+      #content-en, #content-bn { padding: 15px 10px; }
+      .lang-btn { padding: 6px 12px; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="nav-left">
+      <a href="../index.html"></a>
+      <img src="../global image/LOGO.png" class="nav-logo" alt="">
+      <span class="org-name">Gramin Glow Foundation</span>
+    </div>
+    <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav id="mobile-nav">
+      <ul>
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../programs.html" class="nav-link">Programs</a></li>
+        <li><a href="../members.html" class="nav-link">Members</a></li>
+        <li><a href="../health.html" class="nav-link active">Health</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="event-badge">Emergency Response</div>
+      <h1 class="hero-title">No One came - So We Did ❤️</h1>
+      <p class="hero-subtitle">
+        Compassionate care for a mentally challenged homeless person injured in a road accident - demonstrating that every life matters
+      </p>
+    </div>
+  </section>
+
+  <main class="section">
+    <section class="event-overview">
+      <div class="event-media">
+        <img src="cover.jpg" alt="Emergency Response Team">
+      </div>
+      <div class="event-details">
+        <div class="detail-item">
+          <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="detail-content">
+            <h4>Location</h4>
+            <p>Tajpur Bus Stand, Egra II Block, Purba Medinipur, West Bengal ,late night incident</p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon"><i class="fas fa-heart"></i></div>
+          <div class="detail-content">
+            <h4>Victim</h4>
+            <p>Mentally challenged homeless person with no family</p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon"><i class="fas fa-first-aid"></i></div>
+          <div class="detail-content">
+            <h4>Treatment Provided</h4>
+            <p>Wound cleaning, dressing, pain relief medicine</p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon"><i class="fas fa-shield-alt"></i></div>
+          <div class="detail-content">
+            <h4>Authorities Informed</h4>
+            <p>Local authorities contacted for continued care</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Description -->
+    <section class="activities-section">
+      <h2 class="section-title">Event Description</h2>
+      <p class="section-subtitle">A detailed account of our emergency response to a road accident victim</p>
+      <div style="text-align: center; margin-bottom: 30px;">
+        <button onclick="toggleLanguage('en')" id="btn-en" class="lang-btn active" style="background: var(--primary-health); color: white; border: none; padding: 10px 20px; margin: 5px; border-radius: 20px; cursor: pointer;">English</button>
+        <button onclick="toggleLanguage('bn')" id="btn-bn" class="lang-btn" style="background: transparent; color: var(--primary-health); border: 2px solid var(--primary-health); padding: 10px 20px; margin: 5px; border-radius: 20px; cursor: pointer;">বাংলা</button>
+      </div>
+      <!-- English Content -->
+      <div id="content-en" style="background: #f8f9fa; padding: 40px; border-radius: 20px; border-left: 5px solid var(--primary-health); margin-bottom: 40px;">
+        <h3 style="color: var(--primary-health); margin-bottom: 20px; font-size: 1.4rem;">The Incident</h3>
+        <p style="color: var(--text-dark); line-height: 1.8; margin-bottom: 20px;">Last night, near Tajpur Bus Stand, a mentally challenged and homeless person met with a minor road accident. Though the injuries were not very serious, he was found with some bleeding and was lying helplessly on the roadside. As he has no family and due to his mental condition, no one from the public came forward to help him.</p>
+        
+        <h3 style="color: var(--primary-health); margin-bottom: 20px; font-size: 1.4rem;">Morning Emergency Response</h3>
+        <p style="color: var(--text-dark); line-height: 1.8; margin-bottom: 20px;">In the morning, our Gramin Glow Foundation received an emergency phone call about the situation. Without delay, our team reached the spot and provided first aid treatment — cleaning and dressing the wounds, giving pain relief medicine, and ensuring the person was comfortable until further medical help could arrive. We also provided some food for better recovery, understanding that proper nutrition is essential for healing and strength.</p>
+        
+        <h3 style="color: var(--primary-health); margin-bottom: 20px; font-size: 1.4rem;">Coordination with Authorities</h3>
+        <p style="color: var(--text-dark); line-height: 1.8; margin-bottom: 20px;">We also informed local authorities to ensure continued care for this vulnerable individual. Our team coordinated with relevant agencies to provide ongoing support and ensure the person's safety and well-being.</p>
+        
+        <h3 style="color: var(--primary-health); margin-bottom: 20px; font-size: 1.4rem;">Appeal for Humanity</h3>
+        <p style="color: var(--text-dark); line-height: 1.8; margin-bottom: 20px;">We sincerely appeal to local residents to extend their help and compassion in such situations. Humanity knows no boundaries — whether the person is homeless, mentally challenged, or unknown, every life matters, and everyone deserves care and dignity. ❤️</p>
+        
+        <h3 style="color: var(--primary-health); margin-bottom: 20px; font-size: 1.4rem;">Team Appreciation</h3>
+        <p style="color: var(--text-dark); line-height: 1.8; margin-bottom: 0;">We also thank our dedicated team member who promptly reached the site and actively supported the entire process with compassion and responsibility. Their quick response and caring approach exemplifies our foundation's commitment to serving humanity without discrimination.</p>
+      </div>
+      
+      <!-- Bengali Content -->
+      <div id="content-bn" style="background: #f8f9fa; padding: 40px; border-radius: 20px; border-left: 5px solid var(--primary-health); margin-bottom: 40px; display: none;">
+        <h3 style="color: var(--primary-health); margin-bottom: 20px; font-size: 1.4rem;">ঘটনা</h3>
+        <p style="color: var(--text-dark); line-height: 1.8; margin-bottom: 20px;">গতরাতে তাজপুর বাসস্ট্যান্ডের কাছে একজন মানসিকভাবে অসুস্থ ও গৃহহীন ব্যক্তি একটি সাধারণ সড়ক দুর্ঘটনার শিকার হন। যদিও তার আঘাত গুরুতর ছিল না, তিনি সামান্য রক্তক্ষরণসহ রাস্তার পাশে অসহায় অবস্থায় শুয়ে ছিলেন। যেহেতু তার কোনো পরিবার নেই এবং মানসিক অবস্থার কারণে সাধারণ মানুষ সাহায্যের জন্য এগিয়ে আসেননি, তাই তিনি দীর্ঘক্ষণ এভাবেই পড়ে ছিলেন।</p>
+        
+        <h3 style="color: var(--primary-health); margin-bottom: 20px; font-size: 1.4rem;">সকালের জরুরি সাড়া</h3>
+        <p style="color: var(--text-dark); line-height: 1.8; margin-bottom: 20px;">আজ সকালে আমাদের গ্রামীণ গ্লো ফাউন্ডেশন-এর হেল্পলাইনে একটি জরুরি ফোনকল আসে। খবর পেয়ে আমাদের দল দ্রুত ঘটনাস্থলে পৌঁছে যায় এবং প্রাথমিক চিকিৎসা প্রদান করে — ক্ষতস্থান পরিষ্কার ও ব্যান্ডেজ করা, ব্যথানাশক ওষুধ প্রয়োগ, এবং আরও চিকিৎসা সহায়তা না আসা পর্যন্ত ব্যক্তিকে যতটা সম্ভব আরামদায়ক রাখা হয়। এছাড়াও, তার শারীরিক দুর্বলতা বিবেচনা করে পুষ্টিকর খাবার সরবরাহ করা হয়, কারণ সঠিক পুষ্টি পুনরুদ্ধার ও শক্তি ফেরানোর জন্য অত্যন্ত গুরুত্বপূর্ণ।</p>
+        
+        <h3 style="color: var(--primary-health); margin-bottom: 20px; font-size: 1.4rem;">কর্তৃপক্ষের সাথে সমন্বয়</h3>
+        <p style="color: var(--text-dark); line-height: 1.8; margin-bottom: 20px;">আমরা অবিলম্বে স্থানীয় প্রশাসনকে বিষয়টি অবহিত করি, যাতে ওই অসহায় ব্যক্তির যথাযথ যত্ন ও নিরাপত্তা নিশ্চিত করা যায়। আমাদের দল পরবর্তী সহায়তার জন্য সংশ্লিষ্ট সংস্থাগুলির সঙ্গেও যোগাযোগ রাখছে, যাতে তার সুরক্ষা ও চিকিৎসা অব্যাহত থাকে।</p>
+        
+        <h3 style="color: var(--primary-health); margin-bottom: 20px; font-size: 1.4rem;">মানবতার আবেদন</h3>
+        <p style="color: var(--text-dark); line-height: 1.8; margin-bottom: 20px;">আমরা আন্তরিকভাবে স্থানীয় বাসিন্দাদের প্রতি আহ্বান জানাচ্ছি — এই ধরনের পরিস্থিতিতে দয়া করে সাহায্যের হাত বাড়িয়ে দিন। মানবতার কোনো সীমানা নেই — কেউ গৃহহীন, মানসিকভাবে অসুস্থ বা অচেনা হলেও প্রত্যেকটি জীবনই মূল্যবান, এবং সবাই যত্ন ও মর্যাদা পাওয়ার অধিকারী। ❤️</p>
+        
+        <h3 style="color: var(--primary-health); margin-bottom: 20px; font-size: 1.4rem;">দলের প্রশংসা</h3>
+        <p style="color: var(--text-dark); line-height: 1.8; margin-bottom: 0;">আমরা আমাদের দলের নিবেদিতপ্রাণ সদস্যকে আন্তরিক ধন্যবাদ জানাই, যিনি দ্রুত ঘটনাস্থলে পৌঁছে সহানুভূতি ও দায়িত্ববোধের সঙ্গে পুরো প্রক্রিয়ায় সক্রিয় ভূমিকা নিয়েছেন। তার দ্রুত সাড়া ও মানবিক দৃষ্টিভঙ্গি “মানবতাই সর্বপ্রথম” — এই মূলমন্ত্রে আমাদের ফাউন্ডেশনের প্রতিশ্রুতির প্রতিফলন ঘটায়।</p>
+      </div>
+    </section>
+
+    <section class="impact-stats">
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-user"></i></div>
+        <div class="stat-number">1</div>
+        <div class="stat-label">Life Saved</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-clock"></i></div>
+        <div class="stat-number">Morning</div>
+        <div class="stat-label">Response Time</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-heart"></i></div>
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Care Provided</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-hands-helping"></i></div>
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Support Available</div>
+      </div>
+    </section>
+
+    <section class="activities-section">
+      <h2 class="section-title">Emergency Response Actions</h2>
+      <p class="section-subtitle">Comprehensive emergency care and support provided to the accident victim</p>
+      <div class="activities-grid">
+        <div class="activity-card">
+          <div class="activity-icon"><i class="fas fa-phone-alt"></i></div>
+          <h3>Emergency Call</h3>
+          <p>Received urgent call from a concerned citizen reporting the road accident and requesting immediate assistance</p>
+        </div>
+        <div class="activity-card">
+          <div class="activity-icon"><i class="fas fa-running"></i></div>
+          <h3>Rapid Deployment</h3>
+          <p>Emergency response team immediately dispatched to the accident location with medical supplies and equipment</p>
+        </div>
+        <div class="activity-card">
+          <div class="activity-icon"><i class="fas fa-first-aid"></i></div>
+          <h3>Medical Care</h3>
+          <p>Provided immediate first aid, wound treatment, and stabilized the victim's condition before transport</p>
+        </div>
+        <div class="activity-card">
+          <div class="activity-icon"><i class="fas fa-bread-slice"></i></div>
+          <h3>Food & Support</h3>
+          <p>Arranged nutritious food and water to aid recovery and provided emotional support to the victim</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Gallery -->
+    <h2 class="section-title">Event Gallery</h2>
+    <p class="section-subtitle">Documenting our emergency response and care provided to the accident victim</p>
+    <section class="gallery" data-aos="fade-up">
+      <div class="gallery-item">
+        <img src="event 2.jpg" alt="Emergency team arrival">
+        <div class="gallery-overlay">
+          <p>Emergency response team arriving at accident site</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="event 1.jpg" alt="Medical treatment">
+        <div class="gallery-overlay">
+          <p>Providing immediate medical care to the victim</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="event 3.jpg" alt="First aid treatment">
+        <div class="gallery-overlay">
+          <p>First aid and wound treatment in progress</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="event 4.jpg" alt="Food support">
+        <div class="gallery-overlay">
+          <p>Providing nutritious food and water</p>
+        </div>
+      </div>
+
+    <div style="text-align: center; margin: 80px 0;">
+      <a class="btn btn-outline" href="../programs.html">
+        <i class="fas fa-arrow-left"></i> Back to Programs
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../programs.html">Programs</a>
+        <a href="../members.html">Our Team</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+      <div class="footer-bottom">
+        © 2025 Gramin Glow Foundation. All rights reserved. | Emergency Response & Community Care
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1200, once: true });
+    
+    function toggleLanguage(lang) {
+      const enContent = document.getElementById('content-en');
+      const bnContent = document.getElementById('content-bn');
+      const enBtn = document.getElementById('btn-en');
+      const bnBtn = document.getElementById('btn-bn');
+      
+      if (lang === 'en') {
+        enContent.style.display = 'block';
+        bnContent.style.display = 'none';
+        enBtn.style.background = 'var(--primary-health)';
+        enBtn.style.color = 'white';
+        bnBtn.style.background = 'transparent';
+        bnBtn.style.color = 'var(--primary-health)';
+      } else {
+        enContent.style.display = 'none';
+        bnContent.style.display = 'block';
+        bnBtn.style.background = 'var(--primary-health)';
+        bnBtn.style.color = 'white';
+        enBtn.style.background = 'transparent';
+        enBtn.style.color = 'var(--primary-health)';
+      }
+    }
+    
+    function toggleMobileMenu() {
+      const nav = document.getElementById('mobile-nav');
+      nav.classList.toggle('active');
+    }
+    
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobile-nav').classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
