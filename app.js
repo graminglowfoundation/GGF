@@ -70,6 +70,8 @@ const $1 = sel => document.querySelector(sel);
   }, 4000);
 })();
 
+
+
 // Counter Animation - Optimized
 const animateCounter = (el, target) => {
   let start = 0;
@@ -927,4 +929,3 @@ window.sponsorsSlider = {
   prev: () => document.getElementById('sponsorPrevBtn')?.click(),
   goTo: (i) => document.querySelectorAll('.indicator')[i]?.click()
 };
-
