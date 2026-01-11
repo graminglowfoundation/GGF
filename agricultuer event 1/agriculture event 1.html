@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matir Kotha - Gramin Glow Foundation</title>
+  <link rel="icon" type="image/png" href="../global image/Fevicon.png" />
+  <link rel="stylesheet" href="../styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --green-primary: #2e7d32;
+      --green-light: #66bb6a;
+      --green-dark: #1b5e20;
+      --bg-light: #f1f8e9;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg-light); }
+    
+    /* Header */
+    .navbar {
+      background: var(--green-dark);
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .nav-left { display: flex; align-items: center; gap: 12px; }
+    .nav-logo { height: 50px; border-radius: 8px; }
+    .org-name { color: white; font-weight: 700; font-size: 1.1rem; }
+    
+    .navbar nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .navbar nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .navbar nav ul li a:hover { color: var(--green-light); }
+    
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #388e3c 100%);
+      color: white;
+      padding: 50px 20px 0;
+      margin-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #66bb6a, #81c784, #66bb6a);
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      margin-bottom: 40px;
+    }
+    
+    .footer-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .footer-logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+    }
+    
+    .footer-brand-text h3 {
+      font-size: 1.4rem;
+      margin-bottom: 5px;
+    }
+    
+    .footer-brand-text p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin: 0;
+    }
+    
+    .footer-nav {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .footer-nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    .footer-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--green-light);
+      transition: width 0.3s;
+    }
+    
+    .footer-nav a:hover::after { width: 100%; }
+    .footer-nav a:hover { color: var(--green-light); }
+    
+    .footer-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    
+    .footer-contact {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+    }
+    
+    .contact-item i {
+      width: 35px;
+      height: 35px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .contact-item a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+    }
+    
+    .contact-item a:hover { opacity: 1; }
+    
+    .social-links {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+    }
+    
+    .social-link:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
+    }
+    
+    .footer-bottom {
+      background: rgba(0,0,0,0.2);
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .footer-bottom p { margin: 0; opacity: 0.9; font-size: 0.95rem; }
+    
+    .footer-credit {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.8;
+      font-size: 0.95rem;
+    }
+    
+    .footer-credit i { color: #ff6b6b; animation: heartbeat 1.5s ease-in-out infinite; }
+    
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    
+    /* Hero */
+    .hero {
+      min-height: 70vh;
+      background: linear-gradient(135deg, var(--green-dark), var(--green-primary), var(--green-light));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="80" r="1" fill="white" opacity="0.1"/></svg>') repeat;
+      opacity: 0.3;
+    }
+    
+    .hero-content { 
+      position: relative; 
+      z-index: 2; 
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .event-badge { 
+      background: rgba(255,255,255,0.2); 
+      padding: 10px 24px; 
+      border-radius: 30px; 
+      display: inline-block;
+      align-self: center;
+      backdrop-filter: blur(10px);
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+    .hero h1 { 
+      font-size: 3.5rem; 
+      font-weight: 800;
+      line-height: 1.2;
+      margin: 0;
+    }
+    .hero p { 
+      font-size: 1.2rem; 
+      opacity: 0.95; 
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    /* Section */
+    .section { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
+    .section-title { 
+      font-size: 2.5rem; 
+      color: var(--green-dark); 
+      text-align: center; 
+      margin-bottom: 50px;
+      font-weight: 700;
+    }
+    
+    /* Event Overview */
+    .event-overview {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      background: white;
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      margin-bottom: 80px;
+    }
+    
+    .event-media img, .event-media video {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .event-media video {
+      display: block;
+      margin-top: 20px;
+    }
+    
+    .media-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .media-title i {
+      color: var(--green-primary);
+    }
+    
+    .detail-item {
+      display: flex;
+      gap: 15px;
+      padding: 20px;
+      background: #f1f8e9;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      border-left: 4px solid var(--green-primary);
+    }
+    
+    .detail-icon {
+      width: 45px;
+      height: 45px;
+      background: var(--green-primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .detail-content h4 { color: var(--green-dark); margin-bottom: 5px; }
+    .detail-content p { color: #666; font-size: 0.95rem; }
+    
+    /* Stats */
+    .impact-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+    
+    .stat-item {
+      background: white;
+      padding: 40px 20px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+    
+    .stat-item:hover { transform: translateY(-5px); }
+    
+    .stat-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--green-primary), var(--green-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: white;
+      font-size: 2rem;
+    }
+    
+    .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--green-primary); }
+    .stat-label { color: #666; font-weight: 500; margin-top: 8px; }
+    
+    /* Activities */
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+    
+    .activity-card {
+      background: white;
+      padding: 35px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+      border-top: 4px solid var(--green-primary);
+    }
+    
+    .activity-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+    
+    .activity-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--green-primary), var(--green-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: white;
+      font-size: 1.8rem;
+    }
+    
+    .activity-card h3 { color: var(--green-dark); margin-bottom: 15px; font-size: 1.3rem; }
+    .activity-card p { color: #666; line-height: 1.6; }
+    
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+    
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    
+    .gallery-item:hover { transform: translateY(-8px); }
+    .gallery img { width: 100%; height: 250px; object-fit: cover; display: block; }
+    
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      padding: 30px 15px 15px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .gallery-item:hover .gallery-caption { opacity: 1; }
+    
+    /* Video Gallery */
+    .video-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin-top: 60px;
+    }
+    
+    .video-item {
+      position: relative;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.4s;
+    }
+    
+    .video-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    }
+    
+    .video-wrapper {
+      position: relative;
+      padding-top: 177.78%;
+      background: #000;
+    }
+    
+    .video-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .video-info {
+      padding: 20px;
+      background: white;
+    }
+    
+    .video-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      margin-bottom: 8px;
+    }
+    
+    .video-desc {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.5;
+    }
+    
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px;
+      height: 70px;
+      background: rgba(46,125,50,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 2;
+    }
+    
+    .play-btn:hover {
+      background: var(--green-primary);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    
+    .play-btn i {
+      color: white;
+      font-size: 24px;
+      margin-left: 4px;
+    }
+    
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      margin: 80px 0;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 35px;
+      background: var(--green-primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 5px 20px rgba(46,125,50,0.3);
+    }
+    
+    .btn:hover { 
+      background: var(--green-dark); 
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(46,125,50,0.4);
+    }
+    
+    /* Mobile */
+    @media (max-width: 768px) {
+      .navbar { padding: 12px 20px; }
+      .nav-logo { height: 40px; }
+      .org-name { font-size: 0.9rem; }
+      
+      .navbar nav { 
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--green-dark);
+        padding: 20px;
+      }
+      
+      .navbar nav.active { display: block; }
+      .navbar nav ul { flex-direction: column; gap: 15px; }
+      .mobile-toggle { display: block; }
+      
+      .hero { min-height: 60vh; padding: 60px 15px; }
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 0.95rem; }
+      .event-badge { font-size: 0.85rem; padding: 8px 16px; }
+      
+      .section { margin: 50px auto; padding: 0 15px; }
+      .event-overview { grid-template-columns: 1fr; padding: 25px; gap: 25px; }
+      .section-title { font-size: 1.8rem; }
+      
+      .detail-item { padding: 15px; }
+      .detail-icon { width: 40px; height: 40px; font-size: 1rem; }
+      
+      .impact-stats { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .stat-item { padding: 30px 15px; }
+      .stat-icon { width: 60px; height: 60px; font-size: 1.5rem; }
+      .stat-number { font-size: 2rem; }
+      
+      .activities-grid { grid-template-columns: 1fr; gap: 20px; }
+      .activity-card { padding: 25px; }
+      .activity-icon { width: 60px; height: 60px; font-size: 1.5rem; }
+      
+      .gallery { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .gallery img { height: 200px; }
+      
+      .video-gallery { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+      
+      .footer-main { flex-direction: column; align-items: center; text-align: center; }
+      .footer-brand { flex-direction: column; text-align: center; }
+      .footer-nav { flex-direction: column; gap: 15px; align-items: center; }
+      .footer-info { flex-direction: column; align-items: center; text-align: center; }
+      .footer-contact { flex-direction: column; gap: 15px; }
+      .footer-bottom { flex-direction: column; }
+    }
+    
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.6rem; }
+      .impact-stats { grid-template-columns: 1fr; }
+      .stat-number { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="nav-left">
+      <a href="../index.html">
+        <img src="../global image/LOGO.png" class="nav-logo" alt="Logo">
+      </a>
+      <span class="org-name">Gramin Glow Foundation, Egra</span>
+    </div>
+    <button class="mobile-toggle" onclick="document.querySelector('nav').classList.toggle('active')">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../programs.html">Programs</a></li>
+        <li><a href="../agriculture.html">Agriculture</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      
+      <h1>MATIR KOTHA</h1>
+      <p>Promoting sustainable organic farming practices, focusing on soil health and eco-friendly agriculture for long-term farmer welfare and environmental conservation.</p>
+    </div>
+  </section>
+
+  <!-- Event Overview -->
+  <main class="section">
+    <section class="event-overview">
+      <div class="event-media">
+        <h3 class="media-title"><i class="fas fa-image"></i> Event Banner</h3>
+        <img src="BANNER.jpeg" alt="Matir Kotha - Organic Farming Event" title="Farmers participating in Matir Kotha organic farming awareness program">
+      </div>
+      <div class="event-details">
+        <div class="detail-item">
+          <div class="detail-icon"><i class="fas fa-calendar"></i></div>
+          <div class="detail-content">
+            <h4>Event Date</h4>
+            <p>30th Dec 2025</p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="detail-content">
+            <h4>Location</h4>
+            <p>Kamalpur, Egra, Purba Medinipur, West Bengal</p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon"><i class="fas fa-leaf"></i></div>
+          <div class="detail-content">
+            <h4>Program Focus</h4>
+            <p>Organic Farming, Soil Health, Chemical-Free Agriculture</p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon"><i class="fas fa-user-tie"></i></div>
+          <div class="detail-content">
+            <h4>Valuable Guests</h4>
+            <p>Agricultural Experts, Pradhan of Mounjushri Gram Panchayat, Krisi Karmadhakha, Community Leaders</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Stats -->
+    <section class="impact-stats">
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-tractor"></i></div>
+        <div class="stat-number">70+</div>
+        <div class="stat-label">Farmers Reached</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-home"></i></div>
+        <div class="stat-number">10</div>
+        <div class="stat-label">Villages Covered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-seedling"></i></div>
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Organic Training</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-award"></i></div>
+        <div class="stat-number">70+</div>
+        <div class="stat-label">Sapling Distribution</div>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <h2 class="section-title">Program Activities</h2>
+    <div class="activities-grid">
+      <div class="activity-card">
+        <div class="activity-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+        <h3>Organic Farming Training</h3>
+        <p>Comprehensive training on organic farming techniques, natural fertilizers, and sustainable practices</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon"><i class="fas fa-ban"></i></div>
+        <h3>Chemical-Free Methods</h3>
+        <p>Teaching farmers to reduce chemical dependency and adopt eco-friendly pest control</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon"><i class="fas fa-seedling"></i></div>
+        <h3>Sapling Distribution</h3>
+        <p>Distribution of saplings to farmers for promoting afforestation and sustainable agriculture</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon"><i class="fas fa-flask"></i></div>
+        <h3>Jeevamrut</h3>
+        <p>Training on preparing and using Jeevamrut, a natural microbial culture for enriching soil fertility</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon"><i class="fas fa-vial"></i></div>
+        <h3>Beejamrut</h3>
+        <p>Demonstration of Beejamrut preparation for organic seed treatment and improved germination</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon"><i class="fas fa-handshake"></i></div>
+        <h3>Community Support</h3>
+        <p>Building farmer networks for knowledge sharing and collective organic farming initiatives</p>
+      </div>
+    </div>
+
+    <!-- Video Gallery -->
+    <h2 class="section-title">Event Videos</h2>
+    <section class="video-gallery">
+      <div class="video-item">
+        <div class="video-wrapper">
+          <video controls poster="0.jpeg">
+            <source src="v1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-info">
+          <h3 class="video-title">About Our NGO</h3>
+          <p class="video-desc">This session briefly introduces our NGO, highlighting its vision, mission, and key activities undertaken for the welfare of the community.</p>
+        </div>
+      </div>
+      <div class="video-item">
+        <div class="video-wrapper">
+          <video controls poster="6.jpg">
+            <source src="v2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-info">
+          <h3 class="video-title">Farmer Training Session</h3>
+          <p class="video-desc">Demonstration of organic farming techniques</p>
+        </div>
+      </div>
+      <div class="video-item">
+        <div class="video-wrapper">
+          <video controls poster="11.jpg">
+            <source src="v3.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-info">
+          <h3 class="video-title">Organic Farming Techniques</h3>
+          <p class="video-desc">This session explains simple and effective organic farming techniques that help improve soil health, increase crop yield, and promote sustainable agriculture.</p>
+        </div>
+      </div>
+      <div class="video-item">
+        <div class="video-wrapper">
+          <video controls poster="26.jpg">
+            <source src="v4.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-info">
+          <h3 class="video-title">Sapling Distribution</h3>
+          <p class="video-desc">Distribution of organic saplings to promote greenery</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <h2 class="section-title" style="margin-top: 80px;">Event Gallery</h2>
+    <section class="gallery">
+      <div class="gallery-item">
+        <img src="0.jpeg" alt="Success celebration" title="Success celebration">
+        <div class="gallery-caption">Success celebration</div>
+      </div>
+      <div class="gallery-item">
+        <img src="1.jpg" alt="Group Photo" title="Group Photo">
+        <div class="gallery-caption">Group Photo</div>
+      </div>
+      <div class="gallery-item">
+        <img src="1a.jpg" alt="Mr.Monisankar Ojha(Founder)" title="Mr.Monisankar Ojha(Founder)">
+        <div class="gallery-caption">Mr.Monisankar Ojha(Founder)</div>
+      </div>
+      <div class="gallery-item">
+        <img src="1b.jpg" alt="The founder is sharing the vision and activities of our NGO" title="The founder is sharing the vision and activities of our NGO">
+        <div class="gallery-caption">The founder is sharing the vision and activities of our NGO.</div>
+      </div>
+      <div class="gallery-item">
+        <img src="1c.jpg" alt="The guests are seated at the table with honour and respect" title="The guests are seated at the table with honour and respect">
+        <div class="gallery-caption">The guests are seated at the table with honour and respect.</div>
+      </div>
+      <div class="gallery-item">
+        <img src="2.jpg" alt="Farmer Lerning Organic Ferming" title="Farmer Lerning Organic Ferming">
+        <div class="gallery-caption">Farmer Lerning Organic Ferming</div>
+      </div>
+      <div class="gallery-item">
+        <img src="3.jpg" alt="Farmer Lerning Organic Ferming" title="Farmer Lerning Organic Ferming">
+        <div class="gallery-caption">Farmer Lerning Organic Ferming</div>
+      </div>
+      <div class="gallery-item">
+        <img src="4.jpg" alt="Farmer Lerning Organic Ferming" title="Farmer Lerning Organic Ferming">
+        <div class="gallery-caption">Farmer Lerning Organic Ferming</div>
+      </div>
+      <div class="gallery-item">
+        <img src="5.jpg" alt="Farmer Lerning Organic Ferming" title="Farmer Lerning Organic Ferming">
+        <div class="gallery-caption">Farmer Lerning Organic Ferming</div>
+      </div>
+      <div class="gallery-item">
+        <img src="5a.jpg" alt="Farmer Lerning Organic Ferming" title="Farmer Lerning Organic Ferming">
+        <div class="gallery-caption">Farmer Lerning Organic Ferming</div>
+      </div>
+      <div class="gallery-item">
+        <img src="5b.jpg" alt="The guest is welcomed with due honour and respect" title="The guest is welcomed with due honour and respect">
+        <div class="gallery-caption">The guest is welcomed with due honour and respect</div>
+      </div>
+      <div class="gallery-item">
+        <img src="6.jpg" alt="the guest tell valuble knowledge" title="the guest tell valuble knowledge">
+        <div class="gallery-caption">the guest tell valuble knowledge</div>
+      </div>
+      <div class="gallery-item">
+        <img src="6a.jpg" alt="Madal Kumar Pal" title="Madal Kumar Pal">
+        <div class="gallery-caption">Mr. Madal Kumar Pal(Guest)</div>
+      </div>
+      <div class="gallery-item">
+        <img src="6b.jpg" alt="Q&A Session" title="Q&A Session">
+        <div class="gallery-caption">Q&A Session</div>
+      </div>
+      <div class="gallery-item">
+        <img src="7.jpg" alt="The Pradhan of Mounjushri Gram Panchayat" title="The Pradhan of Mounjushri Gram Panchayat">
+        <div class="gallery-caption">The Pradhan of Mounjushri Gram Panchayat</div>
+      </div>
+      <div class="gallery-item">
+        <img src="7a.jpg" alt="The guest is welcomed with due honour and respect" title="The guest is welcomed with due honour and respect">
+        <div class="gallery-caption">The guest is welcomed with due honour and respect</div>
+      </div>
+      <div class="gallery-item">
+        <img src="7b.jpg" alt="Q&A Session" title="Q&A Session">
+        <div class="gallery-caption">Q&A Session</div>
+      </div>
+      <div class="gallery-item">
+        <img src="7c.jpg" alt="The guest is welcomed with due honour and respect" title="The guest is welcomed with due honour and respect">
+        <div class="gallery-caption">The guest is welcomed with due honour and respect</div>
+      </div>
+      <div class="gallery-item">
+        <img src="7d.jpg" alt="Mr.Tarun Das" title="Mr.Tarun Das">
+        <div class="gallery-caption">Mr.Tarun Das</div>
+      </div>
+      <div class="gallery-item">
+        <img src="9.jpg" alt="Awareness program" title="Awareness program">
+        <div class="gallery-caption">Awareness program</div>
+      </div>
+      <div class="gallery-item">
+        <img src="10.jpg" alt="Mr.Sagnik jana(Guest)" title="Mr.Sagnik jana(Guest)">
+        <div class="gallery-caption">Mr.Sagnik jana(Guest)</div>
+      </div>
+      <div class="gallery-item">
+        <img src="10a.jpg" alt="The guest is welcomed with due honour and respect" title="The guest is welcomed with due honour and respect">
+        <div class="gallery-caption">The guest is welcomed with due honour and respect</div>
+      </div>
+      <div class="gallery-item">
+        <img src="10b.jpg" alt="Q&A Session" title="Q&A Session">
+        <div class="gallery-caption">Q&A Session</div>
+      </div>
+      <div class="gallery-item">
+        <img src="11.jpg" alt="Mr.Anindya Sau(Member)" title="Mr.Anindya Sau(Member)">
+        <div class="gallery-caption">Mr.Anindya Sau(Member)</div>
+      </div>
+      <div class="gallery-item">
+        <img src="11a.jpg" alt="Chemical-free methods" title="Chemical-free methods">
+        <div class="gallery-caption">Chemical-free methods</div>
+      </div>
+      <div class="gallery-item">
+        <img src="12.jpg" alt="Rural development" title="Rural development initiative">
+        <div class="gallery-caption">Saplings are planted to promote greenery</div>
+      </div>
+      <div class="gallery-item">
+        <img src="13.jpg" alt="Mr.Ashoke Santra(Secretary)" title="Mr.Ashoke Santra(Secretary)">
+        <div class="gallery-caption">Mr.Ashoke Santra(Secretary)</div>
+      </div>
+      <div class="gallery-item">
+        <img src="14.jpg" alt="Organic cultivation" title="Mr.Bishambhar Maity(Treasurer)">
+        <div class="gallery-caption">Mr.Bishambhar Maity(Treasurer)</div>
+      </div>
+      <div class="gallery-item">
+        <img src="15.jpg" alt="Sustainable agriculture" title="Sustainable agriculture practices">
+        <div class="gallery-caption">Mr.Rupam Ojha(Member)</div>
+      </div>
+      <div class="gallery-item">
+        <img src="16.jpg" alt="Green farming" title="Green farming initiative">
+        <div class="gallery-caption">Saplings are given to the farmers by Mr.Monisanlar Ojha</div>
+      </div>
+      <div class="gallery-item">
+        <img src="17.jpg" alt="Soil conservation" title="Soil conservation techniques">
+        <div class="gallery-caption">Saplings are given to the farmers by Mr.Ashoke Santra</div>
+      </div>
+      <div class="gallery-item">
+        <img src="18.jpg" alt="Farmer welfare" title="Farmer welfare program">
+        <div class="gallery-caption">Saplings are given to the farmers by Mr.Bishambhar Maity</div>
+      </div>
+      <div class="gallery-item">
+        <img src="19.jpg" alt="Agricultural training" title="Agricultural training session">
+        <div class="gallery-caption">Saplings are given to the farmers by The Pradhan of Mounjushri Gram Panchayat</div>
+      </div>
+      <div class="gallery-item">
+        <img src="20.jpg" alt="Community support" title="Community support initiative">
+        <div class="gallery-caption">Saplings are given to the farmers by Mr.Tarun Das</div>
+      </div>
+      <div class="gallery-item">
+        <img src="21.jpg" alt="Organic awareness" title="Organic farming awareness">
+        <div class="gallery-caption">Saplings are given to the farmers by The Krisi Karmadhakha</div>
+      </div>
+      <div class="gallery-item">
+        <img src="22.jpg" alt="Farmer network" title="Building farmer networks">
+        <div class="gallery-caption">Mr.Tarun Das are given saplings to promote greenery</div>
+      </div>
+      <div class="gallery-item">
+        <img src="23.jpg" alt="Matir Kotha event" title="Matir Kotha program">
+        <div class="gallery-caption">Saplings are distributed among members as a step towards environmental awareness</div>
+      </div>
+      <div class="gallery-item">
+        <img src="24.jpg" alt="Success celebration" title="Program success celebration">
+        <div class="gallery-caption">Saplings are given to the farmers by Mr.Anindya Sau</div>
+      </div>
+      <div class="gallery-item">
+        <img src="25.jpg" alt="Event conclusion" title="Event conclusion ceremony">
+        <div class="gallery-caption">Saplings are given to the farmers by Mr.Rupam Ojha</div>
+      </div>
+      <div class="gallery-item">
+        <img src="26.jpg" alt="Group photo" title="Participants group photo">
+        <div class="gallery-caption">Saplings are given to the farmers by Mr.Sagnik jana</div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <a class="btn" href="../agriculture.html">
+        <i class="fas fa-arrow-left"></i> Back to Agriculture Programs
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="../global image/LOGO.png" class="footer-logo" alt="Logo">
+          <div class="footer-brand-text">
+            <h3>Gramin Glow Foundation</h3>
+            <p>Empowering Rural Communities</p>
+          </div>
+        </div>
+        <nav class="footer-nav">
+          <a href="../index.html">Home</a>
+          <a href="../about.html">About</a>
+          <a href="../programs.html">Programs</a>
+          <a href="../members.html">Team</a>
+          <a href="../contact.html">Contact</a>
+        </nav>
+      </div>
+      
+      <div class="footer-info">
+        <div class="footer-contact">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:info@graminglowfoundation.org">info@graminglowfoundation.org</a>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <a href="tel:+919046927764">+91 9046927764</a>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Egra, West Bengal</span>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 Gramin Glow Foundation. All rights reserved.</p>
+      <div class="footer-credit">
+        Made with <i class="fas fa-heart"></i> for Rural Communities
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
