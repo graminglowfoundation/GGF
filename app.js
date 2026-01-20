@@ -1,5 +1,51 @@
 // ==================== ULTRA-OPTIMIZED NGO WEBSITE JAVASCRIPT ====================
 
+// ========== MOBILE MENU OPTIMIZATION ==========
+// Optimized mobile menu toggle with performance enhancements
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.querySelector('.nav-menu');
+
+if (mobileMenuBtn && navMenu) {
+  // Use will-change for performance
+  mobileMenuBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    mobileMenuBtn.classList.toggle('active');
+    navMenu.classList.toggle('active');
+  }, { passive: true });
+
+  // Close menu when clicking on a link
+  const navLinks = navMenu.querySelectorAll('.nav-link');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenuBtn.classList.remove('active');
+      navMenu.classList.remove('active');
+    }, { passive: true });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.navbar')) {
+      mobileMenuBtn.classList.remove('active');
+      navMenu.classList.remove('active');
+    }
+  }, { passive: true });
+}
+
+// ========== SMOOTH SCROLL OPTIMIZATION ==========
+// Enable smooth scrolling with hardware acceleration
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }, { passive: true });
+});
+
 // Cache DOM elements
 const $ = id => document.getElementById(id);
 const $$ = sel => document.querySelectorAll(sel);
@@ -929,3 +975,289 @@ window.sponsorsSlider = {
   prev: () => document.getElementById('sponsorPrevBtn')?.click(),
   goTo: (i) => document.querySelectorAll('.indicator')[i]?.click()
 };
+
+// ==================== ADVANCED PROGRAM DETAIL MODAL ====================
+const programDetails = {
+  healthcare: {
+    title: 'Healthcare Excellence Program',
+    subtitle: 'Medical Services & Health Awareness',
+    overview: 'Our Swasthya Bornamala program brings comprehensive healthcare services to underserved rural communities. We organize regular medical camps, provide health education, focus on women\'s health, and promote preventive care through community engagement.',
+    objectives: [
+      'Conduct quarterly medical camps in 10+ villages reaching 500+ people',
+      'Train 100+ community health workers on basic healthcare',
+      'Establish women\'s health clinics in 5 villages',
+      'Create health awareness programs targeting preventive care',
+      'Provide subsidized medicines to low-income families',
+      'Establish telemedicine centers for remote consultations'
+    ],
+    budget: {
+      'Medical Equipment': '$8,500',
+      'Doctor Honorariums': '$6,000',
+      'Medicines & Supplies': '$4,200',
+      'Community Outreach': '$3,000',
+      'Infrastructure': '$5,300'
+    },
+    metrics: [
+      '5,000+ lives impacted through medical camps',
+      '2+ major health camps organized annually',
+      '500+ free consultations provided',
+      '75% program completion rate',
+      '$27,000+ total program value',
+      '98% beneficiary satisfaction'
+    ],
+    timeline: 'January 2025 - December 2025. Quarterly health camps scheduled for March, June, September, and December with monthly follow-ups.'
+  },
+  education: {
+    title: 'Education Empowerment Initiative',
+    subtitle: 'Learning & Skill Development',
+    overview: 'Education is the foundation of progress. Our comprehensive education program combines school support, digital learning centers, adult literacy programs, and teacher training to unlock opportunities for rural children and adults.',
+    objectives: [
+      'Support 10+ village schools with learning materials and infrastructure',
+      'Establish 3 digital learning centers with computer access',
+      'Train 50+ teachers in modern pedagogical methods',
+      'Conduct adult literacy programs for 200+ participants',
+      'Provide scholarships to 100+ underprivileged students',
+      'Develop local language educational content'
+    ],
+    budget: {
+      'School Materials': '$7,200',
+      'Digital Infrastructure': '$12,000',
+      'Teacher Training': '$4,500',
+      'Scholarships': '$15,000',
+      'Content Development': '$3,300'
+    },
+    metrics: [
+      '500+ students directly supported',
+      '50+ villages reached with educational programs',
+      '85% program completion rate',
+      '95% student enrollment increase',
+      '78% improvement in learning outcomes',
+      '300+ parents engaged in education'
+    ],
+    timeline: 'January 2025 - December 2025. School year starts in January with teacher training workshops and digital center launches in February.'
+  },
+  agriculture: {
+    title: 'Sustainable Agriculture Development',
+    subtitle: 'Farming & Livelihood Enhancement',
+    overview: 'Empowering farmers with sustainable practices to increase yields and income. Our program focuses on organic farming, crop diversification, modern techniques, and direct market linkages for fair pricing.',
+    objectives: [
+      'Train 800+ farmers in sustainable agricultural practices',
+      'Introduce organic farming in 20+ villages',
+      'Establish farmer cooperative groups for collective selling',
+      'Provide access to high-quality seeds and fertilizers',
+      'Conduct soil testing and nutrient management training',
+      'Create market linkage with agricultural buyers'
+    ],
+    budget: {
+      'Training Sessions': '$5,800',
+      'Seeds & Materials': '$9,200',
+      'Equipment': '$8,500',
+      'Soil Testing': '$2,400',
+      'Market Linkage': '$3,100'
+    },
+    metrics: [
+      '800+ farmers trained successfully',
+      '10+ villages adopted sustainable practices',
+      '65% program completion rate',
+      '45% average yield increase',
+      '35% income growth for participating farmers',
+      '$29,000+ total impact value'
+    ],
+    timeline: 'January 2025 - December 2025. Training begins with pre-monsoon season preparation (March-April) and continues through harvest (October-November).'
+  }
+};
+
+window.openProgramDetail = (programType) => {
+  const details = programDetails[programType];
+  if (!details) return;
+  
+  const modal = document.getElementById('programModal');
+  const header = document.getElementById('modalHeader');
+  const title = document.getElementById('modalTitle');
+  const subtitle = header.querySelector('p');
+  const overview = document.getElementById('modalOverview');
+  const objectives = document.getElementById('modalObjectives');
+  const budget = document.getElementById('modalBudget');
+  const metrics = document.getElementById('modalMetrics');
+  const timeline = document.getElementById('modalTimeline');
+  
+  // Set header color based on program
+  const colors = {
+    healthcare: 'linear-gradient(135deg, #dc2626, #f87171)',
+    education: 'linear-gradient(135deg, #2563eb, #60a5fa)',
+    agriculture: 'linear-gradient(135deg, #16a34a, #86efac)'
+  };
+  
+  if (header) header.style.background = colors[programType] || 'linear-gradient(135deg, #138808, #10b981)';
+  
+  // Populate content
+  if (title) title.textContent = details.title;
+  if (subtitle) subtitle.textContent = details.subtitle;
+  if (overview) overview.textContent = details.overview;
+  
+  // Populate objectives
+  if (objectives) {
+    objectives.innerHTML = details.objectives.map(obj => 
+      `<li>${obj}</li>`
+    ).join('');
+  }
+  
+  // Populate budget
+  if (budget) {
+    budget.innerHTML = Object.entries(details.budget).map(([item, amount]) =>
+      `<div class="budget-item"><span>${item}</span><strong>${amount}</strong></div>`
+    ).join('');
+  }
+  
+  // Populate metrics
+  if (metrics) {
+    metrics.innerHTML = details.metrics.map(metric =>
+      `<li>${metric}</li>`
+    ).join('');
+  }
+  
+  if (timeline) timeline.textContent = details.timeline;
+  
+  // Show modal
+  if (modal) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+};
+
+window.closeProgramDetail = (event) => {
+  if (event && event.target.id !== 'programModal') return;
+  
+  const modal = document.getElementById('programModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+};
+
+// ========== DEBOUNCE UTILITY FOR PERFORMANCE ==========
+const debounce = (func, wait = 300) => {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
+
+// Program filtering - Optimized
+window.filterPrograms = (category) => {
+  const grid = document.getElementById('programsGrid');
+  const buttons = document.querySelectorAll('.filter-btn');
+  
+  if (!grid) return;
+  
+  // Optimize: Use will-change for filtering
+  grid.style.willChange = 'contents';
+  
+  // Update button states
+  buttons.forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase().includes(category) || category === 'all');
+  });
+  
+  // Get all program cards
+  const cards = grid.querySelectorAll('.ultra-program-card');
+  
+  if (category === 'all') {
+    cards.forEach(card => {
+      card.style.display = 'block';
+    });
+  } else {
+    cards.forEach(card => {
+      const hasCategory = card.className.includes(`${category}-program`);
+      card.style.display = hasCategory ? 'block' : 'none';
+    });
+  }
+  
+  // Reset will-change after transition
+  setTimeout(() => {
+    grid.style.willChange = 'auto';
+  }, 300);
+};
+
+// Program search - Optimized with debounce
+const debouncedSearch = debounce((query) => {
+  const grid = document.getElementById('programsGrid');
+  if (!grid) return;
+  
+  const cards = grid.querySelectorAll('.ultra-program-card');
+  const lowerQuery = query.toLowerCase();
+  
+  cards.forEach(card => {
+    const title = card.querySelector('h3')?.textContent?.toLowerCase() || '';
+    const description = card.querySelector('p')?.textContent?.toLowerCase() || '';
+    
+    const matches = title.includes(lowerQuery) || description.includes(lowerQuery);
+    card.style.display = matches ? 'block' : 'none';
+  });
+}, 250);
+
+window.searchPrograms = (query) => {
+  const searchInput = document.getElementById('programSearch');
+  if (searchInput) {
+    debouncedSearch(searchInput.value);
+  }
+};
+
+// Attach search listener with passive event
+const searchInput = document.getElementById('programSearch');
+if (searchInput) {
+  searchInput.addEventListener('input', () => {
+    window.searchPrograms();
+  }, { passive: true });
+}
+
+// Participate and donate functions
+window.participateProgram = () => {
+  window.location.href = 'contact.html?type=participate';
+};
+
+// Donate for program
+window.donateNow = () => {
+  window.location.href = 'contact.html?type=donate';
+};
+
+// Show donate popup - Optimized
+window.showDonatePopup = () => {
+  const popup = document.getElementById('donate-popup');
+  if (popup) {
+    popup.classList.add('show');
+  }
+};
+
+// Hide donate popup - Optimized
+window.hideDonatePopup = () => {
+  const popup = document.getElementById('donate-popup');
+  if (popup) {
+    popup.classList.remove('show');
+  }
+};
+
+// Add animation styles
+const animationStyle = document.createElement('style');
+animationStyle.textContent = `
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes arrowBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+`;
+document.head.appendChild(animationStyle);
