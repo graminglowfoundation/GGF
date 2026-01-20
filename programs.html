@@ -125,7 +125,7 @@
       font-weight: 500;
     }
 
-    /* Navigation */
+    /* Navigation - Premium & Smooth */
     .navbar {
       background: var(--dark-navy);
       color: #ffffff;
@@ -138,19 +138,41 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      box-shadow: 0 6px 18px rgba(2,27,58,0.08);
-      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 15px rgba(2,27,58,0.1);
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(2,27,58,0.98), rgba(2,27,58,0.95));
+      will-change: transform;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .navbar:hover {
+      box-shadow: 0 8px 32px rgba(2,27,58,0.15);
     }
 
     .nav-left {
       display: flex;
       align-items: center;
       gap: 12px;
+      transition: all 0.3s ease;
+      will-change: transform;
+      transform: translateZ(0);
     }
 
     .nav-logo {
       height: 50px;
       border-radius: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      will-change: transform;
+      transform: translateZ(0);
+    }
+
+    .nav-left:hover .nav-logo {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(19,136,8,0.2);
     }
 
     .org-name {
@@ -158,10 +180,18 @@
       font-size: 0.95rem;
       color: #ffffff;
       line-height: 1.2;
+      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #ffffff, #e2e8f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .nav-menu {
-      transition: all 0.3s ease;
+      transition: opacity 0.2s ease;
+      will-change: opacity, visibility;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
     }
 
     .nav-menu ul {
@@ -176,20 +206,49 @@
     .nav-link {
       color: #f1f4f7;
       text-decoration: none;
-      padding: 10px 12px;
+      padding: 10px 16px;
       border-radius: 8px;
-      transition: all 0.3s ease;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       align-items: center;
       gap: 6px;
       font-size: 0.9rem;
       font-weight: 500;
+      position: relative;
+      will-change: background-color, color, transform;
+      transform: translateZ(0);
     }
 
-    .nav-link:hover, .nav-link.active {
-      background: rgba(255,255,255,0.1);
-      color: var(--secondary-blue);
-      transform: translateY(-1px);
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #10b981, #3b82f6);
+      transform: translateX(-50%);
+      transition: width 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: rgba(255,255,255,0.08);
+      color: #10b981;
+      transform: translateY(0);
+    }
+
+    .nav-link:hover::before {
+      width: 100%;
+    }
+
+    .nav-link.active {
+      background: rgba(16,185,129,0.15);
+      color: #10b981;
+      border: 1px solid rgba(16,185,129,0.3);
+    }
+
+    .nav-link.active::before {
+      width: 100%;
     }
 
     .mobile-menu-btn {
@@ -201,11 +260,18 @@
       cursor: pointer;
       padding: 8px;
       border-radius: 6px;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
+      will-change: background-color, transform;
+      transform: translateZ(0);
     }
 
     .mobile-menu-btn:hover {
       background: rgba(255,255,255,0.1);
+      transform: scale(1.05);
+    }
+
+    .mobile-menu-btn.active {
+      transform: rotate(90deg) scale(1.05);
     }
 
     /* Hero Section */
@@ -224,6 +290,8 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      will-change: transform;
+      contain: layout style;
     }
 
     .hero-overlay {
@@ -561,6 +629,8 @@
       max-width: 1400px;
       margin-left: auto;
       margin-right: auto;
+      contain: layout;
+      will-change: contents;
     }
 
     .ultra-program-card {
@@ -578,6 +648,8 @@
         0 25px 50px rgba(0,0,0,0.08),
         0 15px 35px rgba(0,0,0,0.05),
         inset 0 1px 0 rgba(255,255,255,0.6);
+      contain: layout style paint;
+      will-change: transform, box-shadow;
     }
 
     .ultra-program-card::before {
@@ -602,7 +674,425 @@
       opacity: 0.1;
       transition: all 0.6s ease;
     }
+      
+    /* Enhanced NGO Features */
+    .program-filters {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
 
+    .filter-btn {
+      padding: 10px 24px;
+      background: rgba(19, 136, 8, 0.1);
+      border: 2px solid #138808;
+      border-radius: 25px;
+      color: #138808;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: #138808;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(19, 136, 8, 0.3);
+    }
+
+    .search-container {
+      max-width: 500px;
+      margin: 30px auto;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 40px 14px 20px;
+      border: 2px solid #e2e8f0;
+      border-radius: 25px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: #138808;
+      box-shadow: 0 0 0 3px rgba(19, 136, 8, 0.1);
+      background: #ffffff;
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #138808;
+    }
+
+    /* Program Stats Section */
+    .program-stats-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin: 60px 0;
+      padding: 40px;
+      background: linear-gradient(135deg, rgba(19,136,8,0.05), rgba(30,144,255,0.05));
+      border-radius: 20px;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 16px;
+      border: 1px solid rgba(19,136,8,0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .stat-number {
+      font-size: 42px;
+      font-weight: 900;
+      color: #138808;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 16px;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    /* Program Detail Modal */
+    .program-detail-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .program-detail-modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      animation: slideIn 0.4s ease;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-header {
+      padding: 40px;
+      background: linear-gradient(135deg, #138808, #10b981);
+      color: white;
+      border-radius: 20px 20px 0 0;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      font-size: 28px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+
+    .modal-header h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
+    .modal-body {
+      padding: 40px;
+    }
+
+    .detail-section {
+      margin-bottom: 30px;
+    }
+
+    .detail-section h3 {
+      font-size: 18px;
+      color: #138808;
+      margin-bottom: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .detail-section p {
+      color: #475569;
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+
+    .impact-list {
+      list-style: none;
+      margin: 15px 0;
+    }
+
+    .impact-list li {
+      padding: 10px 0;
+      color: #475569;
+      display: flex;
+      align-items: start;
+      gap: 12px;
+    }
+
+    .impact-list li:before {
+      content: '✓';
+      color: #138808;
+      font-weight: 800;
+      font-size: 18px;
+      min-width: 20px;
+    }
+
+    .budget-breakdown {
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 15px 0;
+    }
+
+    .budget-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+
+    .budget-item strong {
+      color: #138808;
+    }
+
+    .modal-footer {
+      padding: 30px 40px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      gap: 15px;
+    }
+
+    .btn-participate {
+      flex: 1;
+      padding: 14px 30px;
+      background: linear-gradient(135deg, #138808, #10b981);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-participate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(19, 136, 8, 0.3);
+    }
+
+    .btn-donate {
+      flex: 1;
+      padding: 14px 30px;
+      background: transparent;
+      color: #138808;
+      border: 2px solid #138808;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-donate:hover {
+      background: #138808;
+      color: white;
+    }
+
+    /* Advanced Program Card Enhancement */
+    .program-card-header {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .program-category-badge {
+      display: inline-block;
+      background: rgba(19, 136, 8, 0.15);
+      color: #138808;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .program-priority {
+      background: rgba(255, 107, 107, 0.1);
+      color: #ff6b6b;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .program-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, rgba(19,136,8,0.2), rgba(16,185,129,0.2));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+
+    .program-progress {
+      margin: 20px 0;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    .progress-bar-advanced {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill-advanced {
+      height: 100%;
+      background: linear-gradient(90deg, #138808, #10b981);
+      border-radius: 10px;
+      position: relative;
+      box-shadow: 0 0 10px rgba(19, 136, 8, 0.3);
+    }
+
+    .beneficiary-info {
+      display: flex;
+      gap: 15px;
+      margin: 20px 0;
+      padding: 15px;
+      background: rgba(19, 136, 8, 0.05);
+      border-radius: 12px;
+      border-left: 4px solid #138808;
+    }
+
+    .beneficiary-icon {
+      font-size: 24px;
+      min-width: 30px;
+    }
+
+    .beneficiary-text small {
+      color: #64748b;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .beneficiary-text strong {
+      color: #138808;
+      font-size: 18px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .ultra-program-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ultra-program-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .programs-title {
+        font-size: 38px;
+      }
+
+      .program-filters {
+        gap: 10px;
+      }
+
+      .filter-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+      }
+
+      .modal-header {
+        padding: 30px 20px;
+      }
+
+      .modal-body {
+        padding: 25px 20px;
+      }
+
+      .modal-footer {
+        padding: 20px;
+        flex-direction: column;
+      }
+
+      .btn-participate, .btn-donate {
+        width: 100%;
+      }
+    }
     .ultra-program-card::before {
       content: '';
       position: absolute;
@@ -1589,7 +2079,7 @@
           <div class="stat-label">Active Programs</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number" data-count="5">0+</div>
+          <div class="stat-number" data-count="20">0+</div>
           <div class="stat-label">Villages Reached</div>
         </div>
         <div class="stat-item">
@@ -1637,123 +2127,189 @@
         <p class="programs-subtitle">Evidence-based interventions creating sustainable positive change in rural communities through comprehensive healthcare, education, and agricultural development initiatives.</p>
       </div>
       
-      <div class="ultra-program-grid">
-        <div class="ultra-program-card health-program" onclick="openPage('health.html')">
+      <div class="ultra-program-grid" id="programsGrid">
+        <!-- Healthcare Program Card -->
+        <div class="ultra-program-card health-program" onclick="openProgramDetail('healthcare')">
+          <div class="program-card-header">
+            <div class="program-category-badge">Healthcare</div>
+            <div class="program-priority">High Impact</div>
+          </div>
           <div class="program-icon">
-            <div class="icon-circle">
-              <i class="fas fa-heartbeat"></i>
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <h3>Healthcare Excellence</h3>
+          <p>Comprehensive medical services, health awareness programs, women's health initiatives, and preventive care education ensuring accessible healthcare for all community members.</p>
+          
+          <div class="beneficiary-info">
+            <div class="beneficiary-icon">👥</div>
+            <div class="beneficiary-text">
+              <small>Beneficiaries Reached</small>
+              <strong>5,000+ People</strong>
             </div>
           </div>
-          <div class="program-content">
-            <h3>Healthcare Excellence</h3>
-            <p>Comprehensive medical services, health awareness programs, women's health initiatives, and preventive care education ensuring accessible healthcare for all community members.</p>
-            <div class="program-features">
-              <div class="feature-item">
-                <i class="fas fa-hospital"></i>
-                <span>Medical Camps</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-user-md"></i>
-                <span>Health Education</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-female"></i>
-                <span>Women's Health</span>
-              </div>
+
+          <div class="program-progress">
+            <div class="progress-label">
+              <span>Program Completion</span>
+              <span>75%</span>
             </div>
-            <div class="program-metrics">
-              <div class="metric">
-                <span class="metric-number">70+</span>
-                <span class="metric-label">Lives Impacted</span>
-              </div>
-              <div class="metric">
-                <span class="metric-number">2+</span>
-                <span class="metric-label">Health Camps</span>
-              </div>
+            <div class="progress-bar-advanced">
+              <div class="progress-fill-advanced" style="width: 75%;"></div>
             </div>
           </div>
+
+          <div class="program-features">
+            <div class="feature-item">
+              <i class="fas fa-hospital"></i>
+              <span>Medical Camps</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-user-md"></i>
+              <span>Health Education</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-female"></i>
+              <span>Women's Health</span>
+            </div>
+          </div>
+
+          <div class="program-metrics">
+            <div class="metric">
+              <span class="metric-number">70+</span>
+              <span class="metric-label">Lives Impacted</span>
+            </div>
+            <div class="metric">
+              <span class="metric-number">2+</span>
+              <span class="metric-label">Health Camps</span>
+            </div>
+          </div>
+
           <div class="card-action">
-            <span>Explore Healthcare</span>
+            <span>View Details</span>
             <i class="fas fa-arrow-right"></i>
           </div>
         </div>
         
-        <div class="ultra-program-card education-program" onclick="openPage('education.html')">
+        <!-- Education Program Card -->
+        <div class="ultra-program-card education-program" onclick="openProgramDetail('education')">
+          <div class="program-card-header">
+            <div class="program-category-badge">Education</div>
+            <div class="program-priority">Strategic</div>
+          </div>
           <div class="program-icon">
-            <div class="icon-circle">
-              <i class="fas fa-graduation-cap"></i>
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3>Education Empowerment</h3>
+          <p>Educational excellence through village school support, digital learning centers, adult literacy programs, and teacher training initiatives that unlock opportunities and potential.</p>
+          
+          <div class="beneficiary-info">
+            <div class="beneficiary-icon">📚</div>
+            <div class="beneficiary-text">
+              <small>Students Supported</small>
+              <strong>500+ Students</strong>
             </div>
           </div>
-          <div class="program-content">
-            <h3>Education Empowerment</h3>
-            <p>Educational excellence through village school support, digital learning centers, adult literacy programs, and teacher training initiatives that unlock opportunities and potential.</p>
-            <div class="program-features">
-              <div class="feature-item">
-                <i class="fas fa-school"></i>
-                <span>School Support</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-laptop"></i>
-                <span>Digital Learning</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-book-reader"></i>
-                <span>Adult Literacy</span>
-              </div>
+
+          <div class="program-progress">
+            <div class="progress-label">
+              <span>Program Completion</span>
+              <span>85%</span>
             </div>
-            <div class="program-metrics">
-              <div class="metric">
-                <span class="metric-number">50+</span>
-                <span class="metric-label">Students Supported</span>
-              </div>
-              <div class="metric">
-                <span class="metric-number">1+</span>
-                <span class="metric-label">Schools Reached</span>
-              </div>
+            <div class="progress-bar-advanced">
+              <div class="progress-fill-advanced" style="width: 85%;"></div>
             </div>
           </div>
+
+          <div class="program-features">
+            <div class="feature-item">
+              <i class="fas fa-school"></i>
+              <span>School Support</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-laptop"></i>
+              <span>Digital Learning</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-book-reader"></i>
+              <span>Adult Literacy</span>
+            </div>
+          </div>
+
+          <div class="program-metrics">
+            <div class="metric">
+              <span class="metric-number">50+</span>
+              <span class="metric-label">Schools Reached</span>
+            </div>
+            <div class="metric">
+              <span class="metric-number">1+</span>
+              <span class="metric-label">Training Centers</span>
+            </div>
+          </div>
+
           <div class="card-action">
-            <span>Explore Education</span>
+            <span>View Details</span>
             <i class="fas fa-arrow-right"></i>
           </div>
         </div>
         
-        <div class="ultra-program-card agriculture-program" onclick="openPage('agriculture.html')">
+        <!-- Agriculture Program Card -->
+        <div class="ultra-program-card agriculture-program" onclick="openProgramDetail('agriculture')">
+          <div class="program-card-header">
+            <div class="program-category-badge">Agriculture</div>
+            <div class="program-priority">Sustainable</div>
+          </div>
           <div class="program-icon">
-            <div class="icon-circle">
-              <i class="fas fa-seedling"></i>
+            <i class="fas fa-seedling"></i>
+          </div>
+          <h3>Sustainable Agriculture</h3>
+          <p>Agricultural transformation through sustainable farming practices, crop diversification, market linkage support, and organic farming promotion enhancing rural livelihoods.</p>
+          
+          <div class="beneficiary-info">
+            <div class="beneficiary-icon">🌾</div>
+            <div class="beneficiary-text">
+              <small>Farmers Trained</small>
+              <strong>800+ Farmers</strong>
             </div>
           </div>
-          <div class="program-content">
-            <h3>Sustainable Agriculture</h3>
-            <p>Agricultural transformation through sustainable farming practices, crop diversification, market linkage support, and organic farming promotion enhancing rural livelihoods.</p>
-            <div class="program-features">
-              <div class="feature-item">
-                <i class="fas fa-leaf"></i>
-                <span>Sustainable Farming</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-handshake"></i>
-                <span>Market Linkage</span>
-              </div>
-              <div class="feature-item">
-                <i class="fas fa-seedling"></i>
-                <span>Organic Methods</span>
-              </div>
+
+          <div class="program-progress">
+            <div class="progress-label">
+              <span>Program Completion</span>
+              <span>65%</span>
             </div>
-            <div class="program-metrics">
-              <div class="metric">
-                <span class="metric-number">60+</span>
-                <span class="metric-label">Farmers Trained</span>
-              </div>
-              <div class="metric">
-                <span class="metric-number">10+</span>
-                <span class="metric-label">Villages</span>
-              </div>
+            <div class="progress-bar-advanced">
+              <div class="progress-fill-advanced" style="width: 65%;"></div>
             </div>
           </div>
+
+          <div class="program-features">
+            <div class="feature-item">
+              <i class="fas fa-leaf"></i>
+              <span>Sustainable Farming</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-handshake"></i>
+              <span>Market Linkage</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-leaf"></i>
+              <span>Organic Methods</span>
+            </div>
+          </div>
+
+          <div class="program-metrics">
+            <div class="metric">
+              <span class="metric-number">60+</span>
+              <span class="metric-label">Farmers Trained</span>
+            </div>
+            <div class="metric">
+              <span class="metric-number">10+</span>
+              <span class="metric-label">Villages</span>
+            </div>
+          </div>
+
           <div class="card-action">
-            <span>Explore Agriculture</span>
+            <span>View Details</span>
             <i class="fas fa-arrow-right"></i>
           </div>
         </div>
@@ -1761,9 +2317,52 @@
     </div>
   </section>
 
+  <!-- Program Detail Modal -->
+  <div id="programModal" class="program-detail-modal" onclick="closeProgramDetail(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header" id="modalHeader">
+        <button class="modal-close" onclick="closeProgramDetail()">✕</button>
+        <h2 id="modalTitle">Program Title</h2>
+        <p id="modalSubtitle">Program Category</p>
+      </div>
+      <div class="modal-body">
+        <div class="detail-section">
+          <h3><i class="fas fa-info-circle"></i> Overview</h3>
+          <p id="modalOverview"></p>
+        </div>
+        
+        <div class="detail-section">
+          <h3><i class="fas fa-bullseye"></i> Objectives</h3>
+          <ul id="modalObjectives" class="impact-list"></ul>
+        </div>
 
+        <div class="detail-section">
+          <h3><i class="fas fa-chart-pie"></i> Budget Breakdown</h3>
+          <div id="modalBudget" class="budget-breakdown"></div>
+        </div>
 
-  <!-- Call to Action Section -->
+        <div class="detail-section">
+          <h3><i class="fas fa-star"></i> Impact Metrics</h3>
+          <ul id="modalMetrics" class="impact-list"></ul>
+        </div>
+
+        <div class="detail-section">
+          <h3><i class="fas fa-calendar"></i> Timeline</h3>
+          <p id="modalTimeline"></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-participate" onclick="participateProgram()">
+          <i class="fas fa-hands-helping"></i> Participate Now
+        </button>
+        <button class="btn-donate" onclick="donateNow()">
+          <i class="fas fa-heart"></i> Donate
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
   <section class="premium-cta-section">
     <div class="cta-container">
       <div class="cta-content">
@@ -1848,7 +2447,7 @@
       <div class="footer-bottom">
         <div class="copyright">
           <p>&copy; 2025 Gramin Glow Foundation Egra. All Rights Reserved.</p>
-          <p class="reg-info">Registered under Society Registration Act | CIN: [Registration Number]</p>
+          <p class="reg-info">Registered under Society Registration Act | CIN: S0061566</p>
         </div>
       </div>
     </div>
@@ -1871,6 +2470,7 @@
     </div>
   </div>
 
+  <script src="app.js"></script>
   <script>
     // Preloader
     (() => {
