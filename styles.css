@@ -1889,215 +1889,26 @@ nav a:hover, nav a.active{background:rgba(255,255,255,0.06);color:var(--accent)}
     padding: 12px 20px;
   }
 }
-/* Premium Footer with Water Motion Border Effect */
+/* Premium Footer */
 .premium-footer {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
   color: #ffffff;
   position: relative;
   overflow: hidden;
   margin-top: 100px;
-  border: 6px solid transparent;
+  border: none;
   box-shadow: 0 -20px 60px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
+/* Footer Container */
 
 
-/* Water Motion Border Effect */
-.premium-footer::before {
-  content: '';
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  background: linear-gradient(90deg,
-    rgba(30,144,255,0.8) 0%,
-    rgba(19,136,8,0.9) 25%,
-    rgba(30,144,255,1) 50%,
-    rgba(19,136,8,0.9) 75%,
-    rgba(30,144,255,0.8) 100%
-  );
-  background-size: 400% 100%;
-  z-index: -1;
-  animation: waterFlow 6s ease-in-out infinite;
-  filter: blur(1px);
-}
 
-/* Water Ripple Effect */
-.premium-footer::after {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: 
-    radial-gradient(circle at 20% 50%, rgba(30,144,255,0.6) 0%, transparent 50%),
-    radial-gradient(circle at 80% 50%, rgba(19,136,8,0.6) 0%, transparent 50%),
-    radial-gradient(circle at 50% 20%, rgba(30,144,255,0.4) 0%, transparent 50%),
-    radial-gradient(circle at 50% 80%, rgba(19,136,8,0.4) 0%, transparent 50%);
-  z-index: -1;
-  animation: waterRipple 8s ease-in-out infinite;
-  opacity: 0.7;
-}
 
-@keyframes waterFlow {
-  0%, 100% {
-    background-position: 0% 50%;
-    transform: scaleX(1);
-  }
-  25% {
-    background-position: 100% 50%;
-    transform: scaleX(1.02);
-  }
-  50% {
-    background-position: 200% 50%;
-    transform: scaleX(1);
-  }
-  75% {
-    background-position: 300% 50%;
-    transform: scaleX(0.98);
-  }
-}
 
-@keyframes waterRipple {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 0.7;
-  }
-  25% {
-    transform: scale(1.05) rotate(90deg);
-    opacity: 0.9;
-  }
-  50% {
-    transform: scale(1.02) rotate(180deg);
-    opacity: 0.8;
-  }
-  75% {
-    transform: scale(1.08) rotate(270deg);
-    opacity: 0.6;
-  }
-}
 
-/* Upper Footer Water Border - Direct Implementation */
-.premium-footer {
-  border-top: 8px solid transparent;
-  background-image: 
-    linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%),
-    linear-gradient(90deg, 
-      rgba(30,144,255,1) 0%, 
-      rgba(19,136,8,1) 25%, 
-      rgba(30,144,255,1) 50%, 
-      rgba(19,136,8,1) 75%, 
-      rgba(30,144,255,1) 100%
-    );
-  background-size: 
-    100% calc(100% - 8px),
-    300% 8px;
-  background-position: 
-    0 8px,
-    0 0;
-  background-repeat: no-repeat;
-  animation: upperBorderFlow 4s linear infinite;
-}
 
-@keyframes upperBorderFlow {
-  0% { background-position: 0 8px, 0% 0; }
-  100% { background-position: 0 8px, 300% 0; }
-}
 
-/* Water Droplet Effects */
-.premium-footer .footer-container::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, rgba(30,144,255,0.8) 0%, transparent 70%);
-  border-radius: 50%;
-  animation: waterDrop 3s ease-in-out infinite;
-}
-
-.premium-footer .footer-container::after {
-  content: '';
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  width: 15px;
-  height: 15px;
-  background: radial-gradient(circle, rgba(19,136,8,0.8) 0%, transparent 70%);
-  border-radius: 50%;
-  animation: waterDrop 3s ease-in-out infinite 1.5s;
-}
-
-@keyframes waterDrop {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 0.4;
-  }
-}
-
-/* Water Wave Divider */
-.footer-top::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(30,144,255,0.6) 25%,
-    rgba(19,136,8,0.8) 50%,
-    rgba(30,144,255,0.6) 75%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-  animation: waveMotion 4s linear infinite;
-  border-radius: 50px;
-}
-
-@keyframes waveMotion {
-  0% {
-    background-position: -200% 0;
-    transform: scaleY(1);
-  }
-  50% {
-    background-position: 0% 0;
-    transform: scaleY(1.5);
-  }
-  100% {
-    background-position: 200% 0;
-    transform: scaleY(1);
-  }
-}
-
-/* Hover Water Intensity */
-.premium-footer:hover::before {
-  animation-duration: 3s;
-  filter: blur(0.5px) brightness(1.2);
-}
-
-.premium-footer:hover::after {
-  animation-duration: 4s;
-  opacity: 1;
-}
-
-.premium-footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #138808, #1e90ff, #ffd700, #138808);
-  box-shadow: 0 2px 15px rgba(19,136,8,0.5);
-}
 
 .footer-container {
   max-width: 1200px;
